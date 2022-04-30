@@ -54,10 +54,10 @@ export const BodyForm = styled.div`
   gap: 2rem;
   border-radius: 0.42rem;
   background-color: #f5f4f9;
-  padding: 2% 4%;
+  padding: 3% 4%;
   span {
     font-family: Roboto;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 `;
 
@@ -69,7 +69,7 @@ export const BodyInput = styled.div`
   a {
     text-decoration: none;
     font-family: Roboto;
-    font-size: 0.84rem;
+    font-size: 0.9rem;
     align-self: flex-end;
     color: #1e71d4;
   }

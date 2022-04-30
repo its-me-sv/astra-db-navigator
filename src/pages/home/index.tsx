@@ -8,13 +8,18 @@ import {
   BodyForm, BodyInput,
 } from "./styles";
 
+import {homeTranslations} from '../../utils/translations.utils';
+
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Languages from '../../components/languages';
 
+import {useLanguageContext} from '../../contexts/language.context';
+
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
+  const {language} = useLanguageContext();
   return (
     <HomePageContainer>
       <HomePageHeader>
@@ -27,22 +32,24 @@ const HomePage: React.FC<HomePageProps> = () => {
           <AstraLogo />
           <span>Navigator</span>
         </BodyTop>
-        <CaptionText>GUI to manage your AstraDB Database</CaptionText>
+        <CaptionText>{homeTranslations.topCaption[language]}</CaptionText>
         <BodyForm>
-          <span>Credentials</span>
+          <span>{homeTranslations.formTop[language]}</span>
           <BodyInput>
-            <Input label="App Token" name="app-tkn" value="" setValue={() => {}}/>
+            <Input label={homeTranslations.formInput[language]} name="app-tkn" value="" setValue={() => {}}/>
             <a 
               href="https://docs.datastax.com/en/astra/docs/manage-application-tokens.html"
               target="_blank"
               rel="noreferrer"
-            >Don’t have an App Token?</a>
+            >{homeTranslations.formDont[language]}</a>
           </BodyInput>
-          <Button variant={4} text="Connect" onPress={() => {}} disabled={false} />
+          <Button variant={4} text={homeTranslations.formButton[language]} onPress={() => {}} disabled={false} />
         </BodyForm>
         <BodyFooter>
-          <span>Don’t have an account?</span>
-          <a href="https://astra.datastax.com/register" target="_blank" rel="noreferrer">Sign Up</a>
+          <span>{homeTranslations.bottomCaption[language]}</span>
+          <a href="https://astra.datastax.com/register" target="_blank" rel="noreferrer">
+            {homeTranslations.bottomSignUp[language]}
+          </a>
         </BodyFooter>
       </HomePageBody>
       <Languages />
