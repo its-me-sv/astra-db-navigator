@@ -9,9 +9,13 @@ const Container = styled.div`
   align-self: flex-end;
   margin: 0.5% 1%;
   opacity: 0.84;
-  span {
-    cursor: pointer;
-  }
+`;
+
+const Language = styled.span<{selected?:boolean}>`
+  cursor: pointer;
+  ${(props) => props.selected && `
+    color: #eb6c34;
+  `}
 `;
 
 interface LanguageProps {}
@@ -21,10 +25,14 @@ const Languages: React.FC<LanguageProps> = () => {
   return (
     <Container>
       {['US', 'IT', 'ES', 'FR'].map((val, idx) => (
-        <span 
-          key={val}
-          onClick={() => setLanguage!(idx)}
-        >{`${idx === language ? '* ': ''}${val}${idx !== 3 ? ' | ': ''}`}</span>
+        <>
+          <Language
+            key={val}
+            onClick={() => setLanguage!(idx)}
+            selected={idx===language}
+          >{val}</Language>
+          <span>{idx !== 3 ? ' | ': ''}</span>
+        </>
       ))}
     </Container>
   );
