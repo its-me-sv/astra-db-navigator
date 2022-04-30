@@ -25,14 +25,14 @@ const Languages: React.FC<LanguageProps> = () => {
   return (
     <Container>
       {['US', 'IT', 'ES', 'FR'].map((val, idx) => (
-        <>
+        <span key={val}>
           <Language
             key={val}
             onClick={() => setLanguage!(idx)}
             selected={idx===language}
           >{val}</Language>
           <span>{idx !== 3 ? ' | ': ''}</span>
-        </>
+        </span>
       ))}
     </Container>
   );

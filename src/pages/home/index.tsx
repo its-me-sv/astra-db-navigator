@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {
   HomePageContainer, HomePageHeader,
@@ -20,6 +20,13 @@ interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const {language} = useLanguageContext();
+
+  const [userTkn, setUsrTkn] = useState<string>('');
+
+  const onConnect = () => {
+    if (!userTkn.length) return;
+  };
+
   return (
     <HomePageContainer>
       <HomePageHeader>
@@ -36,14 +43,24 @@ const HomePage: React.FC<HomePageProps> = () => {
         <BodyForm>
           <span>{homeTranslations.formTop[language]}</span>
           <BodyInput>
-            <Input label={homeTranslations.formInput[language]} name="app-tkn" value="" setValue={() => {}}/>
+            <Input 
+              label={homeTranslations.formInput[language]} 
+              name="app-tkn" 
+              value={userTkn} 
+              setValue={setUsrTkn}
+            />
             <a 
               href="https://docs.datastax.com/en/astra/docs/manage-application-tokens.html"
               target="_blank"
               rel="noreferrer"
             >{homeTranslations.formDont[language]}</a>
           </BodyInput>
-          <Button variant={4} text={homeTranslations.formButton[language]} onPress={() => {}} disabled={false} />
+          <Button 
+            variant={4} 
+            text={homeTranslations.formButton[language]} 
+            onPress={onConnect} 
+            disabled={userTkn.length === 0}
+          />
         </BodyForm>
         <BodyFooter>
           <span>{homeTranslations.bottomCaption[language]}</span>
