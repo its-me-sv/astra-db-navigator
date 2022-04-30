@@ -1,22 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 
 import {useLanguageContext} from '../../contexts/language.context';
-
-const Container = styled.div`
-  color: #f5f4f9;
-  font-family: bahnschrift;
-  align-self: flex-end;
-  margin: 0.5% 1%;
-  opacity: 0.84;
-`;
-
-const Language = styled.span<{selected?:boolean}>`
-  cursor: pointer;
-  ${(props) => props.selected && `
-    color: #eb6c34;
-  `}
-`;
+import {Container, Language} from './styles';
 
 interface LanguageProps {}
 

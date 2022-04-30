@@ -25,6 +25,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   const onConnect = () => {
     if (!userTkn.length) return;
+    window.alert(userTkn);
   };
 
   return (
