@@ -90,11 +90,3 @@ export const BodyFooter = styled.div`
     color: #eb6c34;
   }
 `;
-
-export const HomeFooter = styled.div`
-  color: #f5f4f9;
-  font-family: bahnschrift;
-  align-self: flex-end;
-  margin: 0.5% 1%;
-  opacity: 0.84;
-`;

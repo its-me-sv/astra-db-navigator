@@ -1,21 +1,16 @@
 import React from "react";
 
 import {
-  HomePageContainer,
-  HomePageHeader,
-  DSLogo,
-  AstraLogo,
-  HomeFooter,
-  HomePageBody,
-  BodyTop,
-  CaptionText,
-  BodyFooter,
-  BodyForm,
-  BodyInput,
+  HomePageContainer, HomePageHeader,
+  DSLogo, AstraLogo,
+  HomePageBody, BodyTop,
+  CaptionText, BodyFooter,
+  BodyForm, BodyInput,
 } from "./styles";
 
 import Input from '../../components/input';
 import Button from '../../components/button';
+import Languages from '../../components/languages';
 
 interface HomePageProps {}
 
@@ -50,15 +45,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           <a href="https://astra.datastax.com/register" target="_blank" rel="noreferrer">Sign Up</a>
         </BodyFooter>
       </HomePageBody>
-      <HomeFooter>
-        <span>* US</span>
-        <span> | </span>
-        <span>IT</span>
-        <span> | </span>
-        <span>ES</span>
-        <span> | </span>
-        <span>FR</span>
-      </HomeFooter>
+      <Languages />
     </HomePageContainer>
   );
 };
