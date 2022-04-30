@@ -1,11 +1,11 @@
 import React from 'react';
 
-const App = () => {
-  return (
-    <div>
-      <h1>Navigator</h1>
-    </div>
-  );
+import HomePage from './pages/home';
+
+interface AppProps {}
+
+const App: React.FC<AppProps> = () => {
+  return (<HomePage />);
 };
 
 export default App;
