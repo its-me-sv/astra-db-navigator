@@ -5,6 +5,7 @@ interface MainContextInterface {
   database: string;
   loading: boolean;
   fetchDatabase?: (appToken: string) => void;
+  resetConnection?: () => void;
 }
 
 const defaultState: MainContextInterface = {
@@ -31,11 +32,20 @@ export const MainContextProvider: React.FC<{children: ReactNode}> = ({children})
     }, 1500);
   };
 
+  const resetConnection = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setAppToken("");
+      setDatabase("");
+      setLoading(false);
+    }, 1000);
+  };
+
   return (
     <MainContext.Provider
       value={{
         appToken, database, loading,
-        fetchDatabase
+        fetchDatabase, resetConnection
       }}
     >{children}</MainContext.Provider>
   );

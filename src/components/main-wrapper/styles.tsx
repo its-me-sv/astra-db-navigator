@@ -9,16 +9,3 @@ export const MainWrapper = styled.div`
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 `;
-
-export const MainFooter = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 0.5%;
-`;
-
-export const ButtonWrapper = styled.div`
-  align-self: center;
-  width: 7.7vw;
-`;

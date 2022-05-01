@@ -9,13 +9,12 @@ import MainWrapper from './components/main-wrapper';
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const {loading, appToken, database} = useMainContext();
+  const {loading, appToken} = useMainContext();
   
   return (
     <>
       {loading && <BlockLoader />}
-      {!(appToken.length > 0 && database.length > 0)
-      ? <HomePage /> : <MainWrapper />}
+      {!(appToken.length > 0) ? <HomePage /> : <MainWrapper />}
     </>
   );
 };
