@@ -6,6 +6,7 @@ import {
   HomePageBody, BodyTop,
   CaptionText, BodyFooter,
   BodyForm, BodyInput,
+  BtnContainer
 } from "./styles";
 
 import {homeTranslations} from '../../utils/translations.utils';
@@ -56,12 +57,14 @@ const HomePage: React.FC<HomePageProps> = () => {
               rel="noreferrer"
             >{homeTranslations.formDont[language]}</a>
           </BodyInput>
-          <Button 
-            variant={4} 
-            text={homeTranslations.formButton[language]} 
-            onPress={onConnect} 
-            disabled={userTkn.length === 0}
-          />
+          <BtnContainer>
+            <Button 
+              variant={4} 
+              text={homeTranslations.formButton[language]} 
+              onPress={onConnect} 
+              disabled={userTkn.length === 0}
+            />
+          </BtnContainer>
         </BodyForm>
         <BodyFooter>
           <span>{homeTranslations.bottomCaption[language]}</span>

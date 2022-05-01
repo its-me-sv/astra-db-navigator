@@ -51,10 +51,10 @@ export const BodyForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  border-radius: 0.42rem;
+  gap: 3rem;
+  border-radius: 0.49rem;
   background-color: #f5f4f9;
-  padding: 3% 4%;
+  padding: 4% 6%;
   span {
     font-family: Roboto;
     font-size: 1.6rem;
@@ -69,6 +69,7 @@ export const BodyInput = styled.div`
   a {
     text-decoration: none;
     font-family: Roboto;
+    font-weight: 700;
     font-size: 0.9rem;
     align-self: flex-end;
     color: #1e71d4;
@@ -89,4 +90,8 @@ export const BodyFooter = styled.div`
     text-decoration: none;
     color: #eb6c34;
   }
+`;
+
+export const BtnContainer = styled.div`
+  width: 10vw;
 `;

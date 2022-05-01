@@ -28,7 +28,7 @@ const BtnContainer = styled.div`
       case 3:
         return `background-color: #f26d7d;`;
       case 4:
-        return `background-color: #1e71d4;`;
+        return `background-color: #1f71d5;`;
       case 5:
         return `background-color: #fbaf5d;`;
       default:
