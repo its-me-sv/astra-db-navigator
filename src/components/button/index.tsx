@@ -26,7 +26,7 @@ const BtnContainer = styled.div`
       case 1:
         return `${property}-color: #fff568;`;
       case 2:
-        return `${property}-color: #8dc63f;`;
+        return `${property}-color: #238636;`;
       case 3:
         return `${property}-color: red;`;
       case 4:
@@ -59,7 +59,7 @@ const BtnContainer = styled.div`
       case 1:
         return `color: #fff568;`;
       case 2:
-        return `color: #8dc63f;`;
+        return `color: #238636;`;
       case 3:
         return `color: red;`;
       case 4:
