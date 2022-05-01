@@ -1,6 +1,6 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 
-interface MainContextInterface {
+interface ConnectionContextInterface {
   appToken: string;
   database: string;
   loading: boolean;
@@ -8,17 +8,17 @@ interface MainContextInterface {
   resetConnection?: () => void;
 }
 
-const defaultState: MainContextInterface = {
+const defaultState: ConnectionContextInterface = {
   appToken: '',
   database: '',
   loading: false
 };
 
-export const MainContext = createContext<MainContextInterface>(defaultState);
+export const ConnectionContext = createContext<ConnectionContextInterface>(defaultState);
 
-export const useMainContext = () => useContext(MainContext);
+export const useConnectionContext = () => useContext(ConnectionContext);
 
-export const MainContextProvider: React.FC<{children: ReactNode}> = ({children}) => {
+export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({children}) => {
   const [appToken, setAppToken] = useState<string>(defaultState.appToken);
   const [database, setDatabase] = useState<string>(defaultState.database);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
@@ -29,7 +29,7 @@ export const MainContextProvider: React.FC<{children: ReactNode}> = ({children})
       setAppToken(tkn);
       setDatabase('workshops');
       setLoading(false);
-    }, 1500);
+    });
   };
 
   const resetConnection = () => {
@@ -38,15 +38,15 @@ export const MainContextProvider: React.FC<{children: ReactNode}> = ({children})
       setAppToken("");
       setDatabase("");
       setLoading(false);
-    }, 1000);
+    });
   };
 
   return (
-    <MainContext.Provider
+    <ConnectionContext.Provider
       value={{
         appToken, database, loading,
         fetchDatabase, resetConnection
       }}
-    >{children}</MainContext.Provider>
+    >{children}</ConnectionContext.Provider>
   );
 };

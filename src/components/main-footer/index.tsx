@@ -7,13 +7,13 @@ import Languages from '../languages';
 import Button from "../button";
 
 import {useLanguageContext} from '../../contexts/language.context';
-import {useMainContext} from '../../contexts/main.context';
+import {useConnectionContext} from '../../contexts/connection.context';
 
 interface MainFooterProps {}
 
 const MainFooter: React.FC<MainFooterProps> = () => {
   const {language} = useLanguageContext();
-  const {resetConnection} = useMainContext();
+  const {resetConnection} = useConnectionContext();
 
   return (
     <Container>

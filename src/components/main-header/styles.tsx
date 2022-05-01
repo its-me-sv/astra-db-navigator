@@ -40,6 +40,7 @@ export const SelectStyles = styled.select`
   background-color: #20293a;
   color: #f5f4f9;
   text-align: center;
+  cursor: pointer;
 `;
 
 export const OptionStyles = styled.option``;

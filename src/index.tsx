@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import {LanguageContextProvider} from './contexts/language.context';
-import {MainContextProvider} from './contexts/main.context';
+import {ConnectionContextProvider} from './contexts/connection.context';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -14,9 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LanguageContextProvider>
-      <MainContextProvider>
+      <ConnectionContextProvider>
         <App />
-      </MainContextProvider>
+      </ConnectionContextProvider>
     </LanguageContextProvider>
   </React.StrictMode>
 );
