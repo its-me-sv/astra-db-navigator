@@ -1,4 +1,10 @@
 export const homeTranslations = {
+  prodName: [
+    "Navigator",
+    "Navigator",
+    "Navigator",
+    "Navigator",
+  ],
   topCaption: [
     "GUI to manage your AstraDB Database", 
     "GUI per gestire il tuo database AstraDB",

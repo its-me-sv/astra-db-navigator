@@ -41,7 +41,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <HomePageBody>
         <BodyTop>
           <AstraLogo />
-          <span>Navigator</span>
+          <span>{homeTranslations.prodName[language]}</span>
         </BodyTop>
         <CaptionText>{homeTranslations.topCaption[language]}</CaptionText>
         <BodyForm>

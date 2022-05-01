@@ -13,7 +13,8 @@ export const HomePageContainer = styled.div`
 `;
 
 export const HomePageHeader = styled.div`
-  margin: 0.5% 1%;
+  margin-top: 1.5%;
+  margin-left: 3%;
 `;
 
 export const DSLogo = styled(DataStaxLogo)``;
