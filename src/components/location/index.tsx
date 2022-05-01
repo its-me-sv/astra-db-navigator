@@ -14,16 +14,13 @@ const Location: React.FC<LocationProps> = () => {
   return (
     <LocationContainer>
       <LocationItem>{database}</LocationItem>
-      {screen > 1 && (
-        <>
-          <span> / </span>
-          <LocationItem>{keyspace}</LocationItem>
-        </>
-      )}
+      <span> / </span>
+      {screen > 1 && <LocationItem>{keyspace}</LocationItem>}
       {screen > 2 && (
         <>
           <span> / </span>
           <LocationItem>{table}</LocationItem>
+          <span> / </span>
         </>
       )}
     </LocationContainer>
