@@ -1,6 +1,10 @@
 import React from "react";
 
-import {Container, DataStaxLogo, AstraDBLogo, HeaderRight} from './styles';
+import {
+  Container, DataStaxLogo, 
+  AstraDBLogo, HeaderRight,
+  SelectStyles, OptionStyles
+} from './styles';
 import Button from "../button";
 
 interface MainHeaderProps {}
@@ -13,11 +17,11 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
         <AstraDBLogo />
       </a>
       <HeaderRight>
-        <select>
-          <option>workshops</option>
-          <option>pirate-land</option>
-          <option>aneta</option>
-        </select>
+        <SelectStyles>
+          <OptionStyles>workshops</OptionStyles>
+          <OptionStyles>pirate-land</OptionStyles>
+          <OptionStyles>aneta</OptionStyles>
+        </SelectStyles>
         <Button
           variant={2}
           text="Create new Database"
