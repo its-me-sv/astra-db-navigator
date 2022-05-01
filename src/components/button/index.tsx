@@ -4,12 +4,13 @@ import styled from 'styled-components';
 interface ButtonStyleProps {
   variant: number;
   disabled: boolean;
+  unfilled?: boolean;
+  tiny?: boolean;
 }
 
 const BtnContainer = styled.div`
   max-height: 8.4vh;
   font-family: calibri;
-  font-size: 1.2rem;
   opacity: 0.84;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 0.14rem;
@@ -20,17 +21,18 @@ const BtnContainer = styled.div`
   text-align: center;
   cursor: pointer;
   ${(props: ButtonStyleProps) => {
+    const property:string = props.unfilled ? 'border': 'background';
     switch (props.variant) {
       case 1:
-        return `background-color: #fff568;`;
+        return `${property}-color: #fff568;`;
       case 2:
-        return `background-color: #8dc63f;`;
+        return `${property}-color: #8dc63f;`;
       case 3:
-        return `background-color: #f26d7d;`;
+        return `${property}-color: red;`;
       case 4:
-        return `background-color: #1f71d5;`;
+        return `${property}-color: #1f71d5;`;
       case 5:
-        return `background-color: #fbaf5d;`;
+        return `${property}-color: #fbaf5d;`;
       default:
         return ``;
     }
@@ -41,7 +43,33 @@ const BtnContainer = styled.div`
   span {
     font-family: Roboto;
     font-size: 1.2rem;
+    ${(props: ButtonStyleProps) => props.tiny && `
+      font-size: 0.8rem;
+      font-weight: 700;
+    `}
   }
+  ${(props: ButtonStyleProps) => props.tiny && `
+    border-width: 1.99px;
+    border-radius: 0.30rem;
+    padding: 0.084rem;
+  `}
+  ${(props: ButtonStyleProps) => {
+    if (!props.unfilled) return ``;
+    switch (props.variant) {
+      case 1:
+        return `color: #fff568;`;
+      case 2:
+        return `color: #8dc63f;`;
+      case 3:
+        return `color: red;`;
+      case 4:
+        return `color: #1f71d5;`;
+      case 5:
+        return `color: #fbaf5d;`;
+      default:
+        return ``;
+    }
+  }}
 `;
 
 interface ButtonProps {
@@ -49,11 +77,22 @@ interface ButtonProps {
   text: string;
   onPress: () => void;
   disabled: boolean;
+  unfilled?: boolean;
+  tiny?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({variant, text, onPress, disabled}) => {
+const Button: React.FC<ButtonProps> = ({
+  variant, text, onPress, 
+  disabled, unfilled, tiny
+}) => {
     return (
-      <BtnContainer disabled={disabled} variant={variant} onClick={onPress}>
+      <BtnContainer 
+        disabled={disabled} 
+        variant={variant} 
+        onClick={onPress}
+        unfilled={unfilled}
+        tiny={tiny}
+      >
         <span>{text}</span>
       </BtnContainer>
     );

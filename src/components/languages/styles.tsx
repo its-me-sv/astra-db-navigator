@@ -8,11 +8,8 @@ export const Container = styled.div`
   opacity: 0.84;
 `;
 
-export const Language = styled.span<{ selected?: boolean }>`
+export const Language = styled.span<{ selected?: boolean, dark?: boolean }>`
   cursor: pointer;
-  ${(props) =>
-    props.selected &&
-    `
-    color: #eb6c34;
-  `}
+  ${(props) => props.dark && `color: #232323;`}
+  ${(props) => props.selected && `color: #eb6c34;`}
 `;
