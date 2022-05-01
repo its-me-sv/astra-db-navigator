@@ -48,3 +48,12 @@ export const homeTranslations = {
     "S'inscrire"
   ]
 };
+
+export const mainTranslations = {
+  disconnectButton: [
+    "Disconnect",
+    "Disconnetti",
+    "Desconectar",
+    "Déconnecter"
+  ]
+};
