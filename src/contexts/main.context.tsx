@@ -26,7 +26,7 @@ export const MainContextProvider: React.FC<{children: ReactNode}> = ({children})
     setLoading(true);
     setTimeout(() => {
       setAppToken(tkn);
-      setDatabase(database);
+      setDatabase('workshops');
       setLoading(false);
     }, 1500);
   };

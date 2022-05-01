@@ -8,12 +8,13 @@ import BlockLoader from './components/block-loader';
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const {loading} = useMainContext();
+  const {loading, appToken, database} = useMainContext();
   
   return (
     <>
       {loading && <BlockLoader />}
-      <HomePage />
+      {!(appToken.length > 0 && database.length > 0)
+      ? <HomePage /> : <h1>ur in</h1>}
     </>
   );
 };
