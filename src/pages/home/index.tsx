@@ -16,17 +16,19 @@ import Button from '../../components/button';
 import Languages from '../../components/languages';
 
 import {useLanguageContext} from '../../contexts/language.context';
+import {useMainContext} from '../../contexts/main.context';
 
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const {language} = useLanguageContext();
+  const {fetchDatabase} = useMainContext();
 
   const [userTkn, setUsrTkn] = useState<string>('');
 
   const onConnect = () => {
     if (!userTkn.length) return;
-    window.alert(userTkn);
+    fetchDatabase!(userTkn);
   };
 
   return (

@@ -4,6 +4,7 @@ interface MainContextInterface {
   appToken: string;
   database: string;
   loading: boolean;
+  fetchDatabase?: (appToken: string) => void;
 }
 
 const defaultState: MainContextInterface = {
@@ -21,10 +22,20 @@ export const MainContextProvider: React.FC<{children: ReactNode}> = ({children})
   const [database, setDatabase] = useState<string>(defaultState.database);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
 
+  const fetchDatabase = (tkn: string) => {
+    setLoading(true);
+    setTimeout(() => {
+      setAppToken(tkn);
+      setDatabase(database);
+      setLoading(false);
+    }, 1500);
+  };
+
   return (
     <MainContext.Provider
       value={{
-        appToken, database, loading
+        appToken, database, loading,
+        fetchDatabase
       }}
     >{children}</MainContext.Provider>
   );
