@@ -2,13 +2,13 @@ import React from "react";
 
 import {
   Container, DataStaxLogo, 
-  AstraDBLogo, HeaderRight,
-  SelectStyles, OptionStyles
+  AstraDBLogo, HeaderRight
 } from './styles';
 
 import {mainHeaderTranslations} from '../../utils/translations.utils';
 import {useLanguageContext} from '../../contexts/language.context';
 import Button from "../button";
+import Select from "../select";
 
 interface MainHeaderProps {}
 
@@ -22,11 +22,7 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
         <AstraDBLogo />
       </a>
       <HeaderRight>
-        <SelectStyles>
-          <OptionStyles>workshops</OptionStyles>
-          <OptionStyles>pirate-land</OptionStyles>
-          <OptionStyles>aneta</OptionStyles>
-        </SelectStyles>
+        <Select />
         <Button
           variant={2}
           text={mainHeaderTranslations.createDB[language]}
