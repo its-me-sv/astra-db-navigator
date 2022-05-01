@@ -5,6 +5,7 @@ interface ConnectionContextInterface {
   database: string;
   keyspace: string;
   table: string;
+  screen: number;
   loading: boolean;
   fetchDatabase?: (appToken: string) => void;
   resetConnection?: () => void;
@@ -15,6 +16,7 @@ const defaultState: ConnectionContextInterface = {
   database: '',
   keyspace: '',
   table: '',
+  screen: 0,
   loading: false
 };
 
@@ -27,6 +29,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
   const [database, setDatabase] = useState<string>(defaultState.database);
   const [keyspace, setKeyspace] = useState<string>(defaultState.keyspace);
   const [table, setTable] = useState<string>(defaultState.table);
+  const [screen, setScreen] = useState<number>(defaultState.screen);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
 
   const fetchDatabase = (tkn: string) => {
@@ -34,6 +37,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
     setTimeout(() => {
       setAppToken(tkn);
       setDatabase('workshops');
+      setScreen(1);
       setLoading(false);
     });
   };
@@ -45,6 +49,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
       setDatabase("");
       setKeyspace("");
       setTable("");
+      setScreen(0);
       setLoading(false);
     });
   };
@@ -52,7 +57,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
   return (
     <ConnectionContext.Provider
       value={{
-        appToken, database, loading, keyspace, table,
+        appToken, database, loading, keyspace, table, screen,
         fetchDatabase, resetConnection
       }}
     >{children}</ConnectionContext.Provider>
