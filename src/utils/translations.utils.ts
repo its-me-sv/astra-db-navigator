@@ -66,3 +66,12 @@ export const mainHeaderTranslations = {
     "Créer une nouvelle base de données"
   ]
 };
+
+export const databasesTranslations = {
+  searchPlaceholder: [
+    "Keyspace name",
+    "Nome spazio chiave",
+    "Nombre del espacio de claves",
+    "Nom de l'espace de clés"
+  ]
+};
