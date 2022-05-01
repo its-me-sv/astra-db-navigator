@@ -57,3 +57,12 @@ export const mainTranslations = {
     "Déconnecter"
   ]
 };
+
+export const mainHeaderTranslations = {
+  createDB: [
+    "Create new Database",
+    "Crea un nuovo database",
+    "Crear nueva base de datos",
+    "Créer une nouvelle base de données"
+  ]
+};
