@@ -12,6 +12,10 @@ export const MainFooter = styled.div`
     text-transform: uppercase;
     color: black;
     opacity: 0.84;
+    &:hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
   }
 `;
 
