@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const DatabaseContainer = styled.div`
+  margin-top: 0.5%;
   display: flex;
   flex-direction: column;
   align-items: center;

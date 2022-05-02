@@ -12,6 +12,7 @@ import dummmyKeySpaces from "./data";
 import {useLanguageContext} from '../../contexts/language.context';
 import {useConnectionContext} from '../../contexts/connection.context';
 import SearchField from '../search-field';
+import BlockLoader from "../block-loader";
 
 export interface KeyspaceSchema {
   name: string;
@@ -24,9 +25,10 @@ interface DatabasesProps {
 
 const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   const {language} = useLanguageContext();
-  const {setLoading, setKs} = useConnectionContext();
+  const {setKs} = useConnectionContext();
 
   const [keyword, setKeyword] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const [keyspaces, setKeyspaces] = useState<Array<KeyspaceSchema>>([]);
   
   const applyFilter = (val: string) => setKeyword(val);
@@ -45,6 +47,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
 
   return (
     <DatabaseContainer>
+      {loading && <BlockLoader />}
       <SearchField
         cb={applyFilter}
         placeholder={databasesTranslations.searchPlaceholder[language]}
