@@ -13,7 +13,7 @@ export const MainFooter = styled.div`
     color: black;
     opacity: 0.84;
     &:hover {
-      text-decoration: underline;
+      color: #eb6c34;
       opacity: 1;
     }
   }
