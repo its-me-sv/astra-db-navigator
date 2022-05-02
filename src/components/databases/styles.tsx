@@ -1,18 +1,16 @@
 import styled from "styled-components";
 
 export const DatabaseContainer = styled.div`
-  margin-top: 0.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const KeyspacesContainer = styled.div`
-  margin-top: 2.1% 0%;
   padding: 1%;
   display: flex;
   max-width: 97vw;
-  max-height: 70vh;
+  max-height: 71vh;
   overflow: auto;
   flex-wrap: wrap;
   gap: 2.1rem;
