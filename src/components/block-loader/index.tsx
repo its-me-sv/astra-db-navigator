@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 const LoaderContainer = styled.div`
+  top: 0;
   display: flex;
   position: fixed;
   align-items: center;

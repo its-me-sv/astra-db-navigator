@@ -91,5 +91,20 @@ export const databasesTranslations = {
     "Crea nuovo spazio chiave",
     "Crear nuevo espacio de claves",
     "Créer un nouvel espace de clés"
+  ],
+  newKs: [
+    "Create keyspace",
+    "Crea spazio chiave",
+    "Crear espacio de claves",
+    "Crea spazio chiave"
+  ]
+};
+
+export const general = {
+  cancel: [
+    "Cancel",
+    "Annulla",
+    "Cancelar",
+    "Annuler"
   ]
 };

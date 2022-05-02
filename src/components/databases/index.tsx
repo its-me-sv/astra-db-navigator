@@ -53,23 +53,25 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   return (
     <DatabaseContainer>
       {loading && <BlockLoader />}
-      {showModal && <DatabaseModal  onClose={hideModal} />}
+      {showModal && <DatabaseModal onClose={hideModal} ls={setLoading} />}
       <SearchField
         cb={applyFilter}
         placeholder={databasesTranslations.searchPlaceholder[language]}
       />
       <KeyspacesContainer>
-        {[...filteredKeyspaces, ...filteredKeyspaces, ...filteredKeyspaces].map(
-          (val, idx) => (
-            <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
-              <KeyspaceName>{val.name}</KeyspaceName>
-              <HrLine />
-              <KeyspaceDc>
-                {databasesTranslations.dc[language]}: {val.dataCenters || "-"}
-              </KeyspaceDc>
-            </KeyspaceHolder>
-          )
-        )}
+        {[
+          ...filteredKeyspaces,
+          ...filteredKeyspaces,
+          ...filteredKeyspaces,
+        ].map((val, idx) => (
+          <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
+            <KeyspaceName>{val.name}</KeyspaceName>
+            <HrLine />
+            <KeyspaceDc>
+              {databasesTranslations.dc[language]}: {val.dataCenters || "-"}
+            </KeyspaceDc>
+          </KeyspaceHolder>
+        ))}
         <KeyspaceHolder onClick={viewModal}>
           <KeyspaceName>{databasesTranslations.new[language]}</KeyspaceName>
         </KeyspaceHolder>
