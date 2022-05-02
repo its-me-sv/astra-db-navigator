@@ -1,6 +1,6 @@
 import React, {
-  useRef, 
-  KeyboardEventHandler, MutableRefObject
+  useState, useRef, 
+  KeyboardEventHandler, MutableRefObject, ChangeEventHandler
 } from "react";
 
 import {
@@ -14,14 +14,17 @@ interface SearchFieldProps {
 }
 
 const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
+  const [text, setText] = useState<string>('');
   const textRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  const callCallBack = () => cb(textRef.current.value);
+  const callCallBack = () => cb(text);
   const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key !== "Enter") return;
     callCallBack();
   };
+  const handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => setText(event.target.value);
   const onClear = () => {
+    setText('');
     cb('');
     textRef.current.value = '';
     textRef.current.blur();
@@ -33,9 +36,10 @@ const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
       <SearchInput
         placeholder={placeholder}
         onKeyDown={onKeyDown}
+        onChange={handleTextChange}
         ref={textRef}
       />
-      {textRef.current?.value.length > 0 && <span onClick={onClear}>x</span>}
+      {text.length > 0 && <span onClick={onClear}>x</span>}
     </SearchContainer>
   );
 };
