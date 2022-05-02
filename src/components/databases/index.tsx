@@ -13,6 +13,7 @@ import {useLanguageContext} from '../../contexts/language.context';
 import {useConnectionContext} from '../../contexts/connection.context';
 import SearchField from '../search-field';
 import BlockLoader from "../block-loader";
+import DatabaseModal from "./modal";
 
 export interface KeyspaceSchema {
   name: string;
@@ -29,9 +30,11 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
 
   const [keyword, setKeyword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [keyspaces, setKeyspaces] = useState<Array<KeyspaceSchema>>([]);
   
   const applyFilter = (val: string) => setKeyword(val);
+  const hideModal = () => setShowModal(false);
 
   useEffect(() => {
     if (dbName.length < 1) return;
@@ -48,6 +51,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   return (
     <DatabaseContainer>
       {loading && <BlockLoader />}
+      {showModal && <DatabaseModal  onClose={hideModal} />}
       <SearchField
         cb={applyFilter}
         placeholder={databasesTranslations.searchPlaceholder[language]}
