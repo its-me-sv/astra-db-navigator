@@ -11,12 +11,12 @@ import {useConnectionContext} from '../../contexts/connection.context';
 interface MainBodyProps {}
 
 const MainBody: React.FC<MainBodyProps> = () => {
-  const {screen} = useConnectionContext();
+  const {screen, database} = useConnectionContext();
 
   return (
     <div>
       <Location />
-      {screen === 1 && <Databases />}
+      {screen === 1 && <Databases dbName={database} />}
       {screen === 2 && <Keyspaces />}
       {screen === 3 && <Tables />}
       {screen === 4 && <Data />}

@@ -1,26 +1,63 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-import {DatabaseContainer} from './styles';
+import {
+  DatabaseContainer,
+  KeyspacesContainer,
+  KeyspaceHolder, KeyspaceName,
+  HrLine, KeyspaceDc
+} from "./styles";
 import {databasesTranslations} from '../../utils/translations.utils';
+import dummmyKeySpaces from "./data";
 
 import {useLanguageContext} from '../../contexts/language.context';
+import {useConnectionContext} from '../../contexts/connection.context';
 import SearchField from '../search-field';
 
-interface DatabasesProps {}
+export interface KeyspaceSchema {
+  name: string;
+  dataCenters?: number;
+}
 
-const Databases: React.FC<DatabasesProps> = () => {
+interface DatabasesProps {
+  dbName: string;
+}
+
+const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   const {language} = useLanguageContext();
+  const {setLoading, setKs} = useConnectionContext();
 
   const [keyword, setKeyword] = useState<string>('');
+  const [keyspaces, setKeyspaces] = useState<Array<KeyspaceSchema>>([]);
+  
   const applyFilter = (val: string) => setKeyword(val);
+
+  useEffect(() => {
+    if (dbName.length < 1) return;
+    setLoading!(true);
+    setTimeout(() => {
+      setKeyspaces(dummmyKeySpaces);
+      setLoading!(false);
+    }, 1500);
+  }, [dbName, setLoading]);
+
+  const filteredKeyspaces: Array<KeyspaceSchema> = keyspaces
+  ?.filter(({name}) => name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()));
 
   return (
     <DatabaseContainer>
-      <SearchField 
-        cb={applyFilter} 
+      <SearchField
+        cb={applyFilter}
         placeholder={databasesTranslations.searchPlaceholder[language]}
       />
-      {keyword}
+      <KeyspacesContainer>
+        {filteredKeyspaces.map((val) => (
+          <KeyspaceHolder key={val.name} onClick={() => setKs!(val.name)}>
+            <KeyspaceName>{val.name}</KeyspaceName>
+            <HrLine />
+            <KeyspaceDc>Data centers: {val.dataCenters || "-"}</KeyspaceDc>
+          </KeyspaceHolder>
+        ))}
+      </KeyspacesContainer>
     </DatabaseContainer>
   );
 };

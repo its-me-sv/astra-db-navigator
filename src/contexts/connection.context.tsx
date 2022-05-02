@@ -9,7 +9,9 @@ interface ConnectionContextInterface {
   loading: boolean;
   fetchDatabase?: (appToken: string) => void;
   setDb?: (dbName: string) => void;
+  setKs?: (ksName: string) => void;
   resetConnection?: () => void;
+  setLoading?: (val: boolean) => void;
 }
 
 const defaultState: ConnectionContextInterface = {
@@ -60,11 +62,16 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
     setScreen(1);
   };
 
+  const setKs = (ksName: string) => {
+    setKeyspace(ksName);
+    setScreen(2);
+  };
+
   return (
     <ConnectionContext.Provider
       value={{
         appToken, database, loading, keyspace, table, screen,
-        fetchDatabase, resetConnection, setDb
+        fetchDatabase, resetConnection, setDb, setLoading, setKs
       }}
     >{children}</ConnectionContext.Provider>
   );

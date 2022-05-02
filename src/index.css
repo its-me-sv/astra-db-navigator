@@ -3,6 +3,11 @@
   src: local('bahnschrift'), url(./assets/fonts/bahnschrift.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'calibri';
+  src: local('calibri'), url(./assets/fonts/calibri.ttf) format('truetype');
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

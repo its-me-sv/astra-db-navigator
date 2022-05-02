@@ -1,5 +1,5 @@
 import React, {
-  useRef, ChangeEvent, 
+  useRef, 
   KeyboardEventHandler, MutableRefObject
 } from "react";
 
@@ -23,7 +23,6 @@ const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
   };
   const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key !== "Enter") return;
-    if (textRef.current.value.length < 1) return window.alert("Field empty");
     callCallBack();
   };
 
