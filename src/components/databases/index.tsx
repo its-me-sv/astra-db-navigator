@@ -63,6 +63,8 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
           ...filteredKeyspaces,
           ...filteredKeyspaces,
           ...filteredKeyspaces,
+          ...filteredKeyspaces,
+          ...filteredKeyspaces,
         ].map((val, idx) => (
           <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
             <KeyspaceName>{val.name}</KeyspaceName>

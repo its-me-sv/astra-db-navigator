@@ -32,9 +32,9 @@ const MainFooter: React.FC<MainFooterProps> = () => {
         target="_blank"
         rel="noreferrer"
       >
-        📚 {mainTranslations.docs[language]}
+        📜 {mainTranslations.docs[language]}
       </a>
-      <Languages dark />
+      <Languages />
     </Container>
   );
 };
