@@ -34,10 +34,12 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   const [keyspaces, setKeyspaces] = useState<Array<KeyspaceSchema>>([]);
   
   const applyFilter = (val: string) => setKeyword(val);
+  const viewModal = () => setShowModal(true);
   const hideModal = () => setShowModal(false);
 
   useEffect(() => {
     if (dbName.length < 1) return;
+    hideModal();
     setLoading!(true);
     setTimeout(() => {
       setKeyspaces(dummmyKeySpaces);
@@ -68,7 +70,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
             </KeyspaceHolder>
           )
         )}
-        <KeyspaceHolder>
+        <KeyspaceHolder onClick={viewModal}>
           <KeyspaceName>{databasesTranslations.new[language]}</KeyspaceName>
         </KeyspaceHolder>
       </KeyspacesContainer>

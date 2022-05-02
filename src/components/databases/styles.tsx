@@ -53,3 +53,15 @@ export const KeyspaceDc = styled.span`
   font-size: 1rem;
   opacity: 0.84;
 `;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  position: fixed;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.84);
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+`;

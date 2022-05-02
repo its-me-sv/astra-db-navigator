@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const LoaderContainer = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   align-items: center;
   flex-direction: row;
   justify-content: center;
