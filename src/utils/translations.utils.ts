@@ -73,5 +73,11 @@ export const databasesTranslations = {
     "Nome spazio chiave",
     "Nombre del espacio de claves",
     "Nom de l'espace de clés"
+  ],
+  dc: [
+    "Data centers",
+    "Centri dati",
+    "Centros de datos",
+    "Centres de données"
   ]
 };

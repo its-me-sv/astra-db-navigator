@@ -54,7 +54,9 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
           <KeyspaceHolder key={val.name} onClick={() => setKs!(val.name)}>
             <KeyspaceName>{val.name}</KeyspaceName>
             <HrLine />
-            <KeyspaceDc>Data centers: {val.dataCenters || "-"}</KeyspaceDc>
+            <KeyspaceDc>
+              {databasesTranslations.dc[language]}: {val.dataCenters || "-"}
+            </KeyspaceDc>
           </KeyspaceHolder>
         ))}
       </KeyspacesContainer>
