@@ -16,14 +16,15 @@ interface SearchFieldProps {
 const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
   const textRef = useRef() as MutableRefObject<HTMLInputElement>;
 
-  const callCallBack = () => {
-    cb(textRef.current.value);
-    textRef.current.value = '';
-    textRef.current.blur();
-  };
+  const callCallBack = () => cb(textRef.current.value);
   const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key !== "Enter") return;
     callCallBack();
+  };
+  const onClear = () => {
+    cb('');
+    textRef.current.value = '';
+    textRef.current.blur();
   };
 
   return (
@@ -34,6 +35,7 @@ const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
         onKeyDown={onKeyDown}
         ref={textRef}
       />
+      {textRef.current.value.length > 0 && <span onClick={onClear}>x</span>}
     </SearchContainer>
   );
 };

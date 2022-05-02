@@ -6,8 +6,14 @@ export const SearchContainer = styled.div`
   flex-direction: row;
   align-items: center;
   border-radius: 0.3rem;
-  padding: 0.21% 0.42%;
-  gap: 0.14rem;
+  padding: 0.21% 0.49%;
+  gap: 0.42rem;
+  span {
+    font-family: bahnschrift;
+    font-size: 1.4rem;
+    opacity: 0.9;
+    cursor: pointer;
+  }
   background-color: #f5f4f9;
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
