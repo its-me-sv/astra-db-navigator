@@ -9,17 +9,25 @@ import {
 interface LocationProps {}
 
 const Location: React.FC<LocationProps> = () => {
-  const {database, keyspace, table, screen} = useConnectionContext();
+  const {database, keyspace, table, screen, setDb, setKs} = useConnectionContext();
 
   return (
     <LocationContainer>
-      <LocationItem>{database}</LocationItem>
+      <LocationItem 
+        selected={screen === 1}
+        onClick={() => screen !== 1 && setDb!(database)}
+      >{database}</LocationItem>
       <span> / </span>
-      {screen > 1 && <LocationItem>{keyspace}</LocationItem>}
+      {screen > 1 && (
+        <LocationItem 
+          selected={screen === 2}
+          onClick={() => screen !== 2 && setKs!(keyspace)}
+        >{keyspace}</LocationItem>
+      )}
       {screen > 2 && (
         <>
           <span> / </span>
-          <LocationItem>{table}</LocationItem>
+          <LocationItem selected={screen === 3}>{table}</LocationItem>
           <span> / </span>
         </>
       )}

@@ -35,7 +35,7 @@ const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
         onKeyDown={onKeyDown}
         ref={textRef}
       />
-      {textRef.current.value.length > 0 && <span onClick={onClear}>x</span>}
+      {textRef.current?.value.length > 0 && <span onClick={onClear}>x</span>}
     </SearchContainer>
   );
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Search from "../../assets/icons/search.png";
 
 export const SearchContainer = styled.div`
+  margin-bottom: 1px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,6 +19,7 @@ export const SearchContainer = styled.div`
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
+  z-index: 100;
 `;
 
 export const SearchIcon = styled.img.attrs({

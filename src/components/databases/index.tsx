@@ -50,15 +50,20 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
         placeholder={databasesTranslations.searchPlaceholder[language]}
       />
       <KeyspacesContainer>
-        {filteredKeyspaces.map((val) => (
-          <KeyspaceHolder key={val.name} onClick={() => setKs!(val.name)}>
-            <KeyspaceName>{val.name}</KeyspaceName>
-            <HrLine />
-            <KeyspaceDc>
-              {databasesTranslations.dc[language]}: {val.dataCenters || "-"}
-            </KeyspaceDc>
-          </KeyspaceHolder>
-        ))}
+        {[...filteredKeyspaces, ...filteredKeyspaces, ...filteredKeyspaces].map(
+          (val, idx) => (
+            <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
+              <KeyspaceName>{val.name}</KeyspaceName>
+              <HrLine />
+              <KeyspaceDc>
+                {databasesTranslations.dc[language]}: {val.dataCenters || "-"}
+              </KeyspaceDc>
+            </KeyspaceHolder>
+          )
+        )}
+        <KeyspaceHolder>
+          <KeyspaceName>{databasesTranslations.new[language]}</KeyspaceName>
+        </KeyspaceHolder>
       </KeyspacesContainer>
     </DatabaseContainer>
   );

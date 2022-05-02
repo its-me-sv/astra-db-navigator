@@ -7,11 +7,11 @@ export const DatabaseContainer = styled.div`
 `;
 
 export const KeyspacesContainer = styled.div`
-  margin-top: 2.1%;
+  margin-top: 2.1% 0%;
   padding: 1%;
   display: flex;
-  max-width: 84vw;
-  max-height: 71vh;
+  max-width: 97vw;
+  max-height: 70vh;
   overflow: auto;
   flex-wrap: wrap;
   gap: 2.1rem;
@@ -20,9 +20,10 @@ export const KeyspacesContainer = styled.div`
 export const KeyspaceHolder = styled.div`
   /* border: 1px solid black; */
   border-radius: 0.3rem;
-  padding: 0% 0.7% 0.7% 0.7%;
+  padding: 0% 0.7% 0.35% 0.7%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 0.1rem;
   cursor: pointer;
   background-color: #f5f4f9;

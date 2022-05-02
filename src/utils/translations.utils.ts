@@ -55,6 +55,12 @@ export const mainTranslations = {
     "Disconnetti",
     "Desconectar",
     "Déconnecter"
+  ],
+  docs: [
+    "Documentation",
+    "Documentazione",
+    "Documentación",
+    "Documentation"
   ]
 };
 
@@ -79,5 +85,11 @@ export const databasesTranslations = {
     "Centri dati",
     "Centros de datos",
     "Centres de données"
+  ],
+  new: [
+    "Create new keyspace",
+    "Crea nuovo spazio chiave",
+    "Crear nuevo espacio de claves",
+    "Créer un nouvel espace de clés"
   ]
 };

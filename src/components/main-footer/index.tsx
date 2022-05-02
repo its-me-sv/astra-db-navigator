@@ -27,6 +27,13 @@ const MainFooter: React.FC<MainFooterProps> = () => {
           tiny
         />
       </ButtonWrapper>
+      <a
+        href="https://docs.datastax.com/en/astra/docs/db-glossary.html"
+        target="_blank"
+        rel="noreferrer"
+      >
+        📚 {mainTranslations.docs[language]}
+      </a>
       <Languages dark />
     </Container>
   );
