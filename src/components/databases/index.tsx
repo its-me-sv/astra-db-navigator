@@ -41,12 +41,12 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   useEffect(() => {
     if (dbName.length < 1) return;
     hideModal();
-    setLoading!(true);
+    setLoading(true);
     setTimeout(() => {
       setKeyspaces(dummmyKeySpaces);
-      setLoading!(false);
+      setLoading(false);
     }, 1500);
-  }, [dbName, setLoading]);
+  }, [dbName]);
 
   const filteredKeyspaces: Array<KeyspaceSchema> = keyspaces
   ?.filter(({name}) => name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()));

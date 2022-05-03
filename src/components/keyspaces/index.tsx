@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import {
   KeyspaceContainer, ContentContainer,
   ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
 } from './styles';
 import {keyspacesTranslations} from '../../utils/translations.utils';
-import {tables, types} from './data';
+import {tables as dt, types as dk} from './data';
 
 import SearchField from "../search-field";
 import Button from "../button";
+import BlockLoader from "../block-loader";
 import {useLanguageContext} from '../../contexts/language.context';
 
 export interface TableSchema {
@@ -21,21 +22,59 @@ export interface TypeSchema {
   fields: number;
 }
 
-interface KeyspacesProps {}
+interface KeyspacesProps {
+  ksName: string;
+}
 
-const Keyspaces: React.FC<KeyspacesProps> = () => {
+const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   const {language} = useLanguageContext();
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [tables, setTables] = useState<Array<TableSchema>>([]);
+  const [types, setTypes] = useState<Array<TypeSchema>>([]);
+  const [tableKeyword, setTableKeyword] = useState<string>('');
+  const [typeKeyword, setTypeKeyword] = useState<string>('');
+
+  const applyTableFilter = (val: string) => setTableKeyword(val);
+  const applyTypeFilter = (val: string) => setTypeKeyword(val);
+
+  useEffect(() => {
+    if (ksName.length < 1) return;
+    setLoading(true);
+    setTimeout(() => {
+      setTables(dt);
+      setTypes(dk);
+      setLoading(false);
+    }, 1500);
+  }, [ksName]);
+
+  const filteredTables: Array<TableSchema> = tables
+  ?.filter(({name}) => name.toLocaleLowerCase().includes(tableKeyword.toLocaleLowerCase()));
+  const filteredTypes: Array<TypeSchema> = types
+  ?.filter(({name}) => name.toLocaleLowerCase().includes(typeKeyword.toLocaleLowerCase()));
 
   return (
     <KeyspaceContainer>
+      {loading && <BlockLoader />}
       <Seperator>
-        <SearchField cb={() => {}} placeholder={keyspacesTranslations.tableSearchPlaceholder[language]} />
+        <SearchField
+          cb={applyTableFilter}
+          placeholder={keyspacesTranslations.tableSearchPlaceholder[language]}
+        />
         <ContentContainer>
-          {tables.map((val, idx) => (
+          {[
+            ...filteredTables,
+            ...filteredTables,
+            ...filteredTables,
+            ...filteredTables,
+            ...filteredTables,
+          ].map((val, idx) => (
             <ItemHolder key={idx}>
               <ItemName>{val.name}</ItemName>
               <HrLine />
-              <ItemSubfield>{keyspacesTranslations.col[language]}: {val.columns}</ItemSubfield>
+              <ItemSubfield>
+                {keyspacesTranslations.col[language]}: {val.columns}
+              </ItemSubfield>
             </ItemHolder>
           ))}
           <Button
@@ -47,13 +86,24 @@ const Keyspaces: React.FC<KeyspacesProps> = () => {
         </ContentContainer>
       </Seperator>
       <Seperator>
-        <SearchField cb={() => {}} placeholder={keyspacesTranslations.typeSearchPlaceholder[language]} />
+        <SearchField
+          cb={applyTypeFilter}
+          placeholder={keyspacesTranslations.typeSearchPlaceholder[language]}
+        />
         <ContentContainer>
-          {types.map((val, idx) => (
+          {[
+            ...filteredTypes,
+            ...filteredTypes,
+            ...filteredTypes,
+            ...filteredTypes,
+            ...filteredTypes,
+          ].map((val, idx) => (
             <ItemHolder key={idx}>
               <ItemName>{val.name}</ItemName>
               <HrLine />
-              <ItemSubfield>{keyspacesTranslations.field[language]}: {val.fields}</ItemSubfield>
+              <ItemSubfield>
+                {keyspacesTranslations.field[language]}: {val.fields}
+              </ItemSubfield>
             </ItemHolder>
           ))}
           <Button
