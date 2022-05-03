@@ -4,9 +4,9 @@ import {
   DatabaseContainer,
   KeyspacesContainer,
   KeyspaceHolder, KeyspaceName,
-  HrLine, KeyspaceDc
+  HrLine, KeyspaceDc, EmptyContent
 } from "./styles";
-import {databasesTranslations} from '../../utils/translations.utils';
+import {databasesTranslations, general} from '../../utils/translations.utils';
 import dummmyKeySpaces from "./data";
 
 import {useLanguageContext} from '../../contexts/language.context';
@@ -59,6 +59,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
         cb={applyFilter}
         placeholder={databasesTranslations.searchPlaceholder[language]}
       />
+      {filteredKeyspaces.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
       <KeyspacesContainer>
         {[
           ...filteredKeyspaces,

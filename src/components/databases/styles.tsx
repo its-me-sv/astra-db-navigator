@@ -6,6 +6,14 @@ export const DatabaseContainer = styled.div`
   align-items: center;
 `;
 
+export const EmptyContent = styled.span`
+  margin-top: 1rem;
+  font-family: calibri;
+  font-size: 1.8rem;
+  color: black;
+  opacity: 0.5;
+`;
+
 export const KeyspacesContainer = styled.div`
   padding: 1%;
   display: flex;

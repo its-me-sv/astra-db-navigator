@@ -4,7 +4,8 @@ import {
   KeyspaceContainer, ContentContainer,
   ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
 } from './styles';
-import {keyspacesTranslations} from '../../utils/translations.utils';
+import {EmptyContent} from '../databases/styles';
+import {keyspacesTranslations, general} from '../../utils/translations.utils';
 import {tables as dt, types as dk} from './data';
 
 import SearchField from "../search-field";
@@ -63,6 +64,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
           cb={applyTableFilter}
           placeholder={keyspacesTranslations.tableSearchPlaceholder[language]}
         />
+        {filteredTables.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
         <ContentContainer>
           {[
             ...filteredTables,
@@ -92,6 +94,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
           cb={applyTypeFilter}
           placeholder={keyspacesTranslations.typeSearchPlaceholder[language]}
         />
+        {filteredTypes.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
         <ContentContainer>
           {[
             ...filteredTypes,

@@ -106,6 +106,12 @@ export const general = {
     "Annulla",
     "Cancelar",
     "Annuler"
+  ],
+  noData: [
+    "No data found",
+    "Nessun dato trovato",
+    "Datos no encontrados",
+    "Aucune donnée disponible"
   ]
 };
 

@@ -60,11 +60,14 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
 
   const setDb = (dbName: string) => {
     setDatabase(dbName);
+    setKeyspace('');
+    setTable('');
     setScreen(1);
   };
 
   const setKs = (ksName: string) => {
     setKeyspace(ksName);
+    setTable('');
     setScreen(2);
   };
 
