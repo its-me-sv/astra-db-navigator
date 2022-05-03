@@ -4,6 +4,7 @@ import {
   KeyspaceContainer, ContentContainer,
   ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
 } from './styles';
+import {keyspacesTranslations} from '../../utils/translations.utils';
 import {tables, types} from './data';
 
 import SearchField from "../search-field";
@@ -28,36 +29,36 @@ const Keyspaces: React.FC<KeyspacesProps> = () => {
   return (
     <KeyspaceContainer>
       <Seperator>
-        <SearchField cb={() => {}} placeholder={"Table name"} />
+        <SearchField cb={() => {}} placeholder={keyspacesTranslations.tableSearchPlaceholder[language]} />
         <ContentContainer>
           {tables.map((val, idx) => (
             <ItemHolder key={idx}>
               <ItemName>{val.name}</ItemName>
               <HrLine />
-              <ItemSubfield>Columns: {val.columns}</ItemSubfield>
+              <ItemSubfield>{keyspacesTranslations.col[language]}: {val.columns}</ItemSubfield>
             </ItemHolder>
           ))}
           <Button
             variant={2}
-            text="Create new table"
+            text={keyspacesTranslations.newTable[language]}
             onPress={() => {}}
             disabled={false}
           />
         </ContentContainer>
       </Seperator>
       <Seperator>
-        <SearchField cb={() => {}} placeholder={"Type name"} />
+        <SearchField cb={() => {}} placeholder={keyspacesTranslations.typeSearchPlaceholder[language]} />
         <ContentContainer>
           {types.map((val, idx) => (
             <ItemHolder key={idx}>
               <ItemName>{val.name}</ItemName>
               <HrLine />
-              <ItemSubfield>Fields: {val.fields}</ItemSubfield>
+              <ItemSubfield>{keyspacesTranslations.field[language]}: {val.fields}</ItemSubfield>
             </ItemHolder>
           ))}
           <Button
             variant={2}
-            text="Create new type"
+            text={keyspacesTranslations.newType[language]}
             onPress={() => {}}
             disabled={false}
           />
