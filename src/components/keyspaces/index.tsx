@@ -8,6 +8,7 @@ import {tables, types} from './data';
 
 import SearchField from "../search-field";
 import Button from "../button";
+import {useLanguageContext} from '../../contexts/language.context';
 
 export interface TableSchema {
   name: string;
@@ -22,6 +23,8 @@ export interface TypeSchema {
 interface KeyspacesProps {}
 
 const Keyspaces: React.FC<KeyspacesProps> = () => {
+  const {language} = useLanguageContext();
+
   return (
     <KeyspaceContainer>
       <Seperator>

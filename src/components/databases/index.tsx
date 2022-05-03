@@ -14,6 +14,7 @@ import {useConnectionContext} from '../../contexts/connection.context';
 import SearchField from '../search-field';
 import BlockLoader from "../block-loader";
 import DatabaseModal from "./modal";
+import Button from "../button";
 
 export interface KeyspaceSchema {
   name: string;
@@ -74,9 +75,12 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
             </KeyspaceDc>
           </KeyspaceHolder>
         ))}
-        <KeyspaceHolder onClick={viewModal}>
-          <KeyspaceName>{databasesTranslations.new[language]}</KeyspaceName>
-        </KeyspaceHolder>
+        <Button
+          variant={2}
+          text={databasesTranslations.new[language]}
+          onPress={viewModal}
+          disabled={false}
+        />
       </KeyspacesContainer>
     </DatabaseContainer>
   );

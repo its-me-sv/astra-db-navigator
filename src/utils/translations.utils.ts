@@ -108,3 +108,42 @@ export const general = {
     "Annuler"
   ]
 };
+
+export const keyspacesTranslations = {
+  tableSearchPlaceholder: [
+    "Table name",
+    "Nome tabella",
+    "Nombre de la tabla",
+    "Nom de la table"
+  ],
+  typeSearchPlaceholder: [
+    "Type name",
+    "Digita il nome",
+    "Escribe un nombre",
+    "Tapez le nom"
+  ],
+  newTable: [
+    "Create new table",
+    "Crea una nuova tabella",
+    "Crear nueva tabla",
+    "Créer un nouveau tableau"
+  ],
+  newType: [
+    "Create new type",
+    "Crea un nuovo tipo",
+    "Crear nuevo tipo",
+    "Créer un nouveau type"
+  ],
+  col: [
+    "Columns",
+    "Colonne",
+    "Columnas",
+    "Colonnes"
+  ],
+  field: [
+    "Fields",
+    "Campi",
+    "Los campos",
+    "Des champs"
+  ]
+};
