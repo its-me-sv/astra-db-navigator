@@ -11,6 +11,7 @@ import SearchField from "../search-field";
 import Button from "../button";
 import BlockLoader from "../block-loader";
 import {useLanguageContext} from '../../contexts/language.context';
+import {useConnectionContext} from '../../contexts/connection.context';
 
 export interface TableSchema {
   name: string;
@@ -28,6 +29,7 @@ interface KeyspacesProps {
 
 const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   const {language} = useLanguageContext();
+  const {setTbl} = useConnectionContext();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [tables, setTables] = useState<Array<TableSchema>>([]);
@@ -69,7 +71,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
             ...filteredTables,
             ...filteredTables,
           ].map((val, idx) => (
-            <ItemHolder key={idx}>
+            <ItemHolder key={idx} onClick={() => setTbl!(val.name)}>
               <ItemName>{val.name}</ItemName>
               <HrLine />
               <ItemSubfield>

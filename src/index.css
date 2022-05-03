@@ -28,8 +28,8 @@ code {
 
 /* width */
 *::-webkit-scrollbar {
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.45rem;
+  height: 0.45rem;
 }
 
 /* Track */
