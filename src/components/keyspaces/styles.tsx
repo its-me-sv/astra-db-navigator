@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import infoIcon from '../../assets/icons/info.png';
 
 export const KeyspaceContainer = styled.div`
   display: flex;
@@ -29,7 +30,6 @@ export const ItemHolder = styled.div`
   padding: 0% 0.7% 0.35% 0.7%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 0.1rem;
   cursor: pointer;
   background-color: #f5f4f9;
@@ -43,10 +43,24 @@ export const ItemHolder = styled.div`
   }
 `;
 
+export const Info = styled.img.attrs({
+  alt: "",
+  src: infoIcon
+})`
+  width: 1rem;
+  height: auto;
+  align-self: flex-start;
+  padding-top: 2%;
+`;
+
 export const ItemName = styled.span`
   font-family: calibri;
   font-size: 1.6rem;
   opacity: 0.91;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 `;
 
 export const HrLine = styled.div`

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import {
-  KeyspaceContainer, ContentContainer,
+  KeyspaceContainer, ContentContainer, Info,
   ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
 } from './styles';
 import {EmptyContent} from '../databases/styles';
@@ -74,7 +74,10 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
             ...filteredTables,
           ].map((val, idx) => (
             <ItemHolder key={idx} onClick={() => setTbl!(val.name)}>
-              <ItemName>{val.name}</ItemName>
+              <ItemName>
+                {val.name}
+                <Info />
+              </ItemName>
               <HrLine />
               <ItemSubfield>
                 {keyspacesTranslations.col[language]}: {val.columns}
