@@ -25,8 +25,8 @@ const Loader = styled.div`
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #1977f3;
-    border-color: #1977f3 transparent #1977f3 transparent;
+    border: 6px solid #eb6c34;
+    border-color: #eb6c34 transparent #eb6c34 transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes lds-dual-ring {

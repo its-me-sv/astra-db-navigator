@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   ModalWrapper, ModalContainer,
@@ -8,6 +8,8 @@ import {
   ModalSubItemsContainer, ModalItem, ModalItemCloseButton
 } from './styles';
 import {EmptyContent} from '../databases/styles';
+import {columns as dc, indices as di} from './data';
+import {ColumnSchema, IndexSchema} from './types';
 import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import Button from '../button';
@@ -15,11 +17,25 @@ import {useLanguageContext} from '../../contexts/language.context';
 
 interface TableModalProps {
   tableName: string;
+  ls: (val: boolean) => void;
   onClose: () => void;
 }
 
-const TableModal: React.FC<TableModalProps> = ({tableName, onClose}) => {
+const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
   const {language} = useLanguageContext();
+
+  const [columns, setColumns] = useState<Array<ColumnSchema>>([]);
+  const [indices, setIndices] = useState<Array<IndexSchema>>([]);
+
+  useEffect(() => {
+    if (tableName.length < 1) return;
+    ls!(true);
+    setTimeout(() => {
+      setColumns(dc);
+      setIndices(di);
+      ls!(false);
+    }, 1500);
+  }, [tableName, ls]);
 
   return (
     <ModalWrapper>
@@ -37,17 +53,17 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose}) => {
           />
         </ModalSubFields>
         <HrLine />
+        {columns.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
         <ModalSubItemsContainer>
-          {/* <EmptyContent>{general.noData[language]}</EmptyContent> */}
-          {Array(14).fill(0).map(() => (
-            <ModalItem>
+          {columns.map((val) => (
+            <ModalItem key={val.name}>
               <div>
-                <span>videoid</span>
+                <span>{val.name}</span>
                 <ModalItemCloseButton title={tableModalTranslations.delCol[language]}>x</ModalItemCloseButton>
               </div>
               <HrLine />
-              <span>{general.type[language]}: uuid</span>
-              <span>{general.static[language]}: false</span>
+              <span>{general.type[language]}: {val.type}</span>
+              <span>{general.static[language]}: {'' + val.static}</span>
             </ModalItem>
           ))}
         </ModalSubItemsContainer>
@@ -78,17 +94,17 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose}) => {
           />
         </ModalSubFields>
         <HrLine />
+        {indices.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
         <ModalSubItemsContainer>
-          {/* <EmptyContent>{general.noData[language]}</EmptyContent> */}
-          {Array(14).fill(0).map((_v, idx) => (
-            <ModalItem key={idx}>
+          {indices.map((val) => (
+            <ModalItem key={val.name}>
               <div>
-                <span>videoid</span>
+                <span>{val.name}</span>
                 <ModalItemCloseButton title={tableModalTranslations.delIdx[language]}>x</ModalItemCloseButton>
               </div>
               <HrLine />
-              <span>{general.knd[language]}: custom</span>
-              <span>{general.ops[language]}: joined, name, role</span>
+              <span>{general.knd[language]}: {val.kind}</span>
+              <span>{general.ops[language]}: {val.options.join(', ')}</span>
             </ModalItem>
           ))}
         </ModalSubItemsContainer>

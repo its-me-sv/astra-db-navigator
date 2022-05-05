@@ -7,6 +7,7 @@ import {
   HrLine, KeyspaceDc, EmptyContent
 } from "./styles";
 import {databasesTranslations, general} from '../../utils/translations.utils';
+import {KeyspaceSchema} from "./types";
 import dummmyKeySpaces from "./data";
 
 import {useLanguageContext} from '../../contexts/language.context';
@@ -15,11 +16,6 @@ import SearchField from '../search-field';
 import BlockLoader from "../block-loader";
 import DatabaseModal from "./modal";
 import Button from "../button";
-
-export interface KeyspaceSchema {
-  name: string;
-  dataCenters?: number;
-}
 
 interface DatabasesProps {
   dbName: string;
@@ -62,13 +58,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
       />
       {filteredKeyspaces.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
       <KeyspacesContainer>
-        {[
-          ...filteredKeyspaces,
-          ...filteredKeyspaces,
-          ...filteredKeyspaces,
-          ...filteredKeyspaces,
-          ...filteredKeyspaces,
-        ].map((val, idx) => (
+        {filteredKeyspaces.map((val, idx) => (
           <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
             <KeyspaceName>{val.name}</KeyspaceName>
             <HrLine />

@@ -1,4 +1,4 @@
-import {KeyspaceSchema} from './index';
+import {KeyspaceSchema} from './types';
 
 const keySpaces: Array<KeyspaceSchema> = [
   {name: "todos", dataCenters: 1},

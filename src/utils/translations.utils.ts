@@ -156,10 +156,10 @@ export const general = {
     "Clé de clustering"
   ],
   idx: [
-    "Indexes",
+    "Indices",
     "Indici",
-    "índices",
-    "Index"
+    "Índices",
+    "Indices"
   ],
   newIdx: [
     "Add new index",

@@ -40,6 +40,7 @@ export const SearchInput = styled.input`
   text-align: center;
   background-color: #f5f4f9;
   border-radius: 0.42rem;
+  width: 100%;
   &:focus {
     box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
     -webkit-box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;

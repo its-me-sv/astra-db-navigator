@@ -7,6 +7,7 @@ import {
 } from './styles';
 import {EmptyContent} from '../databases/styles';
 import {keyspacesTranslations, general} from '../../utils/translations.utils';
+import {TableSchema, TypeSchema} from './types';
 import {tables as dt, types as dk} from './data';
 
 import SearchField from "../search-field";
@@ -15,16 +16,6 @@ import BlockLoader from "../block-loader";
 import TableModal from "./table-modal";
 import {useLanguageContext} from '../../contexts/language.context';
 import {useConnectionContext} from '../../contexts/connection.context';
-
-export interface TableSchema {
-  name: string;
-  columns: number;
-}
-
-export interface TypeSchema {
-  name: string;
-  fields: number;
-}
 
 interface KeyspacesProps {
   ksName: string;
@@ -63,10 +54,9 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   return (
     <KeyspaceContainer>
       {loading && <BlockLoader />}
-      {currTable.length > 0 && <TableModal 
-        tableName={currTable} 
-        onClose={closeTableModal}
-      />}
+      {currTable.length > 0 && (
+        <TableModal tableName={currTable} onClose={closeTableModal} ls={setLoading} />
+      )}
       <Seperator>
         <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>
         <SearchField
@@ -78,20 +68,16 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
           <EmptyContent>{general.noData[language]}</EmptyContent>
         )}
         <ContentContainer>
-          {[
-            ...filteredTables,
-            ...filteredTables,
-            ...filteredTables,
-            ...filteredTables,
-            ...filteredTables,
-          ].map((val, idx) => (
+          {filteredTables.map((val, idx) => (
             <ItemHolder key={idx} onClick={() => setTbl!(val.name)}>
               <ItemName>
                 {val.name}
-                <Info onClick={(event) => {
-                  event.stopPropagation();
-                  setCurrTable(val.name);
-                }} />
+                <Info
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setCurrTable(val.name);
+                  }}
+                />
               </ItemName>
               <HrLine />
               <ItemSubfield>
@@ -118,13 +104,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
           <EmptyContent>{general.noData[language]}</EmptyContent>
         )}
         <ContentContainer>
-          {[
-            ...filteredTypes,
-            ...filteredTypes,
-            ...filteredTypes,
-            ...filteredTypes,
-            ...filteredTypes,
-          ].map((val, idx) => (
+          {filteredTypes.map((val, idx) => (
             <ItemHolder key={idx}>
               <ItemName>{val.name}</ItemName>
               <HrLine />

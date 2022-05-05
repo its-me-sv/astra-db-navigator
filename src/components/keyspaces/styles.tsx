@@ -11,21 +11,23 @@ export const KeyspaceContainer = styled.div`
 export const Seperator = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 export const SeperatorTitle = styled.span`
   font-family: Roboto;
   font-weight: 450;
   font-size: 1.4rem;
-  margin-bottom: 1.4%;
-  opacity: 0.91;
-  text-decoration: underline;
+  margin-bottom: 1%;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.18rem;
+  align-self: flex-start;
 `;
 
 export const ContentContainer = styled.div`
   padding: 1%;
-  margin-top: 3.6%;
+  margin-top: 1.4%;
   display: flex;
   width: 42vw;
   max-height: 61vh;
@@ -73,8 +75,13 @@ export const ItemName = styled.span`
   gap: 1rem;
 `;
 
-export const HrLine = styled.div`
+export const HrLine = styled.div<{tg?: boolean}>`
   border-bottom: 1px solid black;
+  ${props => props.tg && `
+    margin-top: 1.2%;
+    border-width: 2px;
+    opacity: 0.5;
+  `}
 `;
 
 export const ItemSubfield = styled.span`
@@ -155,7 +162,7 @@ export const ModalSubItemsContainer = styled.div`
   display: flex;
   overflow: auto;
   flex-wrap: wrap;
-  height: 16vh;
+  max-height: 16vh;
   gap: 1rem;
   padding: 0.5%;
   margin-top: 0.21%;
