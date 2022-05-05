@@ -146,9 +146,10 @@ export const ModalSubtitle = styled.span`
 `;
 
 export const ModalDeleteButton = styled.div`
-  align-self: flex-start;
+  align-self: flex-end;
   width: 8rem;
-  margin: 0.5% 0%;
+  margin-top: 2.1%;
+  margin-bottom: 0.5%;
 `;
 
 export const ModalSubTextsContainer = styled.div`
