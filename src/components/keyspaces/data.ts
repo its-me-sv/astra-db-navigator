@@ -9,4 +9,7 @@ export const tables: Array<TableSchema> = [
 
 export const types: Array<TypeSchema> = [
   {name: "type_name", fields: 3},
+  {name: "type_human", fields: 2},
+  {name: "type_animal", fields: 4},
+  {name: "planet", fields: 1},
 ];

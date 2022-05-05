@@ -63,6 +63,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
         <SearchField
           cb={applyTableFilter}
           placeholder={keyspacesTranslations.tableSearchPlaceholder[language]}
+          live
         />
         {filteredTables.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
         <ContentContainer>
@@ -96,6 +97,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
         <SearchField
           cb={applyTypeFilter}
           placeholder={keyspacesTranslations.typeSearchPlaceholder[language]}
+          live
         />
         {filteredTypes.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
         <ContentContainer>

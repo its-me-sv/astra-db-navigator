@@ -58,6 +58,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
       <SearchField
         cb={applyFilter}
         placeholder={databasesTranslations.searchPlaceholder[language]}
+        live
       />
       {filteredKeyspaces.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
       <KeyspacesContainer>

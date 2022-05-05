@@ -11,9 +11,10 @@ import {
 interface SearchFieldProps {
   cb: (val: string) => void;
   placeholder: string;
+  live?: boolean;
 }
 
-const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
+const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder, live}) => {
   const [text, setText] = useState<string>('');
   const textRef = useRef() as MutableRefObject<HTMLInputElement>;
 
@@ -22,7 +23,10 @@ const SearchField: React.FC<SearchFieldProps> = ({cb, placeholder}) => {
     if (event.key !== "Enter") return;
     callCallBack();
   };
-  const handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => setText(event.target.value);
+  const handleTextChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setText(event.target.value);
+    if (live) cb(event.target.value);
+  };
   const onClear = () => {
     setText('');
     cb('');
