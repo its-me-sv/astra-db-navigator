@@ -8,7 +8,7 @@ import {
   ModalSubItemsContainer, ModalItem, ModalItemCloseButton
 } from './styles';
 import {EmptyContent} from '../databases/styles';
-import {general} from '../../utils/translations.utils';
+import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import Button from '../button';
 import {useLanguageContext} from '../../contexts/language.context';
@@ -27,10 +27,10 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose}) => {
         <ModalCloseButton onClick={onClose}>X</ModalCloseButton>
         <ModalTitle>{tableName}</ModalTitle>
         <ModalSubFields>
-          <ModalSubtitle>Columns</ModalSubtitle>
+          <ModalSubtitle>{general.columns[language]}</ModalSubtitle>
           <Button
             variant={2}
-            text="Add new column"
+            text={general.newCol[language]}
             disabled={false}
             onPress={() => {}}
             medium
@@ -43,35 +43,35 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose}) => {
             <ModalItem>
               <div>
                 <span>videoid</span>
-                <ModalItemCloseButton title='Delete column'>x</ModalItemCloseButton>
+                <ModalItemCloseButton title={tableModalTranslations.delCol[language]}>x</ModalItemCloseButton>
               </div>
               <HrLine />
-              <span>Type: uuid</span>
-              <span>Static: false</span>
+              <span>{general.type[language]}: uuid</span>
+              <span>{general.static[language]}: false</span>
             </ModalItem>
           ))}
         </ModalSubItemsContainer>
         <ModalSubFields>
-          <ModalSubtitle>Primary key</ModalSubtitle>
+          <ModalSubtitle>{general.priKey[language]}</ModalSubtitle>
         </ModalSubFields>
         <HrLine />
         <ModalSubTextsContainer>
-          <span>Partition key: city</span>
-          <span>Clustering key: lastname, email</span>
+          <span>{general.parKey[language]}: city</span>
+          <span>{general.cluKey[language]}: lastname, email</span>
         </ModalSubTextsContainer>
         <ModalSubFields>
-          <ModalSubtitle>Table options</ModalSubtitle>
+          <ModalSubtitle>{tableModalTranslations.tblOpt[language]}</ModalSubtitle>
         </ModalSubFields>
         <HrLine />
         <ModalSubTextsContainer>
-          <span>Default time to live: 0</span>
-          <span>Clustering expression: lastname(asc), email(asc)</span>
+          <span>{tableModalTranslations.dTtl[language]}: 0</span>
+          <span>{tableModalTranslations.cluExp[language]}: lastname(asc), email(asc)</span>
         </ModalSubTextsContainer>
         <ModalSubFields>
-          <ModalSubtitle>Indexes</ModalSubtitle>
+          <ModalSubtitle>{general.idx[language]}</ModalSubtitle>
           <Button
             variant={2}
-            text="Add new index"
+            text={general.newIdx[language]}
             disabled={false}
             onPress={() => {}}
             medium
@@ -84,18 +84,18 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose}) => {
             <ModalItem key={idx}>
               <div>
                 <span>videoid</span>
-                <ModalItemCloseButton title='Delete type'>x</ModalItemCloseButton>
+                <ModalItemCloseButton title={tableModalTranslations.delIdx[language]}>x</ModalItemCloseButton>
               </div>
               <HrLine />
-              <span>Kind: custom</span>
-              <span>Options: joined, name, role</span>
+              <span>{general.knd[language]}: custom</span>
+              <span>{general.ops[language]}: joined, name, role</span>
             </ModalItem>
           ))}
         </ModalSubItemsContainer>
         <ModalDeleteButton>
           <Button
             variant={3}
-            text="Delete table"
+            text={tableModalTranslations.delTbl[language]}
             disabled={false}
             onPress={() => {}}
             tiny

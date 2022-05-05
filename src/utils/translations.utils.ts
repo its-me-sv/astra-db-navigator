@@ -112,7 +112,73 @@ export const general = {
     "Nessun dato trovato",
     "Datos no encontrados",
     "Aucune donnée disponible"
-  ]
+  ],
+  columns: [
+    "Columns",
+    "Colonne",
+    "Columnas",
+    "Colonnes"
+  ],
+  newCol: [
+    "Add new column",
+    "Aggiungi nuova colonna",
+    "Agregar nueva columna",
+    "Ajouter une nouvelle colonne"
+  ],
+  type: [
+    "Type",
+    "Type",
+    "Tipo",
+    "Taper"
+  ],
+  static: [
+    "Static",
+    "Static",
+    "Static",
+    "Statique"
+  ],
+  priKey: [
+    "Primary key",
+    "Chiave primaria",
+    "Clave primaria",
+    "Clé primaire"
+  ],
+  parKey: [
+    "Partition key",
+    "Chiave di partizione",
+    "Clave de partición",
+    "Clé de partition"
+  ],
+  cluKey: [
+    "Clustering key",
+    "Chiave di raggruppamento",
+    "Clave de agrupamiento",
+    "Clé de clustering"
+  ],
+  idx: [
+    "Indexes",
+    "Indici",
+    "índices",
+    "Index"
+  ],
+  newIdx: [
+    "Add new index",
+    "Aggiungi nuovo indice",
+    "Añadir nuevo índice",
+    "Ajouter un nouvel index"
+  ],
+  knd: [
+    "Kind",
+    "Genere",
+    "Clase",
+    "Type"
+  ],
+  ops: [
+    "Options",
+    "Opzioni",
+    "Opciones",
+    "Choix"
+  ],
 };
 
 export const keyspacesTranslations = {
@@ -163,5 +229,44 @@ export const keyspacesTranslations = {
     "Tipi",
     "Tipos",
     "Les types"
+  ]
+};
+
+export const tableModalTranslations = {
+  tblOpt: [
+    "Table options",
+    "Opzioni tabella",
+    "Opciones de mesa",
+    "Options de tableau"
+  ],
+  dTtl: [
+    "Default time to live",
+    "Tempo predefinito per vivere",
+    "Tiempo de vida predeterminado",
+    "Durée de vie par défaut"
+  ],
+  cluExp: [
+    "Clustering expression",
+    "Espressione di raggruppamento",
+    "Expresión de agrupamiento",
+    "Expression de regroupement"
+  ],
+  delTbl: [
+    "Delete table",
+    "Elimina tabella",
+    "Eliminar tabla",
+    "Supprimer le tableau"
+  ],
+  delCol: [
+    "Delete column",
+    "Elimina colonna",
+    "Eliminar columna",
+    "Supprimer la colonne"
+  ],
+  delIdx: [
+    "Delete index",
+    "Elimina indice",
+    "Eliminar índice",
+    "Supprimer l'index"
   ]
 };

@@ -89,6 +89,7 @@ export const ModalCloseButton = styled.span`
   align-self: flex-end;
   text-transform: lowercase;
   cursor: pointer;
+  position: fixed;
 `;
 
 export const ModalWrapper = styled.div`
@@ -110,6 +111,7 @@ export const ModalContainer = styled.div`
   background-color: #f5f4f9;
   border-radius: 0.42rem;
   padding: 0% 0.7%;
+  padding-top: 0.14%;
   width: 60vw;
   height: auto;
 `;
@@ -135,7 +137,7 @@ export const ModalSubtitle = styled.span`
 
 export const ModalDeleteButton = styled.div`
   align-self: flex-start;
-  width: 7rem;
+  width: 8rem;
   margin: 0.5% 0%;
 `;
 
@@ -168,11 +170,6 @@ export const ModalItem = styled.div`
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
-  &:hover {
-    box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
-    -webkit-box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
-    -moz-box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
-  }
   div {
     display: flex;
     align-items: center;
