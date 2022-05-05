@@ -151,5 +151,17 @@ export const keyspacesTranslations = {
     "Campi",
     "Los campos",
     "Des champs"
+  ],
+  hd1: [
+    "Tables",
+    "Tabelle",
+    "Mesas",
+    "les tables"
+  ],
+  hd2: [
+    "Types",
+    "Tipi",
+    "Tipos",
+    "Les types"
   ]
 };

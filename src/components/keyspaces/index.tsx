@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {
   KeyspaceContainer, ContentContainer, Info,
   ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
+  SeperatorTitle
 } from './styles';
 import {EmptyContent} from '../databases/styles';
 import {keyspacesTranslations, general} from '../../utils/translations.utils';
@@ -60,12 +61,15 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
     <KeyspaceContainer>
       {loading && <BlockLoader />}
       <Seperator>
+        <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>
         <SearchField
           cb={applyTableFilter}
           placeholder={keyspacesTranslations.tableSearchPlaceholder[language]}
           live
         />
-        {filteredTables.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
+        {filteredTables.length === 0 && (
+          <EmptyContent>{general.noData[language]}</EmptyContent>
+        )}
         <ContentContainer>
           {[
             ...filteredTables,
@@ -94,12 +98,15 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
         </ContentContainer>
       </Seperator>
       <Seperator>
+        <SeperatorTitle>{keyspacesTranslations.hd2[language]}</SeperatorTitle>
         <SearchField
           cb={applyTypeFilter}
           placeholder={keyspacesTranslations.typeSearchPlaceholder[language]}
           live
         />
-        {filteredTypes.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
+        {filteredTypes.length === 0 && (
+          <EmptyContent>{general.noData[language]}</EmptyContent>
+        )}
         <ContentContainer>
           {[
             ...filteredTypes,

@@ -14,12 +14,21 @@ export const Seperator = styled.div`
   align-items: center;
 `;
 
+export const SeperatorTitle = styled.span`
+  font-family: Roboto;
+  font-weight: 450;
+  font-size: 1.4rem;
+  margin-bottom: 1.4%;
+  opacity: 0.91;
+  text-decoration: underline;
+`;
+
 export const ContentContainer = styled.div`
   padding: 1%;
   margin-top: 3.6%;
   display: flex;
   width: 42vw;
-  max-height: 67vh;
+  max-height: 61vh;
   overflow: auto;
   flex-wrap: wrap;
   gap: 2.1rem;
