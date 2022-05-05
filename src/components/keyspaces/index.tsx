@@ -33,6 +33,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   const {language} = useLanguageContext();
   const {setTbl} = useConnectionContext();
 
+  const [currTable, setCurrTable] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [tables, setTables] = useState<Array<TableSchema>>([]);
   const [types, setTypes] = useState<Array<TypeSchema>>([]);
@@ -60,6 +61,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   return (
     <KeyspaceContainer>
       {loading && <BlockLoader />}
+      {currTable.length > 0 && <BlockLoader />}
       <Seperator>
         <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>
         <SearchField
@@ -81,7 +83,10 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
             <ItemHolder key={idx} onClick={() => setTbl!(val.name)}>
               <ItemName>
                 {val.name}
-                <Info />
+                <Info onClick={(event) => {
+                  event.stopPropagation();
+                  setCurrTable(val.name);
+                }} />
               </ItemName>
               <HrLine />
               <ItemSubfield>

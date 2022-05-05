@@ -60,6 +60,7 @@ export const Info = styled.img.attrs({
   height: auto;
   align-self: flex-start;
   padding-top: 2%;
+  z-index: 200;
 `;
 
 export const ItemName = styled.span`
