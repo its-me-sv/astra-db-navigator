@@ -12,6 +12,7 @@ import {tables as dt, types as dk} from './data';
 import SearchField from "../search-field";
 import Button from "../button";
 import BlockLoader from "../block-loader";
+import TableModal from "./table-modal";
 import {useLanguageContext} from '../../contexts/language.context';
 import {useConnectionContext} from '../../contexts/connection.context';
 
@@ -42,6 +43,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
 
   const applyTableFilter = (val: string) => setTableKeyword(val);
   const applyTypeFilter = (val: string) => setTypeKeyword(val);
+  const closeTableModal = () => setCurrTable('');
 
   useEffect(() => {
     if (ksName.length < 1) return;
@@ -61,7 +63,10 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   return (
     <KeyspaceContainer>
       {loading && <BlockLoader />}
-      {currTable.length > 0 && <BlockLoader />}
+      {currTable.length > 0 && <TableModal 
+        tableName={currTable} 
+        onClose={closeTableModal}
+      />}
       <Seperator>
         <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>
         <SearchField

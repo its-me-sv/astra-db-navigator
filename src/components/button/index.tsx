@@ -6,6 +6,7 @@ interface ButtonStyleProps {
   disabled: boolean;
   unfilled?: boolean;
   tiny?: boolean;
+  medium?: boolean;
 }
 
 const BtnContainer = styled.div`
@@ -47,6 +48,12 @@ const BtnContainer = styled.div`
       font-size: 0.8rem;
       font-weight: 700;
     `}
+    ${(props: ButtonStyleProps) => props.medium && `
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: black;
+      padding: 0%;
+    `}
   }
   ${(props: ButtonStyleProps) => props.tiny && `
     border-width: 1.99px;
@@ -79,11 +86,12 @@ interface ButtonProps {
   disabled: boolean;
   unfilled?: boolean;
   tiny?: boolean;
+  medium?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
   variant, text, onPress, 
-  disabled, unfilled, tiny
+  disabled, unfilled, tiny, medium
 }) => {
     return (
       <BtnContainer 
@@ -92,6 +100,7 @@ const Button: React.FC<ButtonProps> = ({
         onClick={onPress}
         unfilled={unfilled}
         tiny={tiny}
+        medium={medium}
       >
         <span>{text}</span>
       </BtnContainer>

@@ -82,3 +82,76 @@ export const ItemSubfield = styled.span`
   font-size: 1rem;
   opacity: 0.84;
 `;
+
+export const ModalCloseButton = styled.span`
+  font-family: calibri;
+  font-size: 1.4rem;
+  align-self: flex-end;
+  text-transform: lowercase;
+  cursor: pointer;
+`;
+
+export const ModalWrapper = styled.div`
+  top: 0;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.42);
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+`;
+
+export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f4f9;
+  border-radius: 0.42rem;
+  padding: 0% 0.7%;
+  width: 60vw;
+  height: 84vh;
+`;
+
+export const ModalTitle = styled.span`
+  font-family: Roboto;
+  font-size: 1.6rem;
+  opacity: 0.84;
+  align-self: center;
+`;
+
+export const ModalSubFields = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.42%;
+`;
+
+export const ModalSubtitle = styled.span`
+  font-family: calibri;
+  font-size: 1.4rem;
+`;
+
+export const ModalDeleteButton = styled.div`
+  align-self: flex-start;
+  width: 7rem;
+`;
+
+export const ModalSubTextsContainer = styled.div`
+  font-family: bahnschrift;
+  font-size: 1rem;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.42%;
+  padding-top: 0.42%;
+`;
+
+export const ModalSubItemsContainer = styled.div`
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  height: 17vh;
+  gap: 1.4rem;
+`;
