@@ -97,6 +97,9 @@ export const ModalCloseButton = styled.span`
   text-transform: lowercase;
   cursor: pointer;
   position: fixed;
+  &:hover {
+    color: #fd2728;
+  }
 `;
 
 export const ModalWrapper = styled.div`
@@ -196,7 +199,7 @@ export const ModalItem = styled.div`
 export const ModalItemCloseButton = styled.span`
   font-family: calibri;
   cursor: pointer;
-  font-size: 1rem;
+  transform: scale(0.6);
   margin-left: 1rem;
   opacity: 0.5 !important;
   color: black;

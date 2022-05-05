@@ -53,17 +53,27 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
           />
         </ModalSubFields>
         <HrLine />
-        {columns.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
+        {columns.length === 0 && (
+          <EmptyContent>{general.noData[language]}</EmptyContent>
+        )}
         <ModalSubItemsContainer>
           {columns.map((val) => (
             <ModalItem key={val.name}>
               <div>
                 <span>{val.name}</span>
-                <ModalItemCloseButton title={tableModalTranslations.delCol[language]}>x</ModalItemCloseButton>
+                <ModalItemCloseButton
+                  title={tableModalTranslations.delCol[language]}
+                >
+                  ❌
+                </ModalItemCloseButton>
               </div>
               <HrLine />
-              <span>{general.type[language]}: {val.type}</span>
-              <span>{general.static[language]}: {'' + val.static}</span>
+              <span>
+                {general.type[language]}: {val.type}
+              </span>
+              <span>
+                {general.static[language]}: {"" + val.static}
+              </span>
             </ModalItem>
           ))}
         </ModalSubItemsContainer>
@@ -76,12 +86,16 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
           <span>{general.cluKey[language]}: lastname, email</span>
         </ModalSubTextsContainer>
         <ModalSubFields>
-          <ModalSubtitle>{tableModalTranslations.tblOpt[language]}</ModalSubtitle>
+          <ModalSubtitle>
+            {tableModalTranslations.tblOpt[language]}
+          </ModalSubtitle>
         </ModalSubFields>
         <HrLine />
         <ModalSubTextsContainer>
           <span>{tableModalTranslations.dTtl[language]}: 0</span>
-          <span>{tableModalTranslations.cluExp[language]}: lastname(asc), email(asc)</span>
+          <span>
+            {tableModalTranslations.cluExp[language]}: lastname(asc), email(asc)
+          </span>
         </ModalSubTextsContainer>
         <ModalSubFields>
           <ModalSubtitle>{general.idx[language]}</ModalSubtitle>
@@ -94,17 +108,27 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
           />
         </ModalSubFields>
         <HrLine />
-        {indices.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
+        {indices.length === 0 && (
+          <EmptyContent>{general.noData[language]}</EmptyContent>
+        )}
         <ModalSubItemsContainer>
           {indices.map((val) => (
             <ModalItem key={val.name}>
               <div>
                 <span>{val.name}</span>
-                <ModalItemCloseButton title={tableModalTranslations.delIdx[language]}>x</ModalItemCloseButton>
+                <ModalItemCloseButton
+                  title={tableModalTranslations.delIdx[language]}
+                >
+                  ❌
+                </ModalItemCloseButton>
               </div>
               <HrLine />
-              <span>{general.knd[language]}: {val.kind}</span>
-              <span>{general.ops[language]}: {val.options.join(', ')}</span>
+              <span>
+                {general.knd[language]}: {val.kind}
+              </span>
+              <span>
+                {general.ops[language]}: {val.options.join(", ")}
+              </span>
             </ModalItem>
           ))}
         </ModalSubItemsContainer>

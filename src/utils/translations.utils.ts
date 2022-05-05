@@ -229,6 +229,12 @@ export const keyspacesTranslations = {
     "Tipi",
     "Tipos",
     "Les types"
+  ],
+  tblInf: [
+    "Table info",
+    "Informazioni sulla tabella",
+    "Información de la tabla",
+    "Informations sur le tableau"
   ]
 };
 

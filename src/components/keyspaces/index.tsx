@@ -77,6 +77,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
                     event.stopPropagation();
                     setCurrTable(val.name);
                   }}
+                  title={keyspacesTranslations.tblInf[language]}
                 />
               </ItemName>
               <HrLine />
