@@ -43,7 +43,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
       setTables(dt);
       setTypes(dk);
       setLoading(false);
-    }, 1500);
+    }, 500);
   }, [ksName]);
 
   const filteredTables: Array<TableSchema> = tables

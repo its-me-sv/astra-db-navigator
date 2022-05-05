@@ -43,7 +43,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
       setDatabase('workshops');
       setScreen(1);
       setLoading(false);
-    });
+    }, 500);
   };
 
   const resetConnection = () => {
@@ -55,7 +55,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
       setTable("");
       setScreen(0);
       setLoading(false);
-    });
+    }, 500);
   };
 
   const setDb = (dbName: string) => {

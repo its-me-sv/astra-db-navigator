@@ -11,7 +11,7 @@ const Languages: React.FC<LanguageProps> = ({dark}) => {
   const {language, setLanguage} = useLanguageContext();
   return (
     <Container>
-      {['US', 'IT', 'ES', 'FR'].map((val, idx) => (
+      {['EN', 'IT', 'ES', 'FR'].map((val, idx) => (
         <span key={val}>
           <Language
             onClick={() => setLanguage!(idx)}

@@ -89,9 +89,11 @@ export const ModalTitle = styled.span`
   align-self: center;
 `;
 
-export const ModalButtons = styled.div`
+export const ModalButtons = styled.div<{forKs?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 28vw;
+  ${props => props.forKs && `
+    width: 28vw;
+  `}
 `;

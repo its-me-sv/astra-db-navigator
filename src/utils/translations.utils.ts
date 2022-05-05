@@ -274,5 +274,11 @@ export const tableModalTranslations = {
     "Elimina indice",
     "Eliminar índice",
     "Supprimer l'index"
+  ],
+  crtIdx: [
+    "Create index",
+    "Crea indice",
+    "Crear índice",
+    "Créer un index"
   ]
 };

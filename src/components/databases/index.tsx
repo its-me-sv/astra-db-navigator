@@ -41,7 +41,7 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
     setTimeout(() => {
       setKeyspaces(dummmyKeySpaces);
       setLoading(false);
-    }, 1500);
+    }, 500);
   }, [dbName]);
 
   const filteredKeyspaces: Array<KeyspaceSchema> = keyspaces

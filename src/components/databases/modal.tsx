@@ -29,7 +29,7 @@ const DatabaseModal: React.FC<DatabaseModalProps> = ({onClose, ls}) => {
     setTimeout(() => {
       ls(false);
       onClose();
-    }, 1500);
+    }, 500);
   };
 
   return (
@@ -41,7 +41,7 @@ const DatabaseModal: React.FC<DatabaseModalProps> = ({onClose, ls}) => {
               value={text}
               onChange={handleTextChange}
             />
-            <ModalButtons>
+            <ModalButtons forKs>
               <Button 
                 variant={3} 
                 text={general.cancel[language]} 

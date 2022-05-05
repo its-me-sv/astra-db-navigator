@@ -1,23 +1,28 @@
 import React, {ChangeEvent} from "react";
 
-import {SelectStyles, OptionStyles} from './styles';
+import {SelectStyles, OptionStyles, Container} from './styles';
+import {InputLabel} from '../input/styles';
 
-import {useConnectionContext} from '../../contexts/connection.context';
+interface SelectProps {
+  options: Array<string>;
+  val: string;
+  setVal: (val:string) => void;
+  notHeader?: boolean;
+  label?: string;
+}
 
-interface SelectProps {}
-
-const Select: React.FC<SelectProps> = () => {
-  const {database, setDb} = useConnectionContext();
-  
-  const databases: Array<string> = ["workshops", "pirate-land", "aneta"];
-  const handleDbChange = (event: ChangeEvent<HTMLSelectElement>) => setDb!(event.target.value);
+const Select: React.FC<SelectProps> = ({options, val, setVal, notHeader, label=''}) => {
+  const handleDbChange = (event: ChangeEvent<HTMLSelectElement>) => setVal(event.target.value);
 
   return (
-    <SelectStyles value={database} onChange={handleDbChange}>
-      {databases.map((v) => (
-        <OptionStyles key={v} value={v}>{v}</OptionStyles>
-      ))}
-    </SelectStyles>
+    <Container>
+      {label.length > 0 && <InputLabel tiny>{label}</InputLabel>}
+      <SelectStyles value={val} onChange={handleDbChange} notHdr={notHeader}>
+        {options.map((v) => (
+          <OptionStyles key={v} value={v}>{v}</OptionStyles>
+        ))}
+      </SelectStyles>
+    </Container>
   );
 };
 

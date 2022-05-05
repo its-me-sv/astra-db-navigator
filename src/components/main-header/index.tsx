@@ -7,6 +7,7 @@ import {
 
 import {mainHeaderTranslations} from '../../utils/translations.utils';
 import {useLanguageContext} from '../../contexts/language.context';
+import {useConnectionContext} from '../../contexts/connection.context';
 import Button from "../button";
 import Select from "../select";
 
@@ -14,6 +15,7 @@ interface MainHeaderProps {}
 
 const MainHeader: React.FC<MainHeaderProps> = () => {
   const {language} = useLanguageContext();
+  const {database, setDb} = useConnectionContext();
 
   return (
     <Container>
@@ -22,7 +24,11 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
         <AstraDBLogo />
       </a>
       <HeaderRight>
-        <Select />
+        <Select 
+          options={["workshops", "pirate-land", "aneta"]}
+          val={database}
+          setVal={setDb!}
+        />
         <Button
           variant={2}
           text={mainHeaderTranslations.createDB[language]}

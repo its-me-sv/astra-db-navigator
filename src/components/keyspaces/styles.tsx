@@ -123,6 +123,8 @@ export const ModalContainer = styled.div`
   padding: 0% 0.7%;
   padding-top: 0.14%;
   width: 60vw;
+  max-height: 84vh;
+  overflow: auto;
   height: auto;
 `;
 
@@ -208,4 +210,10 @@ export const ModalItemCloseButton = styled.span`
     color: #fd2728;
     opacity: 1 !important;
   }
+`;
+
+export const ModalFlexWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 `;
