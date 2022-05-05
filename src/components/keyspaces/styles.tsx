@@ -111,7 +111,7 @@ export const ModalContainer = styled.div`
   border-radius: 0.42rem;
   padding: 0% 0.7%;
   width: 60vw;
-  height: 84vh;
+  height: auto;
 `;
 
 export const ModalTitle = styled.span`
@@ -136,12 +136,13 @@ export const ModalSubtitle = styled.span`
 export const ModalDeleteButton = styled.div`
   align-self: flex-start;
   width: 7rem;
+  margin: 0.5% 0%;
 `;
 
 export const ModalSubTextsContainer = styled.div`
   font-family: bahnschrift;
   font-size: 1rem;
-  opacity: 0.9;
+  opacity: 0.77;
   display: flex;
   flex-direction: column;
   padding-left: 0.42%;
@@ -152,6 +153,51 @@ export const ModalSubItemsContainer = styled.div`
   display: flex;
   overflow: auto;
   flex-wrap: wrap;
-  height: 17vh;
-  gap: 1.4rem;
+  height: 16vh;
+  gap: 1rem;
+  padding: 0.5%;
+  margin-top: 0.21%;
+`;
+
+export const ModalItem = styled.div`
+  border-radius: 0.3rem;
+  display: flex;
+  padding: 0% 1%;
+  flex-direction: column;
+  background-color: #f5f4f9;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.7);
+  &:hover {
+    box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
+    -webkit-box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
+    -moz-box-shadow: 1px 0px 3px 0px rgba(0, 0, 0, 0.7) inset;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  span {
+    font-family: bahnschrift;
+    opacity: 0.8;
+    font-size: 1rem;
+  }
+  span:first-child {
+    font-family: Roboto;
+    font-size: 1.2rem;
+  }
+`;
+
+export const ModalItemCloseButton = styled.span`
+  font-family: calibri;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 1rem;
+  opacity: 0.5 !important;
+  color: black;
+  &:hover {
+    color: #fd2728;
+    opacity: 1 !important;
+  }
 `;
