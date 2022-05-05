@@ -282,3 +282,12 @@ export const tableModalTranslations = {
     "Créer un index"
   ]
 };
+
+export const indexModalTranslations = {
+  title: [
+    "Create new index",
+    "Crea nuovo indice",
+    "Crear nuevo índice",
+    "Créer un nouvel index"
+  ]
+};

@@ -19,7 +19,6 @@ export const columns: Array<ColumnSchema> =[
   {name: "value", type: "text", static: false},
   {name: "city", type: "text", static: false},
   {name: "lastname", type: "text", static: false},
-  {name: "email", type: "text", static: false},
   {name: "firstname", type: "text", static: false},
   {name: "videoid", type: "uuid", static: false},
   {name: "email", type: "text", static: false},

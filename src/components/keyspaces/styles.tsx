@@ -75,12 +75,17 @@ export const ItemName = styled.span`
   gap: 1rem;
 `;
 
-export const HrLine = styled.div<{tg?: boolean}>`
+export const HrLine = styled.div<{tg?: boolean; il?: boolean}>`
   border-bottom: 1px solid black;
   ${props => props.tg && `
     margin-top: 1.2%;
     border-width: 2px;
     opacity: 0.5;
+  `}
+  ${props => props.il && `
+    margin-top: 0.1%;
+    border-width: 1.4px;
+    opacity: 0.42;
   `}
 `;
 
@@ -212,8 +217,12 @@ export const ModalItemCloseButton = styled.span`
   }
 `;
 
-export const ModalFlexWrap = styled.div`
+export const ModalFlexWrap = styled.div<{lessMargin?: boolean}>`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  margin: 1.4% 0%;
+  ${props => props.lessMargin && `
+    margin: 0.84% 0%;
+  `}
 `;
