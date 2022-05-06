@@ -29,9 +29,10 @@ interface IndexModalProps {
   columns: Array<ColumnSchema>;
   indices: Array<IndexSchema>;
   table: string;
+  ls: (val: boolean) => void;
 }
 
-const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
+const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) => {
   const {language} = useLanguageContext();
 
   // general
@@ -52,6 +53,7 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
   const [ntknOps, setNtknOps] = useState<NonTokenizingAnalyzerOptions>();
 
   const onCreateIndex = () => {
+    ls!(true);
     const basicOptions: {[key: string]: any} = {
       name:
         name.length > 0 && name.search(/^[a-zA-Z0-9_]+$/) !== -1
@@ -71,7 +73,11 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
       if (analyzerClass === "Standard") analyzerOptions = {...stdOps};
       else analyzerOptions = {...ntknOps};
     }
-    console.log({...basicOptions, ...advancedOptions, ...analyzerOptions});
+    setTimeout(() => {
+      console.log({...basicOptions, ...advancedOptions, ...analyzerOptions});
+      ls!(false);
+      onClose();
+    }, 500);
   };
 
   return (

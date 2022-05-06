@@ -49,6 +49,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
           columns={columns}
           indices={indices}
           table={tableName}
+          ls={ls}
         />
       )}
       <ModalContainer>
