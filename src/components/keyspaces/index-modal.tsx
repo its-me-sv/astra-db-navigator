@@ -40,6 +40,7 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
   const [name, setName] = useState<string>(`${table}_idx`);
   const [type, setType] = useState<string>("SASI");
   const [kind, setKind] = useState<string>("VALUES");
+  const [replace, setReplace] = useState<string>("false");
   const [advanced, setAdvanced] = useState<string>('false');
 
   // options
@@ -59,7 +60,8 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
         name.length > 0 && name.search(/^[a-zA-Z0-9_]+$/) !== -1
           ? name
           : `${table}_${column}_idx`,
-      column, type, kind
+      ifNotExists: replace,
+      column, type, kind, 
     };
     const advancedOptions: {[key: string]: any} = {};
     if (advanced === 'true') {
@@ -116,6 +118,13 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
             notHeader
           />
           <Select
+            label="If not exists"
+            val={replace}
+            setVal={setReplace}
+            options={["true", "false"]}
+            notHeader
+          />
+          <Select
             label="Options"
             val={advanced}
             setVal={setAdvanced}
@@ -125,7 +134,9 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
         </ModalFlexWrap>
         {advanced === "true" && (
           <>
-            <ModalSubtitle>{indexModalTranslations.advOps[language]}</ModalSubtitle>
+            <ModalSubtitle>
+              {indexModalTranslations.advOps[language]}
+            </ModalSubtitle>
             <HrLine il />
             <ModalFlexWrap lessMargin>
               <Select
@@ -168,9 +179,11 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
             </ModalSubtitle>
             <HrLine il />
             <ModalFlexWrap lessMargin>
-              {analyzerClass === "Standard" 
-              ? <Standard updater={setStdOps} /> 
-              : <NonTokenizing updater={setNtknOps} />}
+              {analyzerClass === "Standard" ? (
+                <Standard updater={setStdOps} />
+              ) : (
+                <NonTokenizing updater={setNtknOps} />
+              )}
             </ModalFlexWrap>
           </>
         )}
