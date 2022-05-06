@@ -14,8 +14,8 @@ import {
   tableModalTranslations, 
   indexModalTranslations
 } from '../../utils/translations.utils';
-import {ColumnSchema, IndexSchema} from './types';
-import {indexTypes, kinds, booleanOptions, analyzerClassses} from './data';
+import {ColumnSchema, IndexSchema, StandardAnalyzerOptions, NonTokenizingAnalyzerOptions} from './types';
+import {indexTypes, kinds, booleanOptions, analyzerClassses, acMap} from './data';
 
 import Button from '../button';
 import Input from '../input';
@@ -46,6 +46,33 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
   const [maxCompaction, setMaxCompaction] = useState<string>('0');
   const [analysed, setAnalysed] = useState<string>('false');
   const [analyzerClass, setAnalyzerClass] = useState<string>("Standard");
+
+  // analyzer options
+  const [stdOps, setStdOps] = useState<StandardAnalyzerOptions>();
+  const [ntknOps, setNtknOps] = useState<NonTokenizingAnalyzerOptions>();
+
+  const onCreateIndex = () => {
+    const basicOptions: {[key: string]: any} = {
+      name:
+        name.length > 0 && name.search(/^[a-zA-Z0-9_]+$/) !== -1
+          ? name
+          : `${table}_${column}_idx`,
+      column, type, kind
+    };
+    const advancedOptions: {[key: string]: any} = {};
+    if (advanced === 'true') {
+      advancedOptions.is_literal = isLiteral === 'true';
+      advancedOptions.max_compaction_flush_memory_in_mb = Number(maxCompaction) || 1;
+    }
+    let analyzerOptions = {};
+    if (advanced === 'true' && analysed === 'true') {
+      advancedOptions.analyzed = true;
+      advancedOptions.analyzer_class = acMap[analyzerClass];
+      if (analyzerClass === "Standard") analyzerOptions = {...stdOps};
+      else analyzerOptions = {...ntknOps};
+    }
+    console.log({...basicOptions, ...advancedOptions, ...analyzerOptions});
+  };
 
   return (
     <ModalWrapper>
@@ -135,7 +162,9 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
             </ModalSubtitle>
             <HrLine il />
             <ModalFlexWrap lessMargin>
-              {analyzerClass === "Standard" ? <Standard /> : <NonTokenizing />}
+              {analyzerClass === "Standard" 
+              ? <Standard updater={setStdOps} /> 
+              : <NonTokenizing updater={setNtknOps} />}
             </ModalFlexWrap>
           </>
         )}
@@ -149,7 +178,7 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
           <Button
             variant={4}
             text={tableModalTranslations.crtIdx[language]}
-            onPress={() => {}}
+            onPress={onCreateIndex}
             disabled={false}
           />
         </ModalButtons>

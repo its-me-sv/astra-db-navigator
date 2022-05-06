@@ -1,17 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {booleanOptions, locales} from './data';
+import {StandardAnalyzerOptions} from './types';
 
 import Select from '../select';
 import Input from '../input';
 
-interface StandardProps {}
+interface StandardProps {
+  updater: (obj: StandardAnalyzerOptions) => void;
+}
 
-const Standard: React.FC<StandardProps> = () => {
+const Standard: React.FC<StandardProps> = ({updater}) => {
   const [stemming, setStemming] = useState<string>('false');
   const [skip, setSkip] = useState<string>('');
   const [local, setLocal] = useState<string>('en');
   const [lc, setLc] = useState<string>('false');
   const [uc, setUc] = useState<string>('false');
+
+  useEffect(() => {
+    updater({
+      tokenization_enable_stemming: stemming === 'true',
+      tokenization_skip_stop_words: skip,
+      tokenization_locale: local,
+      tokenization_normalize_lowercase: lc === 'true',
+      tokenization_normalize_uppercase: uc === 'true'
+    });
+  }, [stemming, skip, local, lc, uc, updater]);
 
   return (
     <>

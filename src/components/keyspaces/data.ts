@@ -38,6 +38,10 @@ export const indexTypes: Array<string> = ['SASI', 'SAI'];
 export const kinds: Array<string> = ["FULL", "KEYS", "VALUES", "ENTRIES"];
 export const booleanOptions: Array<string> = ["true", "false"];
 export const analyzerClassses: Array<string> = ["Standard", "Non-tokenizing"];
+export const acMap: {[key: string]: string} = {
+  "Standard": "org.apache.cassandra.index.sasi.analyzer.StandardAnalyzer",
+  "Non-tokenizing": "org.apache.cassandra.index.sasi.analyzer.NonTokenizingAnalyzer"
+};
 
 export const locales: Array<string> = `aa
 ab

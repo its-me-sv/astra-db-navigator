@@ -1,14 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {booleanOptions} from './data';
+import {NonTokenizingAnalyzerOptions} from './types';
 
 import Select from '../select';
 
-interface NonTokenizingProps {}
+interface NonTokenizingProps {
+  updater: (obj: NonTokenizingAnalyzerOptions) => void;
+}
 
-const NonTokenizing: React.FC<NonTokenizingProps> = () => {
+const NonTokenizing: React.FC<NonTokenizingProps> = ({updater}) => {
   const [lc, setLc] = useState<string>('false');
   const [uc, setUc] = useState<string>('false');
   const [cs, setCs] = useState<string>('true');
+
+  useEffect(() => {
+    updater({
+      normalize_lowercase: lc === 'true',
+      normalize_uppercase: uc === 'true',
+      case_sensitive: cs === 'true'
+    });
+  }, [lc, uc, cs, updater]);
   
   return (
     <>
