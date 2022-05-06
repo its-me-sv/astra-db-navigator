@@ -15,14 +15,14 @@ import {
   indexModalTranslations
 } from '../../utils/translations.utils';
 import {ColumnSchema, IndexSchema} from './types';
+import {indexTypes, kinds, booleanOptions, analyzerClassses} from './data';
 
 import Button from '../button';
 import Input from '../input';
 import Select from '../select';
+import Standard from './standard';
+import NonTokenizing from './non-tokenizing';
 import {useLanguageContext} from '../../contexts/language.context';
-
-const indexTypes: Array<string> = ['', 'SASI', 'SAI'];
-const kinds: Array<string> = ['VALUES', 'FULL', 'KEYS', 'ENTRIES'];
 
 interface IndexModalProps {
   onClose: () => void;
@@ -34,20 +34,26 @@ interface IndexModalProps {
 const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
   const {language} = useLanguageContext();
 
+  // general
   const [column, setColumn] = useState<string>(columns[0].name);
   const [name, setName] = useState<string>(`${table}_idx`);
-  const [type, setType] = useState<string>(indexTypes[0]);
-  const [kind, setKind] = useState<string>(kinds[0]);
-  const [replace, setReplace] = useState<string>('true');
+  const [type, setType] = useState<string>("SASI");
+  const [kind, setKind] = useState<string>("VALUES");
   const [advanced, setAdvanced] = useState<string>('false');
 
+  // options
   const [isLiteral, setIsLiteral] = useState<string>('false');
+  const [maxCompaction, setMaxCompaction] = useState<string>('0');
+  const [analysed, setAnalysed] = useState<string>('false');
+  const [analyzerClass, setAnalyzerClass] = useState<string>("Standard");
 
   return (
     <ModalWrapper>
-      <ModalContainer>
+      <ModalContainer tiny>
         <ModalTitle>{indexModalTranslations.title[language]}</ModalTitle>
-        <ModalFlexWrap>
+        <ModalSubtitle>{indexModalTranslations.bscOps[language]}</ModalSubtitle>
+        <HrLine il />
+        <ModalFlexWrap lessMargin>
           <Input
             label="Name"
             value={name}
@@ -66,7 +72,7 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
             label="Type"
             val={type}
             setVal={setType}
-            options={indexTypes.map((val) => val || "SI")}
+            options={indexTypes}
             notHeader
           />
           <Select
@@ -77,32 +83,59 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns}) => {
             notHeader
           />
           <Select
-            label="Replace"
-            val={replace}
-            setVal={setReplace}
-            options={["true", "false"]}
-            notHeader
-          />
-          <Select
             label="Options"
             val={advanced}
             setVal={setAdvanced}
-            options={['true', 'false']}
+            options={booleanOptions}
             notHeader
           />
         </ModalFlexWrap>
-        {advanced === 'true' && (
+        {advanced === "true" && (
           <>
-            <ModalSubtitle>{general.ops[language]}</ModalSubtitle>
+            <ModalSubtitle>{indexModalTranslations.advOps[language]}</ModalSubtitle>
             <HrLine il />
             <ModalFlexWrap lessMargin>
               <Select
                 label="Literal"
                 val={isLiteral}
                 setVal={setIsLiteral}
-                options={["true", "false"]}
+                options={booleanOptions}
                 notHeader
               />
+              <Input
+                label="Max compaction flush memory(mb)"
+                value={maxCompaction}
+                name="maxCompaction"
+                setValue={setMaxCompaction}
+                tiny
+              />
+              <Select
+                label="Analysed"
+                val={analysed}
+                setVal={setAnalysed}
+                options={booleanOptions}
+                notHeader
+              />
+              {analysed === "true" && (
+                <Select
+                  label="Analyzer class"
+                  val={analyzerClass}
+                  setVal={setAnalyzerClass}
+                  options={analyzerClassses}
+                  notHeader
+                />
+              )}
+            </ModalFlexWrap>
+          </>
+        )}
+        {advanced === "true" && analysed === "true" && (
+          <>
+            <ModalSubtitle>
+              {indexModalTranslations.acOps[language]}
+            </ModalSubtitle>
+            <HrLine il />
+            <ModalFlexWrap lessMargin>
+              {analyzerClass === "Standard" ? <Standard /> : <NonTokenizing />}
             </ModalFlexWrap>
           </>
         )}

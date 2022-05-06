@@ -289,5 +289,23 @@ export const indexModalTranslations = {
     "Crea nuovo indice",
     "Crear nuevo índice",
     "Créer un nouvel index"
+  ],
+  acOps: [
+    "Analyzer class options",
+    "Opzioni della classe dell'analizzatore",
+    "Opciones de clase de analizador",
+    "Options de classe d'analyseur"
+  ],
+  bscOps: [
+    "Basic options",
+    "Opzioni di base",
+    "Opciones básicas",
+    "Options de base"
+  ],
+  advOps: [
+    "Advanced options",
+    "Opzioni avanzate",
+    "Opciones avanzadas",
+    "Options avancées"
   ]
 };

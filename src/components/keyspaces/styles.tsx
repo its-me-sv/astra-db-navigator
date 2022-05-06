@@ -120,7 +120,7 @@ export const ModalWrapper = styled.div`
   z-index: 200;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{tiny?: boolean}>`
   display: flex;
   flex-direction: column;
   background-color: #f5f4f9;
@@ -131,6 +131,10 @@ export const ModalContainer = styled.div`
   max-height: 84vh;
   overflow: auto;
   height: auto;
+  ${props => props.tiny && `
+    width: 50vw;
+    padding-bottom: 0.42%;
+  `}
 `;
 
 export const ModalTitle = styled.span`
@@ -223,6 +227,7 @@ export const ModalFlexWrap = styled.div<{lessMargin?: boolean}>`
   gap: 1rem;
   margin: 1.4% 0%;
   ${props => props.lessMargin && `
-    margin: 0.84% 0%;
+    margin: 0.42% 0%;
   `}
+  margin-bottom: 2.4%;
 `;
