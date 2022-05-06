@@ -55,7 +55,12 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
     <KeyspaceContainer>
       {loading && <BlockLoader />}
       {currTable.length > 0 && (
-        <TableModal tableName={currTable} onClose={closeTableModal} ls={setLoading} />
+        <TableModal 
+          tableName={currTable} 
+          onClose={closeTableModal} 
+          ls={setLoading} 
+          types={types.map(({name}) => name)}
+        />
       )}
       <Seperator>
         <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>

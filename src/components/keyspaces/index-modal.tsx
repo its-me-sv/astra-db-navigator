@@ -34,7 +34,7 @@ interface IndexModalProps {
 
 const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) => {
   const {language} = useLanguageContext();
-
+  
   // general
   const [column, setColumn] = useState<string>(columns[0].name);
   const [name, setName] = useState<string>(`${table}_idx`);

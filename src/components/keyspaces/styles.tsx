@@ -120,7 +120,7 @@ export const ModalWrapper = styled.div`
   z-index: 200;
 `;
 
-export const ModalContainer = styled.div<{tiny?: boolean}>`
+export const ModalContainer = styled.div<{tiny?: boolean; clear?: boolean}>`
   display: flex;
   flex-direction: column;
   background-color: #f5f4f9;
@@ -230,4 +230,11 @@ export const ModalFlexWrap = styled.div<{lessMargin?: boolean}>`
     margin: 0.42% 0%;
   `}
   margin-bottom: 2.4%;
+`;
+
+export const ColumnOptionsContainer = styled.div`
+  margin: 1% 0% 1% 0%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
 `;

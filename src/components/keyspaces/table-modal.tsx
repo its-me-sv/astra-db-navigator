@@ -14,22 +14,26 @@ import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import Button from '../button';
 import IndexModal from './index-modal';
+import ColumnModal from "./column-modal";
 import {useLanguageContext} from '../../contexts/language.context';
 
 interface TableModalProps {
   tableName: string;
   ls: (val: boolean) => void;
   onClose: () => void;
+  types: Array<string>;
 }
 
-const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
+const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) => {
   const {language} = useLanguageContext();
 
   const [columns, setColumns] = useState<Array<ColumnSchema>>([]);
   const [indices, setIndices] = useState<Array<IndexSchema>>([]);
   const [showIndex, setShowIndex] = useState<boolean>(false);
+  const [showColumn, setShowColumn] = useState<boolean>(false);
 
   const hideShowIndex = () => setShowIndex(false);
+  const hideColumnModal = () => setShowColumn(false);
 
   useEffect(() => {
     if (tableName.length < 1) return;
@@ -44,14 +48,15 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
   return (
     <ModalWrapper>
       {showIndex && (
-        <IndexModal 
-          onClose={hideShowIndex} 
+        <IndexModal
+          onClose={hideShowIndex}
           columns={columns}
           indices={indices}
           table={tableName}
           ls={ls}
         />
       )}
+      {showColumn && <ColumnModal onClose={hideColumnModal} types={types} />}
       <ModalContainer>
         <ModalCloseButton onClick={onClose}>X</ModalCloseButton>
         <ModalTitle>{tableName}</ModalTitle>
@@ -61,7 +66,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls}) => {
             variant={2}
             text={general.newCol[language]}
             disabled={false}
-            onPress={() => {}}
+            onPress={() => setShowColumn(true)}
             medium
           />
         </ModalSubFields>

@@ -228,3 +228,18 @@ za
 zh
 zu
 `.split('\n');
+
+export const dataTypes: Array<string> = [
+  "ascii", "bigint", "blob", "boolean", "date", "decimal",
+  "double", "float", "inet", "int", "list",
+  "map", "set", "smallint", "text", "time", "timestamp",
+  "timeuuid", "tinyint", "tuple", "uuid", "varchar",
+  "varint"
+];
+export const colTypes: Array<string> = ["Partition", "Clustering", "None"];
+export const collectionDepth: Array<string> = "123456789".split('');
+export const collectionTypes: Array<string> = [
+  "ascii", "bigint", "blob", "boolean", "date", "decimal",
+  "double", "float", "inet", "int", "smallint", "text", "time", 
+  "timestamp", "timeuuid", "tinyint", "uuid", "varchar", "varint"
+];
