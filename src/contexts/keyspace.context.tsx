@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 
 import {KeyspaceSchema} from '../utils/types';
-import {dummyKeyspaces} from '../utils/data';
+import {dummyKeyspaces} from '../utils/dummy-data';
 
 interface KeyspaceContextInterface {
   keyspaces: Array<KeyspaceSchema>;

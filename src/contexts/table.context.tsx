@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 
 import {TableSchema} from '../utils/types';
-import {dummyTables} from '../utils/data';
+import {dummyTables} from '../utils/dummy-data';
 
 interface TableContextInterface {
   tables: Array<TableSchema>;

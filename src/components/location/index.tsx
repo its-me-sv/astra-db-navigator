@@ -12,13 +12,13 @@ interface LocationProps {}
 
 const Location: React.FC<LocationProps> = () => {
   const {keyspace, table, screen, setKs} = useConnectionContext();
-  const {currDatabase: database, setCurrDatabase: setDb} = useDatabaseContext();
+  const {currDatabase: database, setDatabase: setDb} = useDatabaseContext();
 
   return (
     <LocationContainer>
       <LocationItem 
         selected={screen === 1}
-        onClick={() => screen !== 1 && setDb!(database)}
+        onClick={() => {screen !== 1 && setDb!(database)}}
       >{database}</LocationItem>
       <span> / </span>
       {screen > 1 && (

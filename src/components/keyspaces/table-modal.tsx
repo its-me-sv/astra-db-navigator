@@ -7,15 +7,16 @@ import {
   ModalDeleteButton, ModalSubTextsContainer,
   ModalSubItemsContainer, ModalItem, ModalItemCloseButton
 } from './styles';
-import {EmptyContent} from '../databases/styles';
-import {columns as dc, indices as di} from './data';
-import {ColumnSchema, IndexSchema} from './types';
+import {EmptyContent} from '../../pages/keyspace/styles';
+import {dummyColumns, dummyIndices} from '../../utils/dummy-data';
+import {ColumnSchema, IndexSchema} from '../../utils/types';
 import {general, tableModalTranslations} from '../../utils/translations.utils';
+
+import {useLanguageContext} from '../../contexts/language.context';
 
 import Button from '../button';
 import IndexModal from './index-modal';
 import ColumnModal from "./column-modal";
-import {useLanguageContext} from '../../contexts/language.context';
 
 interface TableModalProps {
   tableName: string;
@@ -39,8 +40,8 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
     if (tableName.length < 1) return;
     ls!(true);
     setTimeout(() => {
-      setColumns(dc);
-      setIndices(di);
+      setColumns(dummyColumns);
+      setIndices(dummyIndices);
       ls!(false);
     }, 500);
   }, [tableName, ls]);

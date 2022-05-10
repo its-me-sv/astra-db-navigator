@@ -8,14 +8,20 @@ import {
   ModalSubtitle,
   HrLine
 } from './styles';
-import {ModalButtons} from '../databases/styles';
+import {ModalButtons} from '../../pages/keyspace/styles';
 import {
   general, 
   tableModalTranslations, 
   indexModalTranslations
 } from '../../utils/translations.utils';
-import {ColumnSchema, IndexSchema, StandardAnalyzerOptions, NonTokenizingAnalyzerOptions} from './types';
-import {indexTypes, kinds, booleanOptions, analyzerClassses, acMap} from './data';
+import {
+  ColumnSchema, IndexSchema, 
+  StandardAnalyzerOptions, NonTokenizingAnalyzerOptions
+} from '../../utils/types';
+import {
+  indexTypes, kinds, booleanOptions, 
+  analyzerClassses, acMap
+} from '../../utils/dummy-data';
 
 import Button from '../button';
 import Input from '../input';

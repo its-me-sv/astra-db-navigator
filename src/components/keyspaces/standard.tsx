@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {booleanOptions, locales} from './data';
-import {StandardAnalyzerOptions} from './types';
+import {booleanOptions, locales} from '../../utils/dummy-data';
+import {StandardAnalyzerOptions} from '../../utils/types';
 
 import Select from '../select';
 import Input from '../input';

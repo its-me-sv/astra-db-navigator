@@ -11,6 +11,7 @@ interface ConnectionContextInterface {
   resetConnection?: () => void;
   setLoading?: (val: boolean) => void;
   setScreen?: (val: number) => void;
+  setAppToken?: (val: string) => void;
 }
 
 const defaultState: ConnectionContextInterface = {
@@ -59,7 +60,7 @@ export const ConnectionContextProvider: React.FC<{children: ReactNode}> = ({chil
       value={{
         appToken, loading, keyspace, table, screen,
         resetConnection, setLoading, setKs, setTbl,
-        setScreen
+        setScreen, setAppToken
       }}
     >{children}</ConnectionContext.Provider>
   );

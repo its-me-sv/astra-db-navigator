@@ -26,11 +26,8 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
   useEffect(() => {
     if (currDatabase.length < 1) return;
     fetchDatabases!(currDatabase);
-  }, [fetchDatabases, currDatabase]);
-
-  useEffect(() => {
     setScreen!(1);
-  }, [currDatabase, setScreen]);
+  }, [currDatabase]);
 
   return (
     <Container>

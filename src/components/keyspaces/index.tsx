@@ -5,10 +5,10 @@ import {
   ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
   SeperatorTitle
 } from './styles';
-import {EmptyContent} from '../databases/styles';
+import {EmptyContent} from '../../pages/keyspace/styles';
 import {keyspacesTranslations, general} from '../../utils/translations.utils';
-import {TableSchema, TypeSchema} from './types';
-import {tables as dt, types as dk} from './data';
+import {TableSchema, TypeSchema} from '../../utils/types';
+import {dummyTables, dummyTypes} from '../../utils/dummy-data';
 
 import SearchField from "../search-field";
 import Button from "../button";
@@ -40,8 +40,8 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
     if (ksName.length < 1) return;
     setLoading(true);
     setTimeout(() => {
-      setTables(dt);
-      setTypes(dk);
+      setTables(dummyTables);
+      setTypes(dummyTypes);
       setLoading(false);
     }, 500);
   }, [ksName]);

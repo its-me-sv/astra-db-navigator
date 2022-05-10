@@ -5,7 +5,10 @@ import {
   ModalTitle, ModalCloseButton,
   ColumnOptionsContainer
 } from './styles';
-import {dataTypes, colTypes, booleanOptions, collectionDepth, collectionTypes} from './data';
+import {
+  dataTypes, colTypes, booleanOptions, 
+  collectionDepth, collectionTypes
+} from '../../utils/dummy-data';
 
 import Input from '../input';
 import Select from '../select';
