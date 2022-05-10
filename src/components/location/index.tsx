@@ -1,15 +1,18 @@
 import React from "react";
 
-import {useConnectionContext} from '../../contexts/connection.context';
 import {
   LocationContainer,
   LocationItem
 } from './styles';
 
+import {useConnectionContext} from '../../contexts/connection.context';
+import {useDatabaseContext} from '../../contexts/database.context';
+
 interface LocationProps {}
 
 const Location: React.FC<LocationProps> = () => {
-  const {database, keyspace, table, screen, setDb, setKs} = useConnectionContext();
+  const {keyspace, table, screen, setKs} = useConnectionContext();
+  const {currDatabase: database, setCurrDatabase: setDb} = useDatabaseContext();
 
   return (
     <LocationContainer>

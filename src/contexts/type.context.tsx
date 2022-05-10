@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 
-import {TypeSchema} from './types';
-import {dummyTypes} from './data';
+import {TypeSchema} from '../utils/types';
+import {dummyTypes} from '../utils/data';
 
 interface TypeContextInterface {
   types: Array<TypeSchema>;

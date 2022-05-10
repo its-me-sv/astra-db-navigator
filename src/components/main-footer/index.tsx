@@ -8,12 +8,28 @@ import Button from "../button";
 
 import {useLanguageContext} from '../../contexts/language.context';
 import {useConnectionContext} from '../../contexts/connection.context';
+import {useDatabaseContext} from '../../contexts/database.context';
+import {useKeyspaceContext} from '../../contexts/keyspace.context';
+import {useTableContext} from '../../contexts/table.context';
+import {useTypeContext} from '../../contexts/type.context';
 
 interface MainFooterProps {}
 
 const MainFooter: React.FC<MainFooterProps> = () => {
   const {language} = useLanguageContext();
   const {resetConnection} = useConnectionContext();
+  const {resetState: resetDBState} = useDatabaseContext();
+  const {resetState: resetKeyspaceState} = useKeyspaceContext();
+  const {resetState: resetTableState} = useTableContext();
+  const {resetState: resetType} = useTypeContext();
+
+  const resetAllState = () => {
+    resetConnection!();
+    resetDBState!();
+    resetKeyspaceState!();
+    resetTableState!();
+    resetType!();
+  };
 
   return (
     <Container>
@@ -22,7 +38,7 @@ const MainFooter: React.FC<MainFooterProps> = () => {
           variant={3}
           text={mainTranslations.disconnectButton[language]}
           disabled={false}
-          onPress={resetConnection!}
+          onPress={resetAllState}
           unfilled
           tiny
         />

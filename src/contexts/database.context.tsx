@@ -6,7 +6,7 @@ interface DatabaseContextInterface {
   loading: boolean;
   setCurrDatabase?: (val: string) => void;
   setLoading?: (val: boolean) => void;
-  fetchDatabases?: () => void;
+  fetchDatabases?: (tkn: string) => void;
   resetState?: () => void;
 }
 
@@ -25,10 +25,12 @@ export const DatabaseContextProvider: React.FC<{children: ReactNode}> = ({childr
   const [currDatabase, setCurrDatabase] = useState<string>(defaultState.currDatabase);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
 
-  const fetchDatabases = () => {
+  const fetchDatabases = (tkn: string) => {
+    if (tkn.length < 1) return;
     setLoading(true);
     setTimeout(() => {
       setDatabases(['workshops', 'pirate-land', 'aneta']);
+      setCurrDatabase('workshops');
       setLoading(false);
     }, 500);
   };

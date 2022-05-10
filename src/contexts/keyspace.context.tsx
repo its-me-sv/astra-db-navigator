@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
 
-import {KeyspaceSchema} from './types';
-import {dummyKeyspaces} from './data';
+import {KeyspaceSchema} from '../utils/types';
+import {dummyKeyspaces} from '../utils/data';
 
 interface KeyspaceContextInterface {
   keyspaces: Array<KeyspaceSchema>;
@@ -9,7 +9,7 @@ interface KeyspaceContextInterface {
   loading: boolean;
   setCurrKeyspace?: (val: KeyspaceSchema | null) => void;
   setLoading?: (val: boolean) => void;
-  fetchKeyspaces?: () => void;
+  fetchKeyspaces?: (dbName: string) => void;
   resetState?: () => void;
 }
 
@@ -28,7 +28,8 @@ export const KeyspaceContextProvider: React.FC<{children: ReactNode}> = ({childr
   const [currKeyspace, setCurrKeyspace] = useState<KeyspaceSchema | null>(defaultState.currKeyspace);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
 
-  const fetchKeyspaces = () => {
+  const fetchKeyspaces = (dbName: string) => {
+    if (dbName.length < 1) return;
     setLoading(true);
     setTimeout(() => {
       setKeyspaces(dummyKeyspaces);

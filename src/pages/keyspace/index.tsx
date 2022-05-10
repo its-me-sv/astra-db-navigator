@@ -7,29 +7,30 @@ import {
   HrLine, KeyspaceDc, EmptyContent
 } from "./styles";
 import {databasesTranslations, general} from '../../utils/translations.utils';
-import {KeyspaceSchema} from "./types";
-import dummmyKeySpaces from "./data";
+import {KeyspaceSchema} from "../../utils/types";
 
 import {useLanguageContext} from '../../contexts/language.context';
 import {useConnectionContext} from '../../contexts/connection.context';
-import SearchField from '../search-field';
-import BlockLoader from "../block-loader";
-import DatabaseModal from "./modal";
-import Button from "../button";
+import {useDatabaseContext} from '../../contexts/database.context';
+import {useKeyspaceContext} from '../../contexts/keyspace.context';
 
-interface DatabasesProps {
-  dbName: string;
-}
+import SearchField from '../../components/search-field';
+import BlockLoader from "../../components/block-loader";
+import DatabaseModal from "../../components/keyspace-modal";
+import Button from "../../components/button";
 
-const Databases: React.FC<DatabasesProps> = ({dbName}) => {
+interface KeyspacePageProps {}
+
+const KeyspacePage: React.FC<KeyspacePageProps> = () => {
   const {language} = useLanguageContext();
+  const {currDatabase: dbName} = useDatabaseContext();
+  const {keyspaces, fetchKeyspaces} = useKeyspaceContext();
   const {setKs} = useConnectionContext();
 
-  const [keyword, setKeyword] = useState<string>('');
+  const [keyword, setKeyword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [keyspaces, setKeyspaces] = useState<Array<KeyspaceSchema>>([]);
-  
+
   const applyFilter = (val: string) => setKeyword(val);
   const viewModal = () => setShowModal(true);
   const hideModal = () => setShowModal(false);
@@ -39,13 +40,14 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
     hideModal();
     setLoading(true);
     setTimeout(() => {
-      setKeyspaces(dummmyKeySpaces);
+      fetchKeyspaces!(dbName);
       setLoading(false);
     }, 500);
   }, [dbName]);
 
-  const filteredKeyspaces: Array<KeyspaceSchema> = keyspaces
-  ?.filter(({name}) => name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()));
+  const filteredKeyspaces: Array<KeyspaceSchema> = keyspaces?.filter(
+    ({ name }) => name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase())
+  );
 
   return (
     <DatabaseContainer>
@@ -56,7 +58,9 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
         placeholder={databasesTranslations.searchPlaceholder[language]}
         live
       />
-      {filteredKeyspaces.length === 0 && <EmptyContent>{general.noData[language]}</EmptyContent>}
+      {filteredKeyspaces.length === 0 && (
+        <EmptyContent>{general.noData[language]}</EmptyContent>
+      )}
       <KeyspacesContainer>
         {filteredKeyspaces.map((val, idx) => (
           <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
@@ -78,4 +82,4 @@ const Databases: React.FC<DatabasesProps> = ({dbName}) => {
   );
 };
 
-export default Databases;
+export default KeyspacePage;

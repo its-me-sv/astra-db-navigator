@@ -11,24 +11,25 @@ import {
 
 import {homeTranslations} from '../../utils/translations.utils';
 
+import {useLanguageContext} from '../../contexts/language.context';
+import {useDatabaseContext} from '../../contexts/database.context';
+
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Languages from '../../components/languages';
 
-import {useLanguageContext} from '../../contexts/language.context';
-import {useConnectionContext} from '../../contexts/connection.context';
 
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const {language} = useLanguageContext();
-  const {fetchDatabase} = useConnectionContext();
+  const {fetchDatabases} = useDatabaseContext();
 
   const [userTkn, setUsrTkn] = useState<string>('');
 
   const onConnect = () => {
     if (!userTkn.length) return;
-    fetchDatabase!(userTkn);
+    fetchDatabases!(userTkn);
   };
 
   return (

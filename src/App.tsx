@@ -1,20 +1,30 @@
 import React from 'react';
 
 import {useConnectionContext} from './contexts/connection.context';
+import {useDatabaseContext} from './contexts/database.context';
+import {useKeyspaceContext} from './contexts/keyspace.context';
+import {useTableContext} from './contexts/table.context';
+import {useTypeContext} from './contexts/type.context';
 
 import BlockLoader from './components/block-loader';
+
 import HomePage from './pages/home';
-import MainWrapper from './components/main-wrapper';
+import MainPage from './pages/main';
 
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
   const {loading, appToken} = useConnectionContext();
+  const {loading: databaseLoading} = useDatabaseContext();
+  const {loading: keyspaceLoading} = useKeyspaceContext();
+  const {loading: tableLoading} = useTableContext();
+  const {loading: typeLoading} = useTypeContext();
   
   return (
     <>
-      {loading && <BlockLoader />}
-      {!(appToken.length > 0) ? <HomePage /> : <MainWrapper />}
+      {(loading || databaseLoading || keyspaceLoading || tableLoading || typeLoading) 
+      && <BlockLoader />}
+      {!(appToken.length > 0) ? <HomePage /> : <MainPage />}
     </>
   );
 };

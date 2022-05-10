@@ -6,16 +6,17 @@ import {
 } from './styles';
 import {databasesTranslations, general} from '../../utils/translations.utils';
 
-import {StyledInput} from '../input/styles';
-import Button from '../button';
 import {useLanguageContext} from '../../contexts/language.context';
 
-interface DatabaseModalProps {
+import {StyledInput} from '../input/styles';
+import Button from '../button';
+
+interface KeyspaceModalProps {
   onClose: () => void;
   ls: (val: boolean) => void;
 }
 
-const DatabaseModal: React.FC<DatabaseModalProps> = ({onClose, ls}) => {
+const KeyspaceModal: React.FC<KeyspaceModalProps> = ({onClose, ls}) => {
   const {language} = useLanguageContext();
 
   const [text, setText] = useState<string>('');
@@ -60,4 +61,4 @@ const DatabaseModal: React.FC<DatabaseModalProps> = ({onClose, ls}) => {
   );
 };
 
-export default DatabaseModal;
+export default KeyspaceModal;
