@@ -48,25 +48,25 @@ const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types}) => {
             {type === "list" && (
               <>
                 <Select
-                val={frozen}
-                setVal={setFrozen}
-                options={booleanOptions}
-                notHeader
-                label="Frozen"
+                  val={frozen}
+                  setVal={setFrozen}
+                  options={booleanOptions}
+                  notHeader
+                  label="Frozen"
                 />
                 <Select
-                val={depth}
-                setVal={setDepth}
-                options={collectionDepth}
-                notHeader
-                label="Depth"
+                  val={depth}
+                  setVal={setDepth}
+                  options={collectionDepth}
+                  notHeader
+                  label="Depth"
                 />
                 <Select
-                val={colTyp}
-                setVal={setColTyp}
-                options={[...collectionTypes, ...types]}
-                notHeader
-                label="Collection type"
+                  val={colTyp}
+                  setVal={setColTyp}
+                  options={[...collectionTypes, ...types]}
+                  notHeader
+                  label="Collection type"
                 />
               </>
             )}
