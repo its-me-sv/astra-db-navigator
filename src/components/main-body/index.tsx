@@ -20,11 +20,11 @@ const MainBody: React.FC<MainBodyProps> = () => {
   return (
     <div>
       <Location />
-      {text.length > 1 && <DeleteModal />}
       {screen === 1 && <KeyspacePage />}
       {screen === 2 && <TableAndTypePage />}
       {screen === 3 && <Tables />}
       {screen === 4 && <Data />}
+      {text.length > 1 && <DeleteModal />}
     </div>
   );
 };

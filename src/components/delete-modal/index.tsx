@@ -15,7 +15,7 @@ interface DeleteModalProps {}
 
 const DeleteModal: React.FC<DeleteModalProps> = () => {
   const {language} = useLanguageContext();
-  const {text, onDelete, setText} = useDeleteContext();
+  const {text, setText, deleteCb} = useDeleteContext();
 
   return (
     <ModalWrapper>
@@ -31,7 +31,7 @@ const DeleteModal: React.FC<DeleteModalProps> = () => {
           <Button
             variant={3}
             text={general.yes[language]}
-            onPress={onDelete}
+            onPress={() => deleteCb?.current && deleteCb.current()}
             disabled={false}
           />
         </ModalButtons>

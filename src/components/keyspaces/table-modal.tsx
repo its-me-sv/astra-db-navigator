@@ -14,6 +14,7 @@ import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import {useLanguageContext} from '../../contexts/language.context';
 import {useTableContext} from '../../contexts/table.context';
+import {useDeleteContext} from '../../contexts/delete.context';
 
 import Button from '../button';
 import IndexModal from './index-modal';
@@ -29,6 +30,7 @@ interface TableModalProps {
 const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) => {
   const {language} = useLanguageContext();
   const {removeTable, setLoading} = useTableContext();
+  const {setText, deleteCb} = useDeleteContext();
 
   const [columns, setColumns] = useState<Array<ColumnSchema>>([]);
   const [indices, setIndices] = useState<Array<IndexSchema>>([]);
@@ -62,11 +64,15 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
   };
 
   const removeIndex = (idxName: string) => {
-    ls!(true);
-    setTimeout(() => {
-      setIndices(indices.filter(({name}) => name !== idxName));
-      ls!(false);
-    }, 500);
+    deleteCb!.current = () => {
+      ls!(true);
+      setTimeout(() => {
+        setIndices(indices.filter(({ name }) => name !== idxName));
+        setText!('');
+        ls!(false);
+      }, 500);
+    };
+    setText!(`Delete ${idxName} ?`);
   };
 
   useEffect(() => {
