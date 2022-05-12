@@ -5,7 +5,7 @@ export interface KeyspaceSchema {
 
 export interface TableSchema {
   name: string;
-  columns: number;
+  columns?: number;
 }
 
 export interface TypeSchema {

@@ -1,34 +1,34 @@
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import {
-  KeyspaceContainer, ContentContainer, Info,
-  ItemHolder, ItemName, HrLine, ItemSubfield, Seperator,
-  SeperatorTitle
+  KeyspaceContainer, Seperator, SeperatorTitle,
+  ContentContainer, ItemHolder, ItemName, Info,
+  HrLine, ItemSubfield
 } from './styles';
-import {EmptyContent} from '../../pages/keyspace/styles';
+import {EmptyContent} from '../keyspace/styles';
 import {keyspacesTranslations, general} from '../../utils/translations.utils';
 import {TableSchema, TypeSchema} from '../../utils/types';
-import {dummyTables, dummyTypes} from '../../utils/dummy-data';
 
-import SearchField from "../search-field";
-import Button from "../button";
-import BlockLoader from "../block-loader";
-import TableModal from "./table-modal";
 import {useLanguageContext} from '../../contexts/language.context';
-import {useConnectionContext} from '../../contexts/connection.context';
+import {useKeyspaceContext} from '../../contexts/keyspace.context';
+import {useTableContext} from '../../contexts/table.context';
+import {useTypeContext} from '../../contexts/type.context';
 
-interface KeyspacesProps {
-  ksName: string;
-}
+import BlockLoader from '../../components/block-loader';
+import Button from '../../components/button';
+import SearchField from '../../components/search-field';
+import TableModal from '../../components/keyspaces/table-modal';
 
-const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
+interface TableAndTypePageProps {}
+
+const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
   const {language} = useLanguageContext();
-  const {setTbl} = useConnectionContext();
+  const {currKeyspace} = useKeyspaceContext();
+  const {setTable, tables, fetchTables} = useTableContext();
+  const {types, fetchTypes} = useTypeContext();
 
   const [currTable, setCurrTable] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [tables, setTables] = useState<Array<TableSchema>>([]);
-  const [types, setTypes] = useState<Array<TypeSchema>>([]);
   const [tableKeyword, setTableKeyword] = useState<string>('');
   const [typeKeyword, setTypeKeyword] = useState<string>('');
 
@@ -37,14 +37,15 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   const closeTableModal = () => setCurrTable('');
 
   useEffect(() => {
-    if (ksName.length < 1) return;
+    if (currKeyspace === null) return;
+    if (currKeyspace?.name.length < 1) return;
     setLoading(true);
     setTimeout(() => {
-      setTables(dummyTables);
-      setTypes(dummyTypes);
+      fetchTables!(currKeyspace.name);
+      fetchTypes!(currKeyspace.name);
       setLoading(false);
     }, 500);
-  }, [ksName]);
+  }, [currKeyspace]);
 
   const filteredTables: Array<TableSchema> = tables
   ?.filter(({name}) => name.toLocaleLowerCase().includes(tableKeyword.toLocaleLowerCase()));
@@ -74,7 +75,7 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
         )}
         <ContentContainer>
           {filteredTables.map((val, idx) => (
-            <ItemHolder key={idx} onClick={() => setTbl!(val.name)}>
+            <ItemHolder key={idx} onClick={() => setTable!(val.name)}>
               <ItemName>
                 {val.name}
                 <Info
@@ -131,4 +132,4 @@ const Keyspaces: React.FC<KeyspacesProps> = ({ksName}) => {
   );
 };
 
-export default Keyspaces;
+export default TableAndTypePage;

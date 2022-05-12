@@ -3,14 +3,17 @@ import React, {createContext, ReactNode, useContext, useState} from 'react';
 import {KeyspaceSchema} from '../utils/types';
 import {dummyKeyspaces} from '../utils/dummy-data';
 
+import {useConnectionContext} from './connection.context';
+
 interface KeyspaceContextInterface {
   keyspaces: Array<KeyspaceSchema>;
-  currKeyspace: KeyspaceSchema | null
+  currKeyspace: KeyspaceSchema | null;
   loading: boolean;
   setCurrKeyspace?: (val: KeyspaceSchema | null) => void;
   setLoading?: (val: boolean) => void;
   fetchKeyspaces?: (dbName: string) => void;
   resetState?: () => void;
+  setKeyspace?: (val: string) => void;
 }
 
 const defaultState: KeyspaceContextInterface = {
@@ -24,6 +27,8 @@ export const KeyspaceContext = createContext<KeyspaceContextInterface>(defaultSt
 export const useKeyspaceContext = () => useContext(KeyspaceContext);
 
 export const KeyspaceContextProvider: React.FC<{children: ReactNode}> = ({children}) => {
+  const {setScreen} = useConnectionContext();
+
   const [keyspaces, setKeyspaces] = useState<Array<KeyspaceSchema>>(defaultState.keyspaces);
   const [currKeyspace, setCurrKeyspace] = useState<KeyspaceSchema | null>(defaultState.currKeyspace);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
@@ -35,6 +40,12 @@ export const KeyspaceContextProvider: React.FC<{children: ReactNode}> = ({childr
       setKeyspaces(dummyKeyspaces);
       setLoading(false);
     }, 500);
+  };
+  
+  const setKeyspace = (ksName: string) => {
+    if (ksName.length < 1) return;
+    setCurrKeyspace({name: ksName});
+    setScreen!(2);
   };
 
   const resetState = () => {
@@ -48,7 +59,7 @@ export const KeyspaceContextProvider: React.FC<{children: ReactNode}> = ({childr
       value={{
         keyspaces, currKeyspace, loading,
         setCurrKeyspace, setLoading, fetchKeyspaces,
-        resetState
+        resetState, setKeyspace
       }}
     >{children}</KeyspaceContext.Provider>
   );

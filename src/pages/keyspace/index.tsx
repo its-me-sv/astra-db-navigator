@@ -10,7 +10,6 @@ import {databasesTranslations, general} from '../../utils/translations.utils';
 import {KeyspaceSchema} from "../../utils/types";
 
 import {useLanguageContext} from '../../contexts/language.context';
-import {useConnectionContext} from '../../contexts/connection.context';
 import {useDatabaseContext} from '../../contexts/database.context';
 import {useKeyspaceContext} from '../../contexts/keyspace.context';
 
@@ -24,8 +23,7 @@ interface KeyspacePageProps {}
 const KeyspacePage: React.FC<KeyspacePageProps> = () => {
   const {language} = useLanguageContext();
   const {currDatabase: dbName} = useDatabaseContext();
-  const {keyspaces, fetchKeyspaces} = useKeyspaceContext();
-  const {setKs} = useConnectionContext();
+  const {keyspaces, fetchKeyspaces, setKeyspace} = useKeyspaceContext();
 
   const [keyword, setKeyword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,7 +61,7 @@ const KeyspacePage: React.FC<KeyspacePageProps> = () => {
       )}
       <KeyspacesContainer>
         {filteredKeyspaces.map((val, idx) => (
-          <KeyspaceHolder key={idx} onClick={() => setKs!(val.name)}>
+          <KeyspaceHolder key={idx} onClick={() => setKeyspace!(val.name)}>
             <KeyspaceName>{val.name}</KeyspaceName>
             <HrLine />
             <KeyspaceDc>

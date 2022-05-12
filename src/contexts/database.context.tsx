@@ -35,7 +35,7 @@ export const DatabaseContextProvider: React.FC<{children: ReactNode}> = ({childr
     setLoading(true);
     setTimeout(() => {
       setDatabases(['workshops', 'pirate-land', 'aneta']);
-      setCurrDatabase('workshops');
+      currDatabase.length < 1 && setCurrDatabase('workshops');
       setAppToken!(tkn);
       setScreen!(1);
       setLoading(false);

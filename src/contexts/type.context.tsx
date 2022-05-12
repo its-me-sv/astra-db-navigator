@@ -9,7 +9,7 @@ interface TypeContextInterface {
   loading: boolean;
   setCurrType?: (val: TypeSchema | null) => void;
   setLoading?: (val: boolean) => void;
-  fetchTypes?: () => void;
+  fetchTypes?: (val: string) => void;
   resetState?: () => void;
 }
 
@@ -28,7 +28,8 @@ export const TypeContextProvider: React.FC<{children: ReactNode}> = ({children})
   const [currType, setCurrType] = useState<TypeSchema | null>(defaultState.currType);
   const [loading, setLoading] = useState<boolean>(defaultState.loading);
 
-  const fetchTypes = () => {
+  const fetchTypes = (ksName: string) => {
+    if (ksName.length < 1) return;
     setLoading(true);
     setTimeout(() => {
       setTypes(dummyTypes);

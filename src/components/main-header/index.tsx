@@ -20,7 +20,7 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
   const {setScreen} = useConnectionContext();
   const {
     currDatabase, databases, 
-    fetchDatabases, setCurrDatabase
+    fetchDatabases, setDatabase
   } = useDatabaseContext();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
         <Select 
           options={databases}
           val={currDatabase}
-          setVal={setCurrDatabase!}
+          setVal={setDatabase!}
         />
         <Button
           variant={2}
