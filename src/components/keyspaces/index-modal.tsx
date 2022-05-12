@@ -27,10 +27,10 @@ interface IndexModalProps {
   columns: Array<ColumnSchema>;
   indices: Array<IndexSchema>;
   table: string;
-  ls: (val: boolean) => void;
+  addIdx: (idxName: string, colName: string) => void;
 }
 
-const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) => {
+const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, addIdx}) => {
   const {language} = useLanguageContext();
   
   // general
@@ -41,15 +41,6 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
   const [cs, setCs] = useState<string>("false");
   const [normal, setNormal] = useState<string>("false");
   const [ascii, setAscii] = useState<string>("false");
-
-
-  const onCreateIndex = () => {
-    ls!(true);
-    setTimeout(() => {
-      ls!(false);
-      onClose();
-    }, 500);
-  };
 
   return (
     <ModalWrapper>
@@ -118,7 +109,7 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, ls}) =>
           <Button
             variant={4}
             text={tableModalTranslations.crtIdx[language]}
-            onPress={onCreateIndex}
+            onPress={() => addIdx(name, column)}
             disabled={false}
           />
         </ModalButtons>

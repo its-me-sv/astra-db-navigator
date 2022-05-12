@@ -47,6 +47,28 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
     }, 500);
   };
 
+  const addIndex = (idxName: string, colName: string) => {
+    ls!(true);
+    const newIndex: IndexSchema = {
+      name: idxName,
+      kind: "CUSTOM",
+      options: [colName]
+    };
+    setTimeout(() => {
+      setIndices([...indices, newIndex]);
+      hideShowIndex();
+      ls!(false);
+    }, 500);
+  };
+
+  const removeIndex = (idxName: string) => {
+    ls!(true);
+    setTimeout(() => {
+      setIndices(indices.filter(({name}) => name !== idxName));
+      ls!(false);
+    }, 500);
+  };
+
   useEffect(() => {
     if (tableName.length < 1) return;
     ls!(true);
@@ -65,7 +87,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
           columns={columns}
           indices={indices}
           table={tableName}
-          ls={ls}
+          addIdx={addIndex}
         />
       )}
       {showColumn && <ColumnModal onClose={hideColumnModal} types={types} />}
@@ -148,6 +170,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
                 <span>{val.name}</span>
                 <ModalItemCloseButton
                   title={tableModalTranslations.delIdx[language]}
+                  onClick={() => removeIndex(val.name)}
                 >
                   🗑️
                 </ModalItemCloseButton>
