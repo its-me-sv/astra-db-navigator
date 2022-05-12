@@ -179,6 +179,12 @@ export const general = {
     "Opciones",
     "Choix"
   ],
+  yes: [
+    "Yes",
+    "sì",
+    "Sí",
+    "Oui"
+  ]
 };
 
 export const keyspacesTranslations = {

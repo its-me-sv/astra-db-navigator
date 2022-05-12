@@ -9,6 +9,7 @@ import {DatabaseContextProvider} from './contexts/database.context';
 import {KeyspaceContextProvider} from './contexts/keyspace.context';
 import {TableContextProvider} from './contexts/table.context';
 import {TypeContextProvider} from './contexts/type.context';
+import {DeleteContextProvider} from './contexts/delete.context';
 
 import App from './App';
 
@@ -24,7 +25,9 @@ root.render(
           <KeyspaceContextProvider>
             <TableContextProvider>
               <TypeContextProvider>
-                <App />
+                <DeleteContextProvider>
+                  <App />
+                </DeleteContextProvider>
               </TypeContextProvider>
             </TableContextProvider>
           </KeyspaceContextProvider>
