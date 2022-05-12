@@ -14,6 +14,7 @@ interface TableContextInterface {
   fetchTables?: (val: string) => void;
   resetState?: () => void;
   setTable?: (val: string) => void;
+  removeTable?: (val: string) => void;
 }
 
 const defaultState: TableContextInterface = {
@@ -48,6 +49,11 @@ export const TableContextProvider: React.FC<{children: ReactNode}> = ({children}
     setScreen!(3);
   };
 
+  const removeTable = (tblName: string) => {
+    if (tblName.length < 1) return;
+    setTables(tables.filter(({name}) => name !== tblName));
+  };
+
   const resetState = () => {
     setTables([]);
     setCurrTable(null);
@@ -59,7 +65,7 @@ export const TableContextProvider: React.FC<{children: ReactNode}> = ({children}
       value={{
         tables, currTable, loading,
         setCurrTable, setLoading, fetchTables,
-        resetState, setTable
+        resetState, setTable, removeTable
       }}
     >{children}</TableContext.Provider>
   );

@@ -13,6 +13,7 @@ import {ColumnSchema, IndexSchema} from '../../utils/types';
 import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import {useLanguageContext} from '../../contexts/language.context';
+import {useTableContext} from '../../contexts/table.context';
 
 import Button from '../button';
 import IndexModal from './index-modal';
@@ -27,6 +28,7 @@ interface TableModalProps {
 
 const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) => {
   const {language} = useLanguageContext();
+  const {removeTable, setLoading} = useTableContext();
 
   const [columns, setColumns] = useState<Array<ColumnSchema>>([]);
   const [indices, setIndices] = useState<Array<IndexSchema>>([]);
@@ -35,6 +37,15 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
 
   const hideShowIndex = () => setShowIndex(false);
   const hideColumnModal = () => setShowColumn(false);
+
+  const deleteTable = () => {
+    setLoading!(true);
+    setTimeout(() => {
+      removeTable!(tableName);
+      onClose();
+      setLoading!(false);
+    }, 500);
+  };
 
   useEffect(() => {
     if (tableName.length < 1) return;
@@ -83,7 +94,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
                 <ModalItemCloseButton
                   title={tableModalTranslations.delCol[language]}
                 >
-                  ❌
+                  🗑️
                 </ModalItemCloseButton>
               </div>
               <HrLine />
@@ -138,7 +149,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
                 <ModalItemCloseButton
                   title={tableModalTranslations.delIdx[language]}
                 >
-                  ❌
+                  🗑️
                 </ModalItemCloseButton>
               </div>
               <HrLine />
@@ -156,7 +167,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
             variant={3}
             text={tableModalTranslations.delTbl[language]}
             disabled={false}
-            onPress={() => {}}
+            onPress={deleteTable}
             tiny
           />
         </ModalDeleteButton>
