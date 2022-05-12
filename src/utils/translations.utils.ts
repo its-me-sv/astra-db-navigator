@@ -184,6 +184,30 @@ export const general = {
     "sì",
     "Sí",
     "Oui"
+  ],
+  delete: [
+    "Delete",
+    "Eliminare",
+    "Borrar",
+    "Supprimer"
+  ],
+  table: [
+    "Table",
+    "Tavolo",
+    "Mesa",
+    "Table"
+  ],
+  index: [
+    "Index",
+    "Indice",
+    "Índice",
+    "Indice"
+  ],
+  column: [
+    "Column",
+    "Colonna",
+    "Columna",
+    "Colonne"
   ]
 };
 

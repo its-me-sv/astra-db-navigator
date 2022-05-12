@@ -41,26 +41,25 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
   const hideColumnModal = () => setShowColumn(false);
 
   const deleteTable = () => {
-    setLoading!(true);
-    setTimeout(() => {
-      removeTable!(tableName);
-      onClose();
-      setLoading!(false);
-    }, 500);
+    deleteCb!.current = () => {
+      setLoading!(true);
+      setTimeout(() => {
+        removeTable!(tableName);
+        setText!('');
+        onClose();
+        setLoading!(false);
+      }, 500);
+    };
+    setText!(`${general.delete[language]} ${general.table[language].toLowerCase()} ${tableName}?`);
   };
 
   const addIndex = (idxName: string, colName: string) => {
-    ls!(true);
     const newIndex: IndexSchema = {
       name: idxName,
       kind: "CUSTOM",
       options: [colName]
     };
-    setTimeout(() => {
-      setIndices([...indices, newIndex]);
-      hideShowIndex();
-      ls!(false);
-    }, 500);
+    setIndices([...indices, newIndex]);
   };
 
   const removeIndex = (idxName: string) => {
@@ -72,7 +71,19 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
         ls!(false);
       }, 500);
     };
-    setText!(`Delete ${idxName} ?`);
+    setText!(`${general.delete[language]} ${general.index[language].toLowerCase()} ${idxName}?`);
+  };
+
+  const removeColumn = (colName: string) => {
+    deleteCb!.current = () => {
+      ls!(true);
+      setTimeout(() => {
+        setColumns(columns.filter(({name}) => name !== colName));
+        setText!('');
+        ls!(false);
+      }, 500);
+    };
+    setText!(`${general.delete[language]} ${general.column[language].toLowerCase()} ${colName}?`);
   };
 
   useEffect(() => {
@@ -94,6 +105,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
           indices={indices}
           table={tableName}
           addIdx={addIndex}
+          ls={ls!}
         />
       )}
       {showColumn && <ColumnModal onClose={hideColumnModal} types={types} />}
@@ -121,6 +133,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
                 <span>{val.name}</span>
                 <ModalItemCloseButton
                   title={tableModalTranslations.delCol[language]}
+                  onClick={() => removeColumn(val.name)}
                 >
                   🗑️
                 </ModalItemCloseButton>

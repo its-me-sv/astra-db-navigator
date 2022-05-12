@@ -28,9 +28,10 @@ interface IndexModalProps {
   indices: Array<IndexSchema>;
   table: string;
   addIdx: (idxName: string, colName: string) => void;
+  ls: (val: boolean) => void;
 }
 
-const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, addIdx}) => {
+const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, addIdx, ls}) => {
   const {language} = useLanguageContext();
   
   // general
@@ -41,6 +42,25 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, addIdx}
   const [cs, setCs] = useState<string>("false");
   const [normal, setNormal] = useState<string>("false");
   const [ascii, setAscii] = useState<string>("false");
+
+  const onCreate = () => {
+    ls(true);
+    const requestBody: any = {
+      name, column, type: "StorageAttachedIndex",
+      options: {
+        case_sensitive: cs === 'true',
+        normalize: normal === 'true',
+        ascii: ascii === 'true'
+      }
+    };
+    if (kind !== 'NONE')
+      requestBody.kind = kind;
+    setTimeout(() => {
+      addIdx(name, column);
+      ls(false);
+      onClose();
+    }, 500);
+  };
 
   return (
     <ModalWrapper>
@@ -109,7 +129,7 @@ const IndexModal: React.FC<IndexModalProps> = ({onClose, table, columns, addIdx}
           <Button
             variant={4}
             text={tableModalTranslations.crtIdx[language]}
-            onPress={() => addIdx(name, column)}
+            onPress={onCreate}
             disabled={false}
           />
         </ModalButtons>
