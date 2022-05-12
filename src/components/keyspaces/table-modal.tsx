@@ -29,7 +29,7 @@ interface TableModalProps {
 
 const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) => {
   const {language} = useLanguageContext();
-  const {removeTable, setLoading} = useTableContext();
+  const {removeTable, setLoading, decCol} = useTableContext();
   const {setText, deleteCb} = useDeleteContext();
 
   const [columns, setColumns] = useState<Array<ColumnSchema>>([]);
@@ -79,6 +79,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
       ls!(true);
       setTimeout(() => {
         setColumns(columns.filter(({name}) => name !== colName));
+        decCol!(tableName);
         setText!('');
         ls!(false);
       }, 500);

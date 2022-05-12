@@ -2,6 +2,7 @@ import React, {createContext, ReactNode, useContext, useState} from 'react';
 
 import {TableSchema} from '../utils/types';
 import {dummyTables} from '../utils/dummy-data';
+import {addColumn, removeColumn} from '../utils/table.utils';
 
 import {useConnectionContext} from './connection.context';
 
@@ -15,6 +16,8 @@ interface TableContextInterface {
   resetState?: () => void;
   setTable?: (val: string) => void;
   removeTable?: (val: string) => void;
+  incCol?: (val: string) => void;
+  decCol?: (val: string) => void;
 }
 
 const defaultState: TableContextInterface = {
@@ -54,6 +57,16 @@ export const TableContextProvider: React.FC<{children: ReactNode}> = ({children}
     setTables(tables.filter(({name}) => name !== tblName));
   };
 
+  const incCol = (tblName: string) => {
+    if (tblName.length < 1) return;
+    setTables(addColumn(tables, tblName));
+  };
+
+  const decCol = (tblName: string) => {
+    if (tblName.length < 1) return;
+    setTables(removeColumn(tables, tblName));
+  };
+
   const resetState = () => {
     setTables([]);
     setCurrTable(null);
@@ -65,7 +78,8 @@ export const TableContextProvider: React.FC<{children: ReactNode}> = ({children}
       value={{
         tables, currTable, loading,
         setCurrTable, setLoading, fetchTables,
-        resetState, setTable, removeTable
+        resetState, setTable, removeTable,
+        incCol, decCol
       }}
     >{children}</TableContext.Provider>
   );
