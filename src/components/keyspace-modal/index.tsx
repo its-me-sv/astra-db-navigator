@@ -7,6 +7,7 @@ import {
 import {databasesTranslations, general} from '../../utils/translations.utils';
 
 import {useLanguageContext} from '../../contexts/language.context';
+import {useKeyspaceContext} from '../../contexts/keyspace.context';
 
 import {StyledInput} from '../input/styles';
 import Button from '../button';
@@ -18,6 +19,7 @@ interface KeyspaceModalProps {
 
 const KeyspaceModal: React.FC<KeyspaceModalProps> = ({onClose, ls}) => {
   const {language} = useLanguageContext();
+  const {addNewKs} = useKeyspaceContext();
 
   const [text, setText] = useState<string>('');
 
@@ -29,6 +31,7 @@ const KeyspaceModal: React.FC<KeyspaceModalProps> = ({onClose, ls}) => {
     ls(true);
     setTimeout(() => {
       ls(false);
+      addNewKs!(text);
       onClose();
     }, 500);
   };

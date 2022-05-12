@@ -14,6 +14,7 @@ interface KeyspaceContextInterface {
   fetchKeyspaces?: (dbName: string) => void;
   resetState?: () => void;
   setKeyspace?: (val: string) => void;
+  addNewKs?: (val: string) => void;
 }
 
 const defaultState: KeyspaceContextInterface = {
@@ -48,6 +49,11 @@ export const KeyspaceContextProvider: React.FC<{children: ReactNode}> = ({childr
     setScreen!(2);
   };
 
+  const addNewKs = (ksName: string) => {
+    if (ksName.length < 1) return;
+    setKeyspaces([...keyspaces, {name: ksName, dataCenters: 1}]);
+  };
+
   const resetState = () => {
     setKeyspaces([]);
     setCurrKeyspace(null);
@@ -59,7 +65,7 @@ export const KeyspaceContextProvider: React.FC<{children: ReactNode}> = ({childr
       value={{
         keyspaces, currKeyspace, loading,
         setCurrKeyspace, setLoading, fetchKeyspaces,
-        resetState, setKeyspace
+        resetState, setKeyspace, addNewKs
       }}
     >{children}</KeyspaceContext.Provider>
   );

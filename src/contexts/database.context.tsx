@@ -11,6 +11,7 @@ interface DatabaseContextInterface {
   fetchDatabases?: (tkn: string) => void;
   resetState?: () => void;
   setDatabase?: (val: string) => void;
+  addNewDb?: (val: string) => void;
 }
 
 const defaultState: DatabaseContextInterface = {
@@ -43,7 +44,7 @@ export const DatabaseContextProvider: React.FC<{children: ReactNode}> = ({childr
   };
 
   const resetState = () => {
-    setDatabases([]);;
+    setDatabases([]);
     setCurrDatabase('');
     setLoading(false);
   };
@@ -53,12 +54,17 @@ export const DatabaseContextProvider: React.FC<{children: ReactNode}> = ({childr
     setScreen!(1);
   };
 
+  const addNewDb = (dbName: string) => {
+    if (dbName.length < 1) return;
+    setDatabases([...databases, dbName]);
+  };
+
   return (
     <DatabaseContext.Provider
       value={{
         databases, currDatabase, loading,
         setLoading, fetchDatabases,
-        resetState, setDatabase
+        resetState, setDatabase, addNewDb
       }}
     >{children}</DatabaseContext.Provider>
   );
