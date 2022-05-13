@@ -208,6 +208,12 @@ export const general = {
     "Colonna",
     "Columna",
     "Colonne"
+  ],
+  create: [
+    "Create",
+    "Creare",
+    "Crear",
+    "Créer"
   ]
 };
 

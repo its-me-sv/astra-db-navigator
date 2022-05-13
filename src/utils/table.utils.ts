@@ -1,6 +1,6 @@
 import {TableSchema} from './types';
 
-export const addColumn = (tables: Array<TableSchema>, tblName: string) => {
+export const addColumn = (tables: Array<TableSchema>, tblName: string): Array<TableSchema> => {
   const newTables: Array<TableSchema> = [];
   for (let table of tables) {
     if (table.name !== tblName) 
@@ -11,7 +11,7 @@ export const addColumn = (tables: Array<TableSchema>, tblName: string) => {
   return newTables;
 };
 
-export const removeColumn = (tables: Array<TableSchema>, tblName: string) => {
+export const removeColumn = (tables: Array<TableSchema>, tblName: string): Array<TableSchema> => {
   const newTables: Array<TableSchema> = [];
   for (let table of tables) {
     if (table.name !== tblName) 
