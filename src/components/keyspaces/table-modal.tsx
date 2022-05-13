@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import {
   ModalWrapper, ModalContainer,
@@ -9,7 +9,7 @@ import {
 } from './styles';
 import {EmptyContent} from '../../pages/keyspace/styles';
 import {dummyColumns, dummyIndices} from '../../utils/dummy-data';
-import {ColumnSchema, IndexSchema} from '../../utils/types';
+import {ColumnSchema, IndexSchema, NewColumn} from '../../utils/types';
 import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import {useLanguageContext} from '../../contexts/language.context';
@@ -36,6 +36,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
   const [indices, setIndices] = useState<Array<IndexSchema>>([]);
   const [showIndex, setShowIndex] = useState<boolean>(false);
   const [showColumn, setShowColumn] = useState<boolean>(false);
+  const newColRef = useRef<NewColumn>({name: '', typeDefinition: "ascii"});
 
   const hideShowIndex = () => setShowIndex(false);
   const hideColumnModal = () => setShowColumn(false);
@@ -87,6 +88,15 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
     setText!(`${general.delete[language]} ${general.column[language].toLowerCase()} ${colName}?`);
   };
 
+  const addColumn = () => {
+    const newCol: ColumnSchema = {
+      name: newColRef.current.name,
+      type: newColRef.current.typeDefinition,
+      static: false
+    };
+    setColumns([...columns, newCol]);
+  };
+
   useEffect(() => {
     if (tableName.length < 1) return;
     ls!(true);
@@ -109,7 +119,13 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
           ls={ls!}
         />
       )}
-      {showColumn && <ColumnModal onClose={hideColumnModal} types={types} />}
+      {showColumn && <ColumnModal 
+        onClose={hideColumnModal} 
+        types={types} 
+        newCol={newColRef} 
+        ls={ls!}
+        ac={addColumn}
+      />}
       <ModalContainer>
         <ModalCloseButton onClick={onClose}>X</ModalCloseButton>
         <ModalTitle>{tableName}</ModalTitle>

@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {MutableRefObject, useState} from 'react';
 
 import {
   ModalWrapper, ModalContainer,
-  ModalTitle, ModalCloseButton,
+  ModalTitle,
   ColumnOptionsContainer,
-  ModalDeleteButton
 } from './styles';
+import {ModalButtons} from '../../pages/keyspace/styles';
 import {general} from '../../utils/translations.utils';
+import {NewColumn} from '../../utils/types';
+import {generateColumnTypeDefinition} from '../../utils/column.utils';
 import {
   dataTypes, 
   // colTypes, 
@@ -24,9 +26,12 @@ import Button from '../button';
 interface ColumnModalProps {
   onClose: () => void;
   types: Array<string>;
+  newCol: MutableRefObject<NewColumn>;
+  ls: (val: boolean) => void;
+  ac: () => void;
 }
 
-const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types}) => {
+const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types, newCol, ls, ac}) => {
   const {language} = useLanguageContext();
 
   const [columnName, setColumnName] = useState<string>('column1');
@@ -42,12 +47,23 @@ const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types}) => {
   const [key, setKey] = useState<string>('ascii');
   const [value, setValue] = useState<string>('ascii');
 
-  const onColumnCreate = () => {};
+  const onColumnCreate = () => {
+    ls(true);
+    setTimeout(() => {
+      newCol.current.name = columnName;
+      newCol.current.typeDefinition = generateColumnTypeDefinition(
+        type, frozen === 'true', +depth, 
+        colTyp, key, value
+      );
+      ac();
+      ls(false);
+      onClose();
+    }, 500);
+  };
 
   return (
     <ModalWrapper>
       <ModalContainer tiny>
-        <ModalCloseButton onClick={onClose}>X</ModalCloseButton>
         <ModalTitle>Add new column</ModalTitle>
         <ColumnOptionsContainer>
           <Input
@@ -117,14 +133,20 @@ const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types}) => {
               label="Key type"
             /> */}
         </ColumnOptionsContainer>
-        <ModalDeleteButton>
+        <ModalButtons>
+          <Button
+            text={general.cancel[language]}
+            disabled={false}
+            variant={3}
+            onPress={onClose}
+          />
           <Button
             text={general.create[language]}
             disabled={false}
             variant={4}
             onPress={onColumnCreate}
           />
-        </ModalDeleteButton>
+        </ModalButtons>
       </ModalContainer>
     </ModalWrapper>
   );

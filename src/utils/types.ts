@@ -24,3 +24,8 @@ export interface IndexSchema {
   kind: string;
   options: Array<string>
 }
+
+export interface NewColumn {
+  name: string;
+  typeDefinition: string;
+}

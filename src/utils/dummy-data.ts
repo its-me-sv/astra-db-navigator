@@ -251,7 +251,7 @@ export const dataTypes: Array<string> = [
 export const collections: Array<string> = ["list", "map", "set"];
 export const nonMapCollections: Array<string> = ["list", "tuple", "set"]
 export const colTypes: Array<string> = ["Partition", "Clustering", "None"];
-export const collectionDepth: Array<string> = "123".split('');
+export const collectionDepth: Array<string> = "12".split('');
 export const collectionTypes: Array<string> = [
   "ascii", "bigint", "blob", "boolean", "date", "decimal",
   "double", "float", "inet", "int", "smallint", "text", "time", 
