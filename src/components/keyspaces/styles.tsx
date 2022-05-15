@@ -249,3 +249,13 @@ export const SubFieldsSep = styled.div`
   align-items: center;
   gap: 1rem;
 `;
+
+export const SubFieldItems = styled.div`
+  display: flex;
+  overflow: auto;
+  flex-wrap: wrap;
+  width: 50vw;
+  padding: 0.42%;
+  max-height: 16vh;
+  gap: 0.4rem;
+`;

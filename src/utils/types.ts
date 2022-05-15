@@ -34,3 +34,7 @@ export interface ClusterSchema {
   column: string;
   order: "ASC" | "DESC";
 }
+
+export type PrimaryKeyType = 'NONE' | 'PARTITION' | 'CLUSTERING';
+
+export type OrdersType = "ASC" | "DESC";

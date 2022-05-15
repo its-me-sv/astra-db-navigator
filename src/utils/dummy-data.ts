@@ -1,4 +1,4 @@
-import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema, ClusterSchema} from './types';
+import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema, ClusterSchema, OrdersType} from './types';
 
 export const dummyKeyspaces: Array<KeyspaceSchema> = [
   {name: "todos", dataCenters: 1},
@@ -267,3 +267,5 @@ export const collectionTypes: Array<string> = [
   "double", "float", "inet", "int", "smallint", "text", "time", 
   "timestamp", "timeuuid", "tinyint", "uuid", "varchar", "varint"
 ];
+
+export const orderTypes: Array<OrdersType> = ["ASC", "DESC"];

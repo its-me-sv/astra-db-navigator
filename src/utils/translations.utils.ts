@@ -382,5 +382,5 @@ export const newTableTranslations = {
     "Nessuna colonna ancora aggiunta",
     "No se agregó ninguna columna todavía",
     "Aucune colonne ajoutée pour le moment"
-  ]
+  ],
 };

@@ -1,4 +1,5 @@
 import {collections, nonMapCollections} from './dummy-data';
+import {ColumnSchema, ClusterSchema} from './types';
 
 const allCollections: Array<string> = [...collections, ...nonMapCollections];
 
@@ -17,5 +18,19 @@ export const generateColumnTypeDefinition = (
       result = `list<${result}>`;
   }
   if (frozen) result = `frozen<${result}>`;
+  return result;
+};
+
+export const getAvailbaleColumns = (
+  columns: Array<ColumnSchema>,
+  partitions: Array<string>,
+  clustering: Array<ClusterSchema>
+):Array<string> => {
+  const result: Array<string> = [];
+  for (let {name} of columns) {
+    if (partitions.findIndex(val => val === name) !== -1) continue;
+    if (clustering.findIndex(({column}) => column === name) !== -1) continue;
+    result.push(name);
+  }
   return result;
 };
