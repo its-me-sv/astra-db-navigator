@@ -18,6 +18,7 @@ interface TableContextInterface {
   removeTable?: (val: string) => void;
   incCol?: (val: string) => void;
   decCol?: (val: string) => void;
+  addTbl?: (name: string, columns: number) => void;
 }
 
 const defaultState: TableContextInterface = {
@@ -57,6 +58,10 @@ export const TableContextProvider: React.FC<{children: ReactNode}> = ({children}
     setTables(tables.filter(({name}) => name !== tblName));
   };
 
+  const addTbl = (name: string, columns: number) => {
+    setTables([...tables, {name, columns}]);
+  };
+
   const incCol = (tblName: string) => {
     if (tblName.length < 1) return;
     setTables(addColumn(tables, tblName));
@@ -79,7 +84,7 @@ export const TableContextProvider: React.FC<{children: ReactNode}> = ({children}
         tables, currTable, loading,
         setCurrTable, setLoading, fetchTables,
         resetState, setTable, removeTable,
-        incCol, decCol
+        incCol, decCol, addTbl
       }}
     >{children}</TableContext.Provider>
   );

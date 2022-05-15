@@ -32,7 +32,7 @@ interface NewTableModalProps {
 
 const NewTableModal: React.FC<NewTableModalProps> = ({onClose}) => {
   const {language} = useLanguageContext();
-  const {setLoading: ls} = useTableContext();
+  const {setLoading: ls, addTbl} = useTableContext();
   const {types} = useTypeContext();
   const {setText, deleteCb} = useDeleteContext();
 
@@ -81,7 +81,19 @@ const NewTableModal: React.FC<NewTableModalProps> = ({onClose}) => {
     setClstrs(clstrs.filter(({column}) => column !== clName));
   };
 
-  const createTable = () => {};
+  const createTable = () => {
+    if (tblNameRef.current?.value.length < 1 ||
+    columns.length < 1 ||
+    pars.length < 1) return;
+    if (ttlRef.current?.value.length > 0 
+        && !Number(ttlRef.current.value)) return;
+    ls!(true);
+    setTimeout(() => {
+        addTbl!(tblNameRef.current.value, columns.length);
+        ls!(false);
+        onClose();
+    }, 500);
+  };
 
   const clusExp: string = clstrs
     .map((val) => `${val.column}(${val.order})`)
