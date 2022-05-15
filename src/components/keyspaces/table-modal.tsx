@@ -5,11 +5,12 @@ import {
   ModalTitle, ModalCloseButton, HrLine,
   ModalSubtitle, ModalSubFields,
   ModalDeleteButton, ModalSubTextsContainer,
-  ModalSubItemsContainer, ModalItem, ModalItemCloseButton
+  ModalSubItemsContainer, ModalItem, ModalItemCloseButton,
+  SubFieldItems, SubFieldsSep
 } from './styles';
 import {EmptyContent} from '../../pages/keyspace/styles';
-import {dummyColumns, dummyIndices} from '../../utils/dummy-data';
-import {ColumnSchema, IndexSchema, NewColumn} from '../../utils/types';
+import {dummyColumns, dummyIndices, dummyPars, dummyClstrs} from '../../utils/dummy-data';
+import {ColumnSchema, IndexSchema, NewColumn, ClusterSchema} from '../../utils/types';
 import {general, tableModalTranslations} from '../../utils/translations.utils';
 
 import {useLanguageContext} from '../../contexts/language.context';
@@ -34,6 +35,8 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
 
   const [columns, setColumns] = useState<Array<ColumnSchema>>([]);
   const [indices, setIndices] = useState<Array<IndexSchema>>([]);
+  const [pars, setPars] = useState<Array<string>>([]);
+  const [clstrs, setClstrs] = useState<Array<ClusterSchema>>([]);
   const [showIndex, setShowIndex] = useState<boolean>(false);
   const [showColumn, setShowColumn] = useState<boolean>(false);
   const newColRef = useRef<NewColumn>({name: '', typeDefinition: "ascii"});
@@ -103,9 +106,15 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
     setTimeout(() => {
       setColumns(dummyColumns);
       setIndices(dummyIndices);
+      setPars(dummyPars);
+      setClstrs(dummyClstrs);
       ls!(false);
     }, 500);
   }, [tableName, ls]);
+
+  const clusExp: string = clstrs
+    .map((val) => `${val.column}(${val.order})`)
+    .join(", ");
 
   return (
     <ModalWrapper>
@@ -119,13 +128,15 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
           ls={ls!}
         />
       )}
-      {showColumn && <ColumnModal 
-        onClose={hideColumnModal} 
-        types={types} 
-        newCol={newColRef} 
-        ls={ls!}
-        ac={addColumn}
-      />}
+      {showColumn && (
+        <ColumnModal
+          onClose={hideColumnModal}
+          types={types}
+          newCol={newColRef}
+          ls={ls!}
+          ac={addColumn}
+        />
+      )}
       <ModalContainer>
         <ModalCloseButton onClick={onClose}>X</ModalCloseButton>
         <ModalTitle>{tableName}</ModalTitle>
@@ -170,8 +181,32 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
         </ModalSubFields>
         <HrLine />
         <ModalSubTextsContainer>
-          <span>{general.parKey[language]}: city</span>
-          <span>{general.cluKey[language]}: lastname, email</span>
+          <SubFieldsSep>
+            <span>{general.parKey[language]}:</span>
+            {pars.length === 0 && <span>-</span>}
+            <SubFieldItems>
+              {pars.map((val) => (
+                <ModalItem key={val}>
+                  <div>
+                    <span>{val}</span>
+                  </div>
+                </ModalItem>
+              ))}
+            </SubFieldItems>
+          </SubFieldsSep>
+          <SubFieldsSep>
+            <span>{general.cluKey[language]}:</span>
+            {clstrs.length === 0 && <span>-</span>}
+            <SubFieldItems>
+              {clstrs.map((val) => (
+                <ModalItem key={val.column}>
+                  <div>
+                    <span>{val.column}</span>
+                  </div>
+                </ModalItem>
+              ))}
+            </SubFieldItems>
+          </SubFieldsSep>
         </ModalSubTextsContainer>
         <ModalSubFields>
           <ModalSubtitle>
@@ -182,7 +217,7 @@ const TableModal: React.FC<TableModalProps> = ({tableName, onClose, ls, types}) 
         <ModalSubTextsContainer>
           <span>{tableModalTranslations.dTtl[language]}: 0</span>
           <span>
-            {tableModalTranslations.cluExp[language]}: lastname(asc), email(asc)
+            {tableModalTranslations.cluExp[language]}: {clusExp || "-"}
           </span>
         </ModalSubTextsContainer>
         <ModalSubFields>
