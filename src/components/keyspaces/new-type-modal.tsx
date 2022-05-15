@@ -19,7 +19,7 @@ import {useDeleteContext} from '../../contexts/delete.context';
 import {useTypeContext} from '../../contexts/type.context';
 
 import Button from '../button';
-import TypeModal from './type-modal';
+import FieldModal from './field-modal';
 import {StyledInput} from '../input/styles';
 
 interface NewTypeModalProps {
@@ -75,7 +75,7 @@ const NewTypeModal: React.FC<NewTypeModalProps> = ({onClose}) => {
   return (
     <ModalWrapper>
       {showField && (
-        <TypeModal
+        <FieldModal
           ls={setLoading!}
           onClose={hideField}
           ac={applyField}

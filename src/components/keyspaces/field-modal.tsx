@@ -14,7 +14,7 @@ import Button from '../button';
 import Input from "../input";
 import Select from "../select";
 
-interface TypeModalProps {
+interface FieldModalProps {
   onClose: () => void;
   ac: () => void;
   newField: MutableRefObject<NewTyp>;
@@ -22,7 +22,7 @@ interface TypeModalProps {
   ls: (val: boolean) => void;
 }
 
-const TypeModal: React.FC<TypeModalProps> = ({onClose, ac, fromNewTyp, newField, ls}) => {
+const FieldModal: React.FC<FieldModalProps> = ({onClose, ac, fromNewTyp, newField, ls}) => {
   const {language} = useLanguageContext();
 
   const [fieldName, setFieldName] = useState<string>("field_name");
@@ -83,4 +83,4 @@ const TypeModal: React.FC<TypeModalProps> = ({onClose, ac, fromNewTyp, newField,
   );
 };
 
-export default TypeModal;
+export default FieldModal;
