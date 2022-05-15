@@ -271,6 +271,18 @@ export const keyspacesTranslations = {
     "Informazioni sulla tabella",
     "Información de la tabla",
     "Informations sur le tableau"
+  ],
+  addNewCol: [
+    "Add new column",
+    "Aggiungi nuova colonna",
+    "Agregar nueva columna",
+    "Ajouter une nouvelle colonne"
+  ],
+  addNewTyp: [
+    "Add new type",
+    "Aggiungi nuovo tipo",
+    "Agregar nuevo tipo",
+    "Ajouter un nouveau type"
   ]
 };
 
@@ -383,4 +395,31 @@ export const newTableTranslations = {
     "No se agregó ninguna columna todavía",
     "Aucune colonne ajoutée pour le moment"
   ],
+};
+
+export const newTypeTranslations = {
+  crtTyp: [
+    "Create type",
+    "Crea tipo",
+    "Crear tipo",
+    "Créer un type"
+  ],
+  addField: [
+    "Add field",
+    "Aggiungi campo",
+    "Agregue campo",
+    "Ajouter le champ"
+  ],
+  noField: [
+    "No field added yet",
+    "Nessun campo ancora aggiunto",
+    "Ningún campo añadido todavía",
+    "Aucun champ ajouté pour le moment"
+  ],
+  delTyp: [
+    "Delete type",
+    "Elimina tipo",
+    "Eliminar tipo",
+    "Supprimer le type"
+  ]
 };

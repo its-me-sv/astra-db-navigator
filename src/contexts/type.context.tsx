@@ -11,6 +11,7 @@ interface TypeContextInterface {
   setLoading?: (val: boolean) => void;
   fetchTypes?: (val: string) => void;
   resetState?: () => void;
+  addType?: (name: string, fields: number) => void;
 }
 
 const defaultState: TypeContextInterface = {
@@ -37,6 +38,10 @@ export const TypeContextProvider: React.FC<{children: ReactNode}> = ({children})
     }, 500);
   };
 
+  const addType = (name: string, fields: number) => {
+    setTypes([...types, { name, fields }]);
+  };
+
   const resetState = () => {
     setTypes([]);
     setCurrType(null);
@@ -48,7 +53,7 @@ export const TypeContextProvider: React.FC<{children: ReactNode}> = ({children})
       value={{
         types, currType, loading,
         setCurrType, setLoading, fetchTypes,
-        resetState
+        resetState, addType
       }}
     >{children}</TypeContext.Provider>
   );

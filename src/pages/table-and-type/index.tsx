@@ -19,6 +19,7 @@ import Button from '../../components/button';
 import SearchField from '../../components/search-field';
 import TableModal from '../../components/keyspaces/table-modal';
 import NewTableModal from '../../components/keyspaces/new-table-modal';
+import NewTypeModal from '../../components/keyspaces/new-type-modal';
 
 interface TableAndTypePageProps {}
 
@@ -33,11 +34,13 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
   const [tableKeyword, setTableKeyword] = useState<string>('');
   const [typeKeyword, setTypeKeyword] = useState<string>('');
   const [newTable, setNewTable] = useState<boolean>(false);
+  const [newType, setNewType] = useState<boolean>(false);
 
   const applyTableFilter = (val: string) => setTableKeyword(val);
   const applyTypeFilter = (val: string) => setTypeKeyword(val);
   const closeTableModal = () => setCurrTable('');
   const closeNewTableModal = () => setNewTable(false);
+  const closeNewTypeModal = () => setNewType(false);
 
   useEffect(() => {
     if (currKeyspace === null) return;
@@ -66,11 +69,8 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
           types={types.map(({name}) => name)}
         />
       )}
-      {newTable && (
-        <NewTableModal
-          onClose={closeNewTableModal}
-        />
-      )}
+      {newTable && (<NewTableModal onClose={closeNewTableModal} />)}
+      {newType && (<NewTypeModal onClose={closeNewTypeModal} />)}
       <Seperator>
         <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>
         <SearchField
@@ -131,7 +131,7 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
           <Button
             variant={2}
             text={keyspacesTranslations.newType[language]}
-            onPress={() => {}}
+            onPress={() => setNewType(true)}
             disabled={false}
           />
         </ContentContainer>

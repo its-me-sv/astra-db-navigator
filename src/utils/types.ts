@@ -35,6 +35,11 @@ export interface ClusterSchema {
   order: "ASC" | "DESC";
 }
 
+export interface FieldSchema {
+  name: string;
+  type: string;
+}
+
 export type PrimaryKeyType = 'NONE' | 'PARTITION' | 'CLUSTERING';
 
 export type OrdersType = "ASC" | "DESC";

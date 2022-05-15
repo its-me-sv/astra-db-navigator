@@ -6,7 +6,7 @@ import {
   ColumnOptionsContainer,
 } from './styles';
 import {ModalButtons} from '../../pages/keyspace/styles';
-import {general} from '../../utils/translations.utils';
+import {general, keyspacesTranslations} from '../../utils/translations.utils';
 import {NewColumn} from '../../utils/types';
 import {generateColumnTypeDefinition} from '../../utils/column.utils';
 import {
@@ -72,7 +72,7 @@ const ColumnModal: React.FC<ColumnModalProps> = ({
   return (
     <ModalWrapper>
       <ModalContainer tiny>
-        <ModalTitle>Add new column</ModalTitle>
+        <ModalTitle>{keyspacesTranslations.addNewCol[language]}</ModalTitle>
         <ColumnOptionsContainer>
           <Input
             label="Name"
