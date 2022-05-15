@@ -17,7 +17,7 @@ interface MainHeaderProps {}
 
 const MainHeader: React.FC<MainHeaderProps> = () => {
   const {language} = useLanguageContext();
-  const {setScreen} = useConnectionContext();
+  const {setScreen, setDbToken, appToken} = useConnectionContext();
   const {
     currDatabase, databases, 
     fetchDatabases, setDatabase
@@ -44,7 +44,7 @@ const MainHeader: React.FC<MainHeaderProps> = () => {
         <Button
           variant={2}
           text={mainHeaderTranslations.createDB[language]}
-          onPress={() => {}}
+          onPress={() => setDbToken!(appToken)}
           disabled={false}
           unfilled
           tiny

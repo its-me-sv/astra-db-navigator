@@ -7,6 +7,7 @@ import {useTableContext} from './contexts/table.context';
 import {useTypeContext} from './contexts/type.context';
 
 import BlockLoader from './components/block-loader';
+import DatabaseModal from './components/database-modal';
 
 import HomePage from './pages/home';
 import MainPage from './pages/main';
@@ -14,7 +15,7 @@ import MainPage from './pages/main';
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const {loading, appToken} = useConnectionContext();
+  const {loading, appToken, dbToken} = useConnectionContext();
   const {loading: databaseLoading} = useDatabaseContext();
   const {loading: keyspaceLoading} = useKeyspaceContext();
   const {loading: tableLoading} = useTableContext();
@@ -24,6 +25,7 @@ const App: React.FC<AppProps> = () => {
     <>
       {(loading || databaseLoading || keyspaceLoading || tableLoading || typeLoading) 
       && <BlockLoader />}
+      {dbToken && <DatabaseModal />}
       {!(appToken.length > 0) ? <HomePage /> : <MainPage />}
     </>
   );
