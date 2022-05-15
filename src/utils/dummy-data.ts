@@ -1,4 +1,4 @@
-import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema} from './types';
+import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema, ClusterSchema} from './types';
 
 export const dummyKeyspaces: Array<KeyspaceSchema> = [
   {name: "todos", dataCenters: 1},
@@ -49,6 +49,16 @@ export const dummyColumns: Array<ColumnSchema> =[
 export const dummyIndices: Array<IndexSchema> = [
   {name: "fav_books_idx", kind: "COMPOSITES", options: ['bookId']},
   {name: "users_idx", kind: "CUSTOM", options: ['userid']}
+];
+
+export const dummyPars: Array<string> = [
+  "key",
+  "lastname",
+  "videoid"
+];
+export const dummyClstrs: Array<ClusterSchema> = [
+  {column: "name", order: "ASC"},
+  {column: "roll", order: "DESC"},
 ];
 
 export const indexTypes: Array<string> = ['SAI'];

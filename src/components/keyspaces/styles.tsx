@@ -120,7 +120,7 @@ export const ModalWrapper = styled.div`
   z-index: 200;
 `;
 
-export const ModalContainer = styled.div<{tiny?: boolean; clear?: boolean}>`
+export const ModalContainer = styled.div<{tiny?: boolean; clear?: boolean; fromNew?: boolean}>`
   display: flex;
   flex-direction: column;
   background-color: #f5f4f9;
@@ -135,6 +135,9 @@ export const ModalContainer = styled.div<{tiny?: boolean; clear?: boolean}>`
     width: 50vw;
     padding-bottom: 0.42%;
   `}
+  ${props => props.fromNew && `
+    padding-top: 0.42%;
+  `}
 `;
 
 export const ModalTitle = styled.span`
@@ -144,11 +147,12 @@ export const ModalTitle = styled.span`
   align-self: center;
 `;
 
-export const ModalSubFields = styled.span`
+export const ModalSubFields = styled.div<{withGap?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0.42%;
+  ${props => props.withGap && `gap: 0.5rem;`}
 `;
 
 export const ModalSubtitle = styled.span`
@@ -237,4 +241,11 @@ export const ColumnOptionsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
+`;
+
+export const SubFieldsSep = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 `;

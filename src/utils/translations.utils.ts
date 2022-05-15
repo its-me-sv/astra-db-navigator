@@ -345,3 +345,42 @@ export const indexModalTranslations = {
     "Options avancées"
   ]
 };
+
+export const newTableTranslations = {
+  crtTbl: [
+    "Create table",
+    "Crea tabella",
+    "Crear mesa",
+    "Créer un tableau"
+  ],
+  addCol: [
+    "Add column",
+    "Aggiungi colonna",
+    "Añadir columna",
+    "Ajouter une colonne"
+  ],
+  addParKey: [
+    "Add partition key",
+    "Aggiungi chiave di partizione",
+    "Añadir clave de partición",
+    "Ajouter une clé de partition"
+  ],
+  addClsKey: [
+    "Add clustering key",
+    "Aggiungi chiave di clustering",
+    "Añadir clave de agrupación",
+    "Ajouter une clé de clustering"
+  ],
+  ttl: [
+    "TTL in seconds",
+    "TTL in secondi",
+    "TTL en segundos",
+    "TTL en quelques secondes"
+  ],
+  noCol: [
+    "No column added yet",
+    "Nessuna colonna ancora aggiunta",
+    "No se agregó ninguna columna todavía",
+    "Aucune colonne ajoutée pour le moment"
+  ]
+};

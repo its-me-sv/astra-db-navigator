@@ -29,3 +29,8 @@ export interface NewColumn {
   name: string;
   typeDefinition: string;
 }
+
+export interface ClusterSchema {
+  column: string;
+  order: "ASC" | "DESC";
+}

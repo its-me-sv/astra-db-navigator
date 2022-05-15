@@ -18,6 +18,7 @@ import BlockLoader from '../../components/block-loader';
 import Button from '../../components/button';
 import SearchField from '../../components/search-field';
 import TableModal from '../../components/keyspaces/table-modal';
+import NewTableModal from '../../components/keyspaces/new-table-modal';
 
 interface TableAndTypePageProps {}
 
@@ -31,10 +32,12 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [tableKeyword, setTableKeyword] = useState<string>('');
   const [typeKeyword, setTypeKeyword] = useState<string>('');
+  const [newTable, setNewTable] = useState<boolean>(false);
 
   const applyTableFilter = (val: string) => setTableKeyword(val);
   const applyTypeFilter = (val: string) => setTypeKeyword(val);
   const closeTableModal = () => setCurrTable('');
+  const closeNewTableModal = () => setNewTable(false);
 
   useEffect(() => {
     if (currKeyspace === null) return;
@@ -61,6 +64,11 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
           onClose={closeTableModal} 
           ls={setLoading} 
           types={types.map(({name}) => name)}
+        />
+      )}
+      {newTable && (
+        <NewTableModal
+          onClose={closeNewTableModal}
         />
       )}
       <Seperator>
@@ -95,7 +103,7 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
           <Button
             variant={2}
             text={keyspacesTranslations.newTable[language]}
-            onPress={() => {}}
+            onPress={() => setNewTable(true)}
             disabled={false}
           />
         </ContentContainer>

@@ -29,12 +29,15 @@ interface ColumnModalProps {
   newCol: MutableRefObject<NewColumn>;
   ls: (val: boolean) => void;
   ac: () => void;
+  fromNewTbl?: boolean;
 }
 
-const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types, newCol, ls, ac}) => {
+const ColumnModal: React.FC<ColumnModalProps> = ({
+  onClose, types, newCol, ls, ac, fromNewTbl
+}) => {
   const {language} = useLanguageContext();
 
-  const [columnName, setColumnName] = useState<string>('column1');
+  const [columnName, setColumnName] = useState<string>('column_name');
   const [type, setType] = useState<string>('ascii');
   // const [keyType, setKeyType] = useState<string>("Partition");
   
@@ -48,17 +51,22 @@ const ColumnModal: React.FC<ColumnModalProps> = ({onClose, types, newCol, ls, ac
   const [value, setValue] = useState<string>('ascii');
 
   const onColumnCreate = () => {
-    ls(true);
-    setTimeout(() => {
-      newCol.current.name = columnName;
-      newCol.current.typeDefinition = generateColumnTypeDefinition(
-        type, frozen === 'true', +depth, 
-        colTyp, key, value
-      );
+    newCol.current.name = columnName;
+    newCol.current.typeDefinition = generateColumnTypeDefinition(
+      type, frozen === 'true', +depth, 
+      colTyp, key, value
+    );
+    if (fromNewTbl === true) {
       ac();
-      ls(false);
       onClose();
-    }, 500);
+    } else {
+      ls(true);
+      setTimeout(() => {
+        ac();
+        ls(false);
+        onClose();
+      }, 500);
+    }
   };
 
   return (
