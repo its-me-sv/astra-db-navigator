@@ -214,6 +214,12 @@ export const general = {
     "Creare",
     "Crear",
     "Créer"
+  ],
+  rename: [
+    "Rename",
+    "Rinominare",
+    "Rebautizar",
+    "Renommer"
   ]
 };
 
@@ -421,5 +427,11 @@ export const newTypeTranslations = {
     "Elimina tipo",
     "Eliminar tipo",
     "Supprimer le type"
+  ],
+  renmField: [
+    "Rename field",
+    "Rinomina campo",
+    "Renombrar campo",
+    "Renommer le champ"
   ]
 };

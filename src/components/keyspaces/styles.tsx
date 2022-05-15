@@ -177,7 +177,7 @@ export const ModalSubTextsContainer = styled.div`
   padding-top: 0.42%;
 `;
 
-export const ModalSubItemsContainer = styled.div`
+export const ModalSubItemsContainer = styled.div<{large?: boolean}>`
   display: flex;
   overflow: auto;
   flex-wrap: wrap;
@@ -185,6 +185,7 @@ export const ModalSubItemsContainer = styled.div`
   gap: 1rem;
   padding: 0.5%;
   margin-top: 0.21%;
+  ${props => props.large && `max-height: 42vh;`}
 `;
 
 export const ModalItem = styled.div`

@@ -7,7 +7,7 @@ import {
   ModalSubtitle, HrLine, ModalSubItemsContainer,
   ModalItem, ModalItemCloseButton
 } from './styles';
-import {FieldSchema, NewColumn as NewType} from '../../utils/types';
+import {FieldSchema, NewColumn as NewField} from '../../utils/types';
 import {
   keyspacesTranslations, newTypeTranslations,
   general
@@ -34,7 +34,7 @@ const NewTypeModal: React.FC<NewTypeModalProps> = ({onClose}) => {
   const [fields, setFields] = useState<Array<FieldSchema>>([]);
   const [showField, setShowField] = useState<boolean>(false);
   const typNameRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const newFieldRef = useRef<NewType>({name: "", typeDefinition: "ascii"});
+  const newFieldRef = useRef<NewField>({ name: "", typeDefinition: "ascii" });
 
   const hideField = () => setShowField(false);
 

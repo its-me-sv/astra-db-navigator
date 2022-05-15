@@ -18,6 +18,7 @@ import BlockLoader from '../../components/block-loader';
 import Button from '../../components/button';
 import SearchField from '../../components/search-field';
 import TableModal from '../../components/keyspaces/table-modal';
+import TypeModal from "../../components/keyspaces/type-modal";
 import NewTableModal from '../../components/keyspaces/new-table-modal';
 import NewTypeModal from '../../components/keyspaces/new-type-modal';
 
@@ -30,6 +31,7 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
   const {types, fetchTypes} = useTypeContext();
 
   const [currTable, setCurrTable] = useState<string>('');
+  const [currType, setCurrType] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [tableKeyword, setTableKeyword] = useState<string>('');
   const [typeKeyword, setTypeKeyword] = useState<string>('');
@@ -39,6 +41,7 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
   const applyTableFilter = (val: string) => setTableKeyword(val);
   const applyTypeFilter = (val: string) => setTypeKeyword(val);
   const closeTableModal = () => setCurrTable('');
+  const closeTypeModal = () => setCurrType('');
   const closeNewTableModal = () => setNewTable(false);
   const closeNewTypeModal = () => setNewType(false);
 
@@ -62,15 +65,22 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
     <KeyspaceContainer>
       {loading && <BlockLoader />}
       {currTable.length > 0 && (
-        <TableModal 
-          tableName={currTable} 
-          onClose={closeTableModal} 
-          ls={setLoading} 
-          types={types.map(({name}) => name)}
+        <TableModal
+          tableName={currTable}
+          onClose={closeTableModal}
+          ls={setLoading}
+          types={types.map(({ name }) => name)}
         />
       )}
-      {newTable && (<NewTableModal onClose={closeNewTableModal} />)}
-      {newType && (<NewTypeModal onClose={closeNewTypeModal} />)}
+      {currType.length > 0 && (
+        <TypeModal
+          typeName={currType}
+          ls={setLoading}
+          onClose={closeTypeModal}
+        />
+      )}
+      {newTable && <NewTableModal onClose={closeNewTableModal} />}
+      {newType && <NewTypeModal onClose={closeNewTypeModal} />}
       <Seperator>
         <SeperatorTitle>{keyspacesTranslations.hd1[language]}</SeperatorTitle>
         <SearchField
@@ -120,7 +130,7 @@ const TableAndTypePage: React.FC<TableAndTypePageProps> = () => {
         )}
         <ContentContainer>
           {filteredTypes.map((val, idx) => (
-            <ItemHolder key={idx}>
+            <ItemHolder key={idx} onClick={() => setCurrType(val.name)}>
               <ItemName>{val.name}</ItemName>
               <HrLine />
               <ItemSubfield>

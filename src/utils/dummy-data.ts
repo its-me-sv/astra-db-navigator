@@ -1,4 +1,4 @@
-import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema, ClusterSchema, OrdersType} from './types';
+import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema, ClusterSchema, OrdersType, FieldSchema} from './types';
 
 export const dummyKeyspaces: Array<KeyspaceSchema> = [
   {name: "todos", dataCenters: 1},
@@ -59,6 +59,21 @@ export const dummyPars: Array<string> = [
 export const dummyClstrs: Array<ClusterSchema> = [
   {column: "name", order: "ASC"},
   {column: "roll", order: "DESC"},
+];
+
+export const dummyFields: Array<FieldSchema> = [
+  {name: "key", type: "text"},
+  {name: "value", type: "text"},
+  {name: "city", type: "text"},
+  {name: "lastname", type: "text"},
+  {name: "firstname", type: "text"},
+  {name: "videoid", type: "uuid"},
+  {name: "email", type: "text"},
+  {name: "frames", type: "list<int>"},
+  {name: "tags", type: "set<text>"},
+  {name: "title", type: "text"},
+  {name: "upload", type: "timestamp"},
+  {name: "url", type: "text"}
 ];
 
 export const indexTypes: Array<string> = ['SAI'];
