@@ -1,4 +1,9 @@
-import {KeyspaceSchema, TableSchema, TypeSchema, ColumnSchema, IndexSchema, ClusterSchema, OrdersType, FieldSchema} from './types';
+import {
+  KeyspaceSchema, TableSchema, TypeSchema, 
+  ColumnSchema, IndexSchema, ClusterSchema, 
+  OrdersType, FieldSchema, CloudProviders, 
+  RegionSchema
+} from './types';
 
 export const dummyKeyspaces: Array<KeyspaceSchema> = [
   {name: "todos", dataCenters: 1},
@@ -75,6 +80,17 @@ export const dummyFields: Array<FieldSchema> = [
   {name: "upload", type: "timestamp"},
   {name: "url", type: "text"}
 ];
+
+export const dummyZones: RegionSchema = {
+  AWS: [
+    {displayName: "US West (Oregon)", name: "us-west-2"}, 
+    {displayName: "US East (California)", name: "us-east-2"}
+  ],
+  GCP: [
+    {displayName: "GUS West (Oregon)", name: "us-west-2"}, 
+    {displayName: "GUS East (California)", name: "us-east-2"}
+  ]
+};
 
 export const indexTypes: Array<string> = ['SAI'];
 export const kinds: Array<string> = ["NONE", "KEYS", "VALUES", "ENTRIES"];
@@ -284,3 +300,7 @@ export const collectionTypes: Array<string> = [
 ];
 
 export const orderTypes: Array<OrdersType> = ["ASC", "DESC"];
+
+export const tiers: Array<string> = ["serverless"];
+export const cus: Array<number> = [1];
+export const cps: Array<CloudProviders> = ["AWS", "GCP"];

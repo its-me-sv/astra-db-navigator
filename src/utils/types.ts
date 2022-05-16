@@ -40,6 +40,18 @@ export interface FieldSchema {
   type: string;
 }
 
+export interface ZoneSchema {
+  displayName: string;
+  name: string;
+}
+
+export type RegionSchema = {
+  [key in CloudProviders]: Array<ZoneSchema>;
+}
+
+
 export type PrimaryKeyType = 'NONE' | 'PARTITION' | 'CLUSTERING';
 
 export type OrdersType = "ASC" | "DESC";
+
+export type CloudProviders = 'AWS' | 'GCP';
