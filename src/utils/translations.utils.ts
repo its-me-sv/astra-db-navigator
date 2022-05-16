@@ -435,3 +435,24 @@ export const newTypeTranslations = {
     "Renommer le champ"
   ]
 };
+
+export const rowTranslations = {
+  filter: [
+    "Filter",
+    "Filtro",
+    "Filtrar",
+    "Filtre"
+  ],
+  newRow: [
+    "Add new row",
+    "Aggiungi nuova riga",
+    "Agregar nueva fila",
+    "Ajouter une nouvelle ligne"
+  ],
+  applyFilter: [
+    "Apply filter",
+    "Applica il filtro",
+    "Aplicar filtro",
+    "Aplicar filtro"
+  ]
+};
