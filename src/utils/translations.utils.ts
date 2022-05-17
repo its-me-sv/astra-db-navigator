@@ -454,5 +454,11 @@ export const rowTranslations = {
     "Applica il filtro",
     "Aplicar filtro",
     "Aplicar filtro"
+  ],
+  keyword: [
+    "Keyword",
+    "Parola chiave",
+    "Palabra clave",
+    "Mot-clé"
   ]
 };

@@ -23,6 +23,8 @@ export const FilterArea = styled.div`
 `;
 
 export const RowArea = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #f5f4f9;
   margin: 0.42rem;
   border-radius: 0.7rem;
@@ -54,4 +56,11 @@ export const SubFieldItems = styled.div`
   padding: 2.1%;
   max-height: 42vh;
   gap: 0.4rem;
+`;
+
+export const RowsHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.36rem;
 `;
