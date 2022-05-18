@@ -6,10 +6,10 @@ export const homeTranslations = {
     "Navigator",
   ],
   topCaption: [
-    "GUI to manage your AstraDB Database", 
-    "GUI per gestire il tuo database AstraDB",
-    "GUI para administrar su base de datos AstraDB",
-    "Interface graphique pour gérer votre base de données AstraDB"
+    "No code environment to manage your AstraDB Databases", 
+    "Nessun ambiente di codice per gestire i tuoi database AstraDB",
+    "Sin entorno de código para administrar sus bases de datos AstraDB",
+    "Aucun environnement de code pour gérer vos bases de données AstraDB"
   ],
   formTop: [
     "Credentials",
