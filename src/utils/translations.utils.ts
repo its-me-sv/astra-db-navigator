@@ -438,10 +438,10 @@ export const newTypeTranslations = {
 
 export const rowTranslations = {
   filter: [
-    "Filter",
-    "Filtro",
-    "Filtrar",
-    "Filtre"
+    "Filters",
+    "Filtri",
+    "Filtros",
+    "Filtres"
   ],
   newRow: [
     "Add new row",

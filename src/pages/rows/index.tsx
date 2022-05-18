@@ -12,12 +12,16 @@ interface RowsPageProps {}
 
 const RowsPage: React.FC<RowsPageProps> = () => {
   const {currTable} = useTableContext();
-  const {fetchColumns} = useRowsContext();
+  const {fetchColumns, resetState} = useRowsContext();
 
   useEffect(() => {
     if (!currTable || currTable.name.length < 1) return;
     fetchColumns!(currTable.name);
   }, [currTable]);
+
+  useEffect(() => {
+    return () => resetState!();
+  }, []);
 
   return (
     <RowsContainer>

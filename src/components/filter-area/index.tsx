@@ -24,7 +24,7 @@ interface FilterAreaProps {}
 const FilterArea: React.FC<FilterAreaProps> = () => {
   const {language} = useLanguageContext();
   const {
-    columns, resColumns, currColumn, pageSize,
+    columns, resColumns, currColumn, pageSize, fetchRows,
     setCurrColumn, addColumn, removeColumn, setPageSize
   } = useRowsContext();
 
@@ -79,7 +79,7 @@ const FilterArea: React.FC<FilterAreaProps> = () => {
         <Button
           text={rowTranslations.applyFilter[language]}
           variant={5}
-          onPress={() => {}}
+          onPress={fetchRows!}
           disabled={resColumns.length === 0}
           medium
         />

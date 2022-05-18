@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 
-import {RowArea as Container, RowsHeader} from '../../pages/rows/styles';
-import {rowTranslations} from '../../utils/translations.utils';
+import {RowArea as Container, RowsHeader, NoRows} from '../../pages/rows/styles';
+import {EmptyContent} from "../../pages/keyspace/styles";
+import {HrLine} from "../keyspaces/styles";
+import {rowTranslations, general} from '../../utils/translations.utils';
 
 import {useLanguageContext} from '../../contexts/language.context';
+import {useRowsContext} from '../../contexts/rows.context';
 
 import SearchField from '../search-field';
 import Button from '../button';
@@ -12,6 +15,7 @@ interface RowsAreaInterface {}
 
 const RowsArea: React.FC<RowsAreaInterface> = () => {
   const {language} = useLanguageContext();
+  const {rows} = useRowsContext();
 
   const [keyword, setKeyword] = useState<string>("");
   
@@ -33,6 +37,12 @@ const RowsArea: React.FC<RowsAreaInterface> = () => {
           variant={2}
         />
       </RowsHeader>
+      <HrLine il />
+      {rows.length === 0 && (
+        <NoRows>
+          <EmptyContent>{general.noData[language]}</EmptyContent>
+        </NoRows>
+      )}
     </Container>
   );
 };

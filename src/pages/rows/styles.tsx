@@ -81,3 +81,9 @@ export const PagesHolder = styled.div`
   padding: 0% 2.8%;
   margin: 4.2% 0%;
 `;
+
+export const NoRows = styled.div`
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+`;

@@ -55,3 +55,7 @@ export type PrimaryKeyType = 'NONE' | 'PARTITION' | 'CLUSTERING';
 export type OrdersType = "ASC" | "DESC";
 
 export type CloudProviders = 'AWS' | 'GCP';
+
+export type RowType = {
+  [key:string]: any;
+}

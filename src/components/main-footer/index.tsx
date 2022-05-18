@@ -12,6 +12,7 @@ import {useDatabaseContext} from '../../contexts/database.context';
 import {useKeyspaceContext} from '../../contexts/keyspace.context';
 import {useTableContext} from '../../contexts/table.context';
 import {useTypeContext} from '../../contexts/type.context';
+import {useRowsContext} from '../../contexts/rows.context';
 
 interface MainFooterProps {}
 
@@ -22,6 +23,7 @@ const MainFooter: React.FC<MainFooterProps> = () => {
   const {resetState: resetKeyspaceState} = useKeyspaceContext();
   const {resetState: resetTableState} = useTableContext();
   const {resetState: resetType} = useTypeContext();
+  const {resetState: resetRows} = useRowsContext();
 
   const resetAllState = () => {
     resetConnection!();
@@ -29,6 +31,7 @@ const MainFooter: React.FC<MainFooterProps> = () => {
     resetKeyspaceState!();
     resetTableState!();
     resetType!();
+    resetRows!();
   };
 
   return (
