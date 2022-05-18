@@ -304,3 +304,5 @@ export const orderTypes: Array<OrdersType> = ["ASC", "DESC"];
 export const tiers: Array<string> = ["serverless"];
 export const cus: Array<number> = [1];
 export const cps: Array<CloudProviders> = ["AWS", "GCP"];
+
+export const pageSizes: Array<string> = ['5', '10', '15'];

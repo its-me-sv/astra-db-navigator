@@ -2,9 +2,12 @@ import React from "react";
 
 import {
   FilterArea as Container, ColumnTitle, 
-  FilterHeader, SubFieldItems
+  FilterHeader, SubFieldItems, FilterFooter,
+  PagesHolder
 } from '../../pages/rows/styles';
 import {ModalItem, ModalItemCloseButton} from "../keyspaces/styles";
+import {HrLine} from "../keyspaces/styles";
+import {pageSizes} from "../../utils/dummy-data";
 import {
   rowTranslations, newTableTranslations, 
   tableModalTranslations
@@ -21,13 +24,23 @@ interface FilterAreaProps {}
 const FilterArea: React.FC<FilterAreaProps> = () => {
   const {language} = useLanguageContext();
   const {
-    columns, resColumns, currColumn, 
-    setCurrColumn, addColumn, removeColumn
+    columns, resColumns, currColumn, pageSize,
+    setCurrColumn, addColumn, removeColumn, setPageSize
   } = useRowsContext();
 
   return (
     <Container>
       <ColumnTitle>{rowTranslations.filter[language]}</ColumnTitle>
+      <PagesHolder>
+        <Select
+          options={pageSizes}
+          val={pageSize}
+          setVal={setPageSize!}
+          notHeader
+          label="Page size"
+        />
+      </PagesHolder>
+      <HrLine il />
       {columns.length > 0 && (
         <FilterHeader>
           <Select
@@ -35,7 +48,7 @@ const FilterArea: React.FC<FilterAreaProps> = () => {
             val={currColumn}
             setVal={setCurrColumn!}
             notHeader
-            label="Column"
+            label="Columns"
           />
           <Button
             variant={4}
@@ -61,13 +74,16 @@ const FilterArea: React.FC<FilterAreaProps> = () => {
           </ModalItem>
         ))}
       </SubFieldItems>
-      <Button
-        text={rowTranslations.applyFilter[language]}
-        variant={5}
-        onPress={() => {}}
-        disabled={resColumns.length === 0}
-        medium
-      />
+      <HrLine il />
+      <FilterFooter>
+        <Button
+          text={rowTranslations.applyFilter[language]}
+          variant={5}
+          onPress={() => {}}
+          disabled={resColumns.length === 0}
+          medium
+        />
+      </FilterFooter>
     </Container>
   );
 };

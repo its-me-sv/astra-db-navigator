@@ -8,8 +8,10 @@ interface RowsContextInterface {
   columns: Array<string>;
   resColumns: Array<string>;
   currColumn: string;
+  pageSize: string;
   fetchColumns?: (tblName: string) => void;
   setCurrColumn?: (val: string) => void;
+  setPageSize?: (val: string) => void;
   addColumn?: () => void;
   removeColumn?: (colName: string) => void;
 }
@@ -17,7 +19,8 @@ interface RowsContextInterface {
 const defaultState: RowsContextInterface = {
   columns: [],
   resColumns: [],
-  currColumn: ''
+  currColumn: '',
+  pageSize: '5'
 };
 
 export const RowsContext = createContext<RowsContextInterface>(defaultState);
@@ -27,9 +30,10 @@ export const useRowsContext = () => useContext(RowsContext);
 export const RowsContextProvider: React.FC<{children: ReactNode}> = ({children}) => {
   const {setLoading} = useConnectionContext();
 
-  const [columns, setColumns] = useState<Array<string>>([]);
-  const [resColumns, setResColumns] = useState<Array<string>>([]);
-  const [currColumn, setCurrColumn] = useState<string>('');
+  const [columns, setColumns] = useState<Array<string>>(defaultState.columns);
+  const [resColumns, setResColumns] = useState<Array<string>>(defaultState.resColumns);
+  const [currColumn, setCurrColumn] = useState<string>(defaultState.currColumn);
+  const [pageSize, setPageSize] = useState<string>(defaultState.pageSize);
 
   const fetchColumns = (tableName: string) => {
     if (tableName.length < 1) return;
@@ -57,9 +61,9 @@ export const RowsContextProvider: React.FC<{children: ReactNode}> = ({children})
 
   return (
     <RowsContext.Provider value={{
-      columns, resColumns, currColumn,
+      columns, resColumns, currColumn, pageSize,
       fetchColumns, setCurrColumn, addColumn,
-      removeColumn
+      removeColumn, setPageSize
     }}>{children}</RowsContext.Provider>
   );
 };

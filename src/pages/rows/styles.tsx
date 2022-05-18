@@ -9,8 +9,8 @@ export const RowsContainer = styled.div`
 `;
 
 export const FilterArea = styled.div`
+  position: relative;
   display: flex;
-  align-items: center;
   flex-direction: column;
   background-color: #f5f4f9;
   margin: 0.42rem;
@@ -39,16 +39,20 @@ export const ColumnTitle = styled.span`
   font-family: calibri;
   font-size: 1.6rem;
   opacity: 0.9;
+  text-align: center;
+  border-bottom: 1px solid #8e8e91;
 `;
 
 export const FilterHeader = styled.div`
   display: flex;
   align-items: flex-end;
-  gap: 1rem;
+  justify-content: space-between;
+  padding: 0% 2.8%;
+  margin-top: 4.2%;
 `;
 
 export const SubFieldItems = styled.div`
-  margin: 4.2% 0%;
+  margin: 1.4% 0%;
   display: flex;
   overflow: auto;
   flex-wrap: wrap;
@@ -63,4 +67,17 @@ export const RowsHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0.36rem;
+`;
+
+export const FilterFooter = styled.div`
+  position: absolute;
+  bottom: 1%;
+  right: 2.8%;
+`;
+
+export const PagesHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0% 2.8%;
+  margin: 4.2% 0%;
 `;
