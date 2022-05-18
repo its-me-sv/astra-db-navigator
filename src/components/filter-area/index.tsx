@@ -79,7 +79,7 @@ const FilterArea: React.FC<FilterAreaProps> = () => {
         <Button
           text={rowTranslations.applyFilter[language]}
           variant={5}
-          onPress={fetchRows!}
+          onPress={() => fetchRows!(true)}
           disabled={resColumns.length === 0}
           medium
         />

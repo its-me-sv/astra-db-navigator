@@ -460,5 +460,23 @@ export const rowTranslations = {
     "Parola chiave",
     "Palabra clave",
     "Mot-clé"
+  ],
+  editRow: [
+    "Edit row",
+    "Modifica riga",
+    "Editar fila",
+    "Modifier la ligne"
+  ],
+  delRow: [
+    "Delete row",
+    "Elimina riga",
+    "Borrar fila",
+    "Supprimer la ligne"
+  ],
+  loadMore: [
+    "Load more",
+    "Carica di più",
+    "Carga más",
+    "Charger plus"
   ]
 };

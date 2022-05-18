@@ -2,6 +2,7 @@ import React, {createContext, ReactNode, useContext, useState} from "react";
 
 import {dummyColumns} from '../utils/dummy-data';
 import {RowType} from '../utils/types';
+import {getDummyRows} from '../utils/row.utils';
 
 import {useConnectionContext} from './connection.context';
 
@@ -13,7 +14,7 @@ interface RowsContextInterface {
   rows: Array<RowType>;
   page: string | null;
   fetchColumns?: (tblName: string) => void;
-  fetchRows?: () => void;
+  fetchRows?: (fromFilter?: boolean) => void;
   setCurrColumn?: (val: string) => void;
   setPageSize?: (val: string) => void;
   addColumn?: () => void;
@@ -68,11 +69,24 @@ export const RowsContextProvider: React.FC<{children: ReactNode}> = ({children})
     setColumns([...columns, colName]);
   };
 
-  const fetchRows = () => {
+  const fetchRows = (fromFilter: boolean = false) => {
     if (page === null) return;
     setLoading!(true);
     setTimeout(() => {
-      setRows([{}]);
+      if (fromFilter) {
+        console.log("filtering");
+        setRows(getDummyRows(resColumns, +pageSize));
+      }
+      else {
+        if (rows.length > 0) {
+          console.log("pagination");
+          setRows([...rows, ...getDummyRows(resColumns, +pageSize)]);
+        }
+        else {
+          console.log("first fetch");
+          setRows(getDummyRows(resColumns, +pageSize));
+        }
+      }
       setPage('');
       setLoading!(false);
     }, 500);
