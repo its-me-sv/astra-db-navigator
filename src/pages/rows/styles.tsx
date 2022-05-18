@@ -110,7 +110,7 @@ export const Row = styled.div`
   flex-direction: column;
   background-color: #f5f4f9;
   padding: 1%;
-  padding-top: 0%;
+  padding-top: 2.4%;
   border-radius: 0.36rem;
   max-height: 42vh;
   max-width: 36vw;
@@ -129,6 +129,8 @@ export const Row = styled.div`
 export const RowHeader = styled.div`
   align-self: flex-end;
   display: flex;
+  position: absolute;
+  top: 0;
 `;
 
 export const RowButton = styled.span`

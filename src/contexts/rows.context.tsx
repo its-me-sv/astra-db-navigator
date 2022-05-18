@@ -20,6 +20,7 @@ interface RowsContextInterface {
   addColumn?: () => void;
   removeColumn?: (colName: string) => void;
   resetState?: () => void;
+  deleteRow?: (idx: number) => void;
 }
 
 const defaultState: RowsContextInterface = {
@@ -92,6 +93,14 @@ export const RowsContextProvider: React.FC<{children: ReactNode}> = ({children})
     }, 500);
   };
 
+  const deleteRow = (idx: number) => {
+    setLoading!(true);
+    setTimeout(() => {
+      setRows(rows.filter((_, index) => index !== idx));
+      setLoading!(false);
+    }, 500);
+  };
+
   const resetState = () => {
     setColumns(defaultState.columns);
     setResColumns(defaultState.resColumns);
@@ -107,7 +116,7 @@ export const RowsContextProvider: React.FC<{children: ReactNode}> = ({children})
       rows, page,
       fetchColumns, setCurrColumn, addColumn,
       removeColumn, setPageSize, fetchRows,
-      resetState
+      resetState, deleteRow
     }}>{children}</RowsContext.Provider>
   );
 };

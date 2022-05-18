@@ -12,6 +12,7 @@ import {getFilteredRows} from "../../utils/row.utils";
 
 import {useLanguageContext} from '../../contexts/language.context';
 import {useRowsContext} from '../../contexts/rows.context';
+import {useDeleteContext} from '../../contexts/delete.context';
 
 import SearchField from '../search-field';
 import Button from '../button';
@@ -20,11 +21,20 @@ interface RowsAreaInterface {}
 
 const RowsArea: React.FC<RowsAreaInterface> = () => {
   const {language} = useLanguageContext();
-  const {rows, fetchRows} = useRowsContext();
+  const {rows, fetchRows, deleteRow} = useRowsContext();
+  const {setText, deleteCb} = useDeleteContext();
 
   const [keyword, setKeyword] = useState<string>("");
   
   const applyKeyword = (val: string) => setKeyword(val);
+
+  const removeRow = (idx: number) => {
+    deleteCb!.current = () => {
+      deleteRow!(idx);
+      setText!('');
+    };
+    setText!(`${rowTranslations.delRow[language]} ?`);
+  };
 
   const filteredRows: Array<RowType> = getFilteredRows(rows, keyword);
   
@@ -58,7 +68,10 @@ const RowsArea: React.FC<RowsAreaInterface> = () => {
                   <RowButton title={rowTranslations.editRow[language]}>
                     ✏️
                   </RowButton>
-                  <RowButton title={rowTranslations.delRow[language]}>
+                  <RowButton
+                    title={rowTranslations.delRow[language]}
+                    onClick={() => removeRow(idx)}
+                  >
                     🗑️
                   </RowButton>
                 </RowHeader>
