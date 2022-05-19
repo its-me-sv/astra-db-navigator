@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/astra-db-navigator/static/css/main.b881baf7.css",
+    "main.js": "/astra-db-navigator/static/js/main.fd78ab8e.js",
+    "static/media/calibri.ttf": "/astra-db-navigator/static/media/calibri.ab3ba6d39bf555222bd4.ttf",
+    "static/media/bahnschrift.ttf": "/astra-db-navigator/static/media/bahnschrift.23b347dac5478c8b4500.ttf",
+    "static/media/info.png": "/astra-db-navigator/static/media/info.8d2c2e2cd81460bf9d5f.png",
+    "static/media/search.png": "/astra-db-navigator/static/media/search.a27091ef0c45faf8a66e.png",
+    "static/media/astra_db.svg": "/astra-db-navigator/static/media/astra_db.ff7d6fdc5206119c43b51b766c1a925d.svg",
+    "static/media/datastax-white-logo.svg": "/astra-db-navigator/static/media/datastax-white-logo.e6d2178740164165b66ecf5022c7b696.svg",
+    "index.html": "/astra-db-navigator/index.html",
+    "main.b881baf7.css.map": "/astra-db-navigator/static/css/main.b881baf7.css.map",
+    "main.fd78ab8e.js.map": "/astra-db-navigator/static/js/main.fd78ab8e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b881baf7.css",
+    "static/js/main.fd78ab8e.js"
+  ]
+}
