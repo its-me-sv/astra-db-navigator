@@ -1,4 +1,7 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
+import axios from 'axios';
+
+import {extractDatabases} from '../utils/extractors.utils';
 
 import {useConnectionContext} from './connection.context';
 
@@ -34,6 +37,12 @@ export const DatabaseContextProvider: React.FC<{children: ReactNode}> = ({childr
   const fetchDatabases = (tkn: string) => {
     if (tkn.length < 1) return;
     setLoading(true);
+    // axios.get(`https://api.astra.datastax.com/v2/databases`, {
+    //   headers: {
+    //     Authorization: `Bearer ${tkn}`,
+    //     'Access-Control-Allow-Credentials':true
+    //   },
+    // }).then(console.log);
     setTimeout(() => {
       setDatabases(['workshops', 'pirate-land', 'aneta']);
       currDatabase.length < 1 && setCurrDatabase('workshops');
